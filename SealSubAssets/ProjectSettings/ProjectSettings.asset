@@ -614,7 +614,20 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    1: TK_ADDRESSABLE
+    7: TK_ADDRESSABLE
+    13: TK_ADDRESSABLE
+    14: TK_ADDRESSABLE
+    19: TK_ADDRESSABLE
+    21: TK_ADDRESSABLE
+    25: TK_ADDRESSABLE
+    27: TK_ADDRESSABLE
+    28: TK_ADDRESSABLE
+    29: TK_ADDRESSABLE
+    30: TK_ADDRESSABLE
+    32: TK_ADDRESSABLE
+    33: TK_ADDRESSABLE
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration: {}
