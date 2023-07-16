@@ -5,7 +5,7 @@
 	<AssemblyName>SealSubMod</AssemblyName>
     <Version>1.0.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <LangVersion>11</LangVersion>
+    <LangVersion>10</LangVersion>
 	<RootNamespace>SealSubMod</RootNamespace>
 
     <RestoreAdditionalProjectSources>
