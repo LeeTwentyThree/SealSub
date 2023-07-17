@@ -6,7 +6,7 @@ namespace SealSubMod.Commands;//I thought it looked nicer with a folder :)
 internal class ConsoleCommands
 {
     [ConsoleCommand("Sealsub")]
-    public static void SealSubCommand(string arg = "")
+    public static void SealSubCommand(string arg = null)
     {
         if (arg != null) ErrorMessage.AddMessage($"Hello there, {arg}!");//worthless. I just thought would be funny
 
