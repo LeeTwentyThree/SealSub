@@ -18,6 +18,25 @@ MonoBehaviour:
   recurseDirectories: 0
   simulate: 0
   BundleArtifactPath: <AssetBundleStaging>
+--- !u!114 &-4669723345398366854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87d65cc226c348d45aa1c6dddf3600a6, type: 3}
+  m_Name: Delete
+  m_EditorClassIdentifier: 
+  Active: 1
+  PerManifest: 0
+  ListType: 0
+  Manifests: []
+  Recursive: 0
+  IsFatal: 0
+  Path: <AssetBundlePath>
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31,6 +50,7 @@ MonoBehaviour:
   m_Name: Pipeline
   m_EditorClassIdentifier: 
   Data:
+  - {fileID: -4669723345398366854}
   - {fileID: -8778462191586221546}
   QuickAccess: 0
   manifest: {fileID: 11400000, guid: e587a6640977ca04f9183b903aa8c52e, type: 2}

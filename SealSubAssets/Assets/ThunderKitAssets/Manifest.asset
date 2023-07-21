@@ -16,7 +16,7 @@ MonoBehaviour:
   assetBundles:
   - assetBundleName: SealSubAssets
     assets:
-    - {fileID: 2447579270839582284, guid: 3d68a11161d9e564daf660c002083048, type: 3}
+    - {fileID: 4866449762628954070, guid: c91553ff0ac396d4b886b4f2490cf41f, type: 3}
 --- !u!114 &-2130065370040266780
 MonoBehaviour:
   m_ObjectHideFlags: 0
