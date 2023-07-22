@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.bbepis.bepinex": {
+      "version": "file:BepInExPack",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.passivepicasso.thunderkit": {
       "version": "https://github.com/PassivePicasso/ThunderKit.git#8.0.3",
       "depth": 0,
@@ -95,6 +101,12 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
+    },
+    "subnautica": {
+      "version": "file:Subnautica",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
