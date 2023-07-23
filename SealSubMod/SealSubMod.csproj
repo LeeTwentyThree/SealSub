@@ -30,6 +30,13 @@
 	<PropertyGroup>
 		<SubPakDir>SealSubAssets/Packages/Subnautica</SubPakDir>
 	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <Optimize>True</Optimize>
+	  <NoWarn>1701;1702;0649</NoWarn>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <NoWarn>1701;1702;0649</NoWarn>
+	</PropertyGroup>
 	<Target Name="CopyToGameFolder" AfterTargets="Build">
 		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(SolutionDir)..\$(SubPakDir)" />
 	</Target>
