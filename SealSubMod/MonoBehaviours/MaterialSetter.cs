@@ -18,8 +18,10 @@ internal class MaterialSetter : MonoBehaviour
 
     public void Awake()
     {
+        var mats = renderer.materials;//just setting index doesn't work because you get a different array than the actual one. It's basically passed by value rather than reference
         foreach (var index in materialIndexes)
-            renderer.materials[index] = GetMaterial(materialType);
+            mats[index] = GetMaterial(materialType);
+        renderer.materials = mats;
     }
 
     public static Material GetMaterial(MaterialType type)
