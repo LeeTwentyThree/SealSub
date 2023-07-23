@@ -21,6 +21,10 @@ internal class CollisionCreator : MonoBehaviour
             return mesh; 
         } 
     }
+    public void OnValidate()
+    {
+        mesh = GetComponent<MeshFilter>();
+    }
     public void Awake()
     {
         var collider = new GameObject(Mesh.name + "Collision");
