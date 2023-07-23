@@ -17,7 +17,7 @@ internal class CollisionCreator : MonoBehaviour
     { 
         get 
         { 
-            if(!Mesh) mesh = GetComponent<MeshFilter>();
+            if(!mesh) mesh = GetComponent<MeshFilter>();
             return mesh; 
         } 
     }
