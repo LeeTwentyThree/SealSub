@@ -1,7 +1,7 @@
 ﻿using SealSubMod.Interfaces;
 using SealSubMod.MaterialModifiers;
 
-namespace SealSubMod.MonoBehaviours;
+namespace SealSubMod.MonoBehaviours.Prefab;
 
 internal class SealMaterialManager : MonoBehaviour, IOnAsyncPrefabTasksCompleted
 {

@@ -1,7 +1,7 @@
 ﻿using SealSubMod.Interfaces;
 using UWE;
 
-namespace SealSubMod.MonoBehaviours;
+namespace SealSubMod.MonoBehaviours.Prefab;
 
 internal class PrefabSlot : MonoBehaviour, IAsyncPrefabSetupOperation
 {

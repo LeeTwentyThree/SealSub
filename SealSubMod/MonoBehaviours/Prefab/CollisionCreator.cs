@@ -1,4 +1,4 @@
-﻿namespace SealSubMod.MonoBehaviours;
+﻿namespace SealSubMod.MonoBehaviours.Prefab;
 
 internal class CollisionCreator : MonoBehaviour
 {
@@ -7,12 +7,12 @@ internal class CollisionCreator : MonoBehaviour
     public CollisionMarker collisionParent;
 
     public MeshFilter Mesh
-    { 
-        get 
-        { 
-            if(!mesh) mesh = GetComponent<MeshFilter>();
-            return mesh; 
-        } 
+    {
+        get
+        {
+            if (!mesh) mesh = GetComponent<MeshFilter>();
+            return mesh;
+        }
     }
     public void OnValidate()
     {

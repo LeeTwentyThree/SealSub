@@ -1,9 +1,9 @@
-﻿namespace SealSubMod.MonoBehaviours;
+﻿namespace SealSubMod.MonoBehaviours.Prefab;
 
 internal class MaterialSetter : MonoBehaviour
 {
     public Renderer renderer;
-    public int[] materialIndexes = new[] {0};
+    public int[] materialIndexes = new[] { 0 };
     public MaterialType materialType;
 
     public enum MaterialType
@@ -24,7 +24,7 @@ internal class MaterialSetter : MonoBehaviour
 
     public static Material GetMaterial(MaterialType type)
     {
-        switch(type)
+        switch (type)
         {
             case MaterialType.WaterBarrier:
                 return MaterialUtils.AirWaterBarrierMaterial;
