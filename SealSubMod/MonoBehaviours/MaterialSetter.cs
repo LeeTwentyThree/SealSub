@@ -1,6 +1,4 @@
-﻿using Nautilus.Utility;
-
-namespace SealSubMod.MonoBehaviours;
+﻿namespace SealSubMod.MonoBehaviours;
 
 internal class MaterialSetter : MonoBehaviour
 {
