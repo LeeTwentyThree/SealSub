@@ -1,14 +1,17 @@
-﻿using SealSubMod.Data;
-using SealSubMod.Interfaces;
-using UnityEngine.TextCore;
+﻿namespace SealSubMod.MonoBehaviours.Prefab;
 
-namespace SealSubMod.MonoBehaviours.Prefab;
-
-internal class MaterialSetter : MonoBehaviour, ILateMaterialAction
+internal class MaterialSetter : MonoBehaviour
 {
     public Renderer renderer;
     public int[] materialIndexes = new[] { 0 };
-    public SealMaterialManager.MaterialType materialType;
+    public MaterialType materialType;
+
+    public enum MaterialType
+    {
+        WaterBarrier,
+        ForceField,
+        StasisField,
+    }
 
     private void OnValidate()
     {
@@ -16,11 +19,28 @@ internal class MaterialSetter : MonoBehaviour, ILateMaterialAction
             renderer = GetComponent<Renderer>();
     }
 
-    public void SetUpMaterials(SealMaterialManager sealMaterialManager)
+    public void AssignMaterial()
     {
         var mats = renderer.materials; // just setting index doesn't work because you get a different array than the actual one. It's basically passed by value rather than reference
         foreach (var index in materialIndexes)
-            mats[index] = sealMaterialManager.GetMaterial(materialType);
+            mats[index] = GetMaterial(materialType);
         renderer.materials = mats;
+    }
+
+    public void Start() => AssignMaterial();//Here for now ig yea sure idk idc 
+
+    public static Material GetMaterial(MaterialType type)
+    {
+        switch (type)
+        {
+            case MaterialType.WaterBarrier:
+                return MaterialUtils.AirWaterBarrierMaterial;
+            case MaterialType.ForceField:
+                return MaterialUtils.ForceFieldMaterial;
+            case MaterialType.StasisField:
+                return MaterialUtils.StasisFieldMaterial;
+            default:
+                return null;
+        }
     }
 }
