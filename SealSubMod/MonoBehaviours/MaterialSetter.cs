@@ -1,5 +1,4 @@
 ﻿using Nautilus.Utility;
-using UnityEngine;
 
 namespace SealSubMod.MonoBehaviours;
 

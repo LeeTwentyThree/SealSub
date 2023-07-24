@@ -1,5 +1,4 @@
 ﻿using Nautilus.Commands;
-using UnityEngine;
 
 namespace SealSubMod.Commands; // I thought it looked nicer with a folder :)
 

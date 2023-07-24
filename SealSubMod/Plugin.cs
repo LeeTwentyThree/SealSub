@@ -3,9 +3,7 @@ using BepInEx.Logging;
 using HarmonyLib;
 using Nautilus.Handlers;
 using SealSubMod.Commands;
-using System.IO;
 using System.Reflection;
-using UnityEngine;
 
 namespace SealSubMod;
 
