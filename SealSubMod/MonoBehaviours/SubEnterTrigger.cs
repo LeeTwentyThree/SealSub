@@ -16,7 +16,7 @@ internal class SubEnterTrigger : MonoBehaviour
         var player = c.gameObject.GetComponentInParent<Player>();
         if (!player) return;
 
-        if(!subRoot)//if subroot isn't set, assume this is debug mode and just use precursor out of water
+        if(!subRoot) // if subroot isn't set, assume this is debug mode and just use precursor out of water
         {
             Plugin.Logger.LogInfo($"Subroot not set when {(setWalk ? "entering" : "existing")} sub, using precursor walk instead");
             player.SetPrecursorOutOfWater(setWalk);
