@@ -31,6 +31,7 @@
 		<Using Remove="System" />
 		<Using Remove="System.Net.Http" />
 		<Using Include="UnityEngine" />
+		<Using Include="System.Collections" />
 		<Using Include="Nautilus.Handlers" />
 		<Using Include="Nautilus.Utility" />
 	</ItemGroup>
