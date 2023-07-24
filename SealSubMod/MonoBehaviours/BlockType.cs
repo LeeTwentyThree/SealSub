@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SealSubMod.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,7 @@ namespace SealSubMod.MonoBehaviours;
 
 internal class BlockType : MonoBehaviour//test class, WIP
 {
-    [SerializeField]
-    public Type type;
+    public InspectorTypeField type;
 
     private const float pushVelocity = 3f;
 
@@ -44,7 +44,7 @@ internal class BlockType : MonoBehaviour//test class, WIP
         if (other.isTrigger)
             return null;
 
-        return other.GetComponentInParent(type);
+        return other.GetComponentInParent(type.AssignedType);
     }
 
     private void Incr(Rigidbody rb)
