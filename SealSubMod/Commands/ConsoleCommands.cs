@@ -40,4 +40,11 @@ internal class ConsoleCommands
         Player.main.OnPlayerPositionCheat();
         Player.main.precursorOutOfWater = setWalk;
     }
+    [ConsoleCommand("Bitch")]
+    public static void BitchCommand(bool lights = false)
+    {
+        WarpForwardShortcut(1000);
+        SealSubCommand(!lights);
+        WarpForwardShortcut(50, true);
+    }
 }

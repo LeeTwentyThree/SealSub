@@ -20,6 +20,7 @@ internal class MaterialSetter : MonoBehaviour
             mats[index] = GetMaterial(materialType);
         renderer.materials = mats;
     }
+    public void Start() => AssignMaterial();//Here for now ig yea sure idk idc 
 
     public static Material GetMaterial(MaterialType type)
     {
