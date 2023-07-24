@@ -7,6 +7,7 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<LangVersion>10</LangVersion>
 		<RootNamespace>SealSubMod</RootNamespace>
+		<ImplicitUsings>enable</ImplicitUsings>
 
 		<RestoreAdditionalProjectSources>
 			https://api.nuget.org/v3/index.json;
@@ -24,6 +25,14 @@
 		<PackageReference Include="Subnautica.GameLibs" Version="71288.0.0-r.0" />
 		<PackageReference Include="PolySharp" Version="1.13.1" />
 		<PackageReference Include="Subnautica.Nautilus" Version="1.*-*" PrivateAssets="all" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Using Remove="System" />
+		<Using Remove="System.Net.Http" />
+		<Using Include="UnityEngine" />
+		<Using Include="Nautilus.Handlers" />
+		<Using Include="Nautilus.Utility" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">

@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace SealSubMod.MonoBehaviours;
+﻿namespace SealSubMod.MonoBehaviours;
 
 public class TestMonoBehaviourForThunderkitPurposesHowLongCanIMakeThisNameActually : MonoBehaviour
 {
