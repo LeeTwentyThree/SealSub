@@ -13,6 +13,12 @@ internal class MaterialSetter : MonoBehaviour
         StasisField,
     }
 
+    private void OnValidate()
+    {
+        if (renderer == null)
+            renderer = GetComponent<Renderer>();
+    }
+
     public void AssignMaterial()
     {
         var mats = renderer.materials; // just setting index doesn't work because you get a different array than the actual one. It's basically passed by value rather than reference
@@ -20,6 +26,7 @@ internal class MaterialSetter : MonoBehaviour
             mats[index] = GetMaterial(materialType);
         renderer.materials = mats;
     }
+
     public void Start() => AssignMaterial();//Here for now ig yea sure idk idc 
 
     public static Material GetMaterial(MaterialType type)

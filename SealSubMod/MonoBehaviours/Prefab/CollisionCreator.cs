@@ -17,6 +17,10 @@ internal class CollisionCreator : MonoBehaviour
     public void OnValidate()
     {
         mesh = GetComponent<MeshFilter>();
+        if (collisionParent == null)
+        {
+            collisionParent = transform.root.gameObject.GetComponentInChildren<CollisionMarker>();
+        }
     }
     public void Awake()
     {
