@@ -1,4 +1,6 @@
-﻿namespace SealSubMod.MonoBehaviours.Prefab;
+﻿using UnityEngine;
+
+namespace SealSubMod.MonoBehaviours.Prefab;
 
 internal class MaterialSetter : MonoBehaviour
 {
@@ -6,11 +8,14 @@ internal class MaterialSetter : MonoBehaviour
     public int[] materialIndexes = new[] { 0 };
     public MaterialType materialType;
 
+    private static Material glassMaterial;
+
     public enum MaterialType
     {
         WaterBarrier,
         ForceField,
         StasisField,
+        Glass
     }
 
     private void OnValidate()
@@ -39,8 +44,21 @@ internal class MaterialSetter : MonoBehaviour
                 return MaterialUtils.ForceFieldMaterial;
             case MaterialType.StasisField:
                 return MaterialUtils.StasisFieldMaterial;
+            case MaterialType.Glass:
+                return glassMaterial;
             default:
                 return null;
         }
+    }
+
+    public static IEnumerator LoadMaterialsAsync()
+    {
+        var seamothTask = CraftData.GetPrefabForTechTypeAsync(TechType.Seamoth);
+
+        yield return seamothTask;
+
+        glassMaterial = seamothTask.GetResult()
+            .transform.Find("Model/Submersible_SeaMoth/Submersible_seaMoth_geo/Submersible_SeaMoth_glass_geo")
+            .GetComponent<Renderer>().material;
     }
 }

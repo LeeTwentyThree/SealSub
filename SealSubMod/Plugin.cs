@@ -2,6 +2,7 @@
 using BepInEx.Logging;
 using HarmonyLib;
 using SealSubMod.Commands;
+using SealSubMod.MonoBehaviours.Prefab;
 using SealSubMod.Prefabs;
 using System.Reflection;
 
@@ -28,6 +29,8 @@ public class Plugin : BaseUnityPlugin
         ConsoleCommandsHandler.RegisterConsoleCommands(typeof(ConsoleCommands));
 
         SealSubPrefab.Register();
+
+        UWE.CoroutineHost.StartCoroutine(MaterialSetter.LoadMaterialsAsync());
 
         Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
     }
