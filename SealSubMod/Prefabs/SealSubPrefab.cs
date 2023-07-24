@@ -17,20 +17,21 @@ internal class SealSubPrefab
     private static IEnumerator GetGameObject(IOut<GameObject> gameObject)
     {
         var model = Plugin.assets.LoadAsset<GameObject>("SealSubPrefab");
-        model.AddComponent<SphereCollider>();
+        model.SetActive(false);
+        var prefab = Object.Instantiate(model);
 
-        var asyncOperations = model.GetComponentsInChildren<IAsyncPrefabSetupOperation>();
+        var asyncOperations = prefab.GetComponentsInChildren<IAsyncPrefabSetupOperation>(true);
         foreach (var task in asyncOperations)
         {
             yield return task;
         }
-
-        var onCompleted = model.GetComponentsInChildren<IOnAsyncPrefabTasksCompleted>();
+        
+        var onCompleted = prefab.GetComponentsInChildren<IOnAsyncPrefabTasksCompleted>(true);
         foreach (var leeʼsUnnamedVariable in onCompleted)
         {
             leeʼsUnnamedVariable.OnAsyncPrefabTasksCompleted();
         }
 
-        gameObject.Set(model);
+        gameObject.Set(prefab);
     }
 }
