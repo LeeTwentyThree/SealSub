@@ -2,6 +2,7 @@
 using BepInEx.Logging;
 using HarmonyLib;
 using SealSubMod.Commands;
+using SealSubMod.Prefabs;
 using System.Reflection;
 
 namespace SealSubMod;
@@ -25,6 +26,8 @@ public class Plugin : BaseUnityPlugin
         Harmony.CreateAndPatchAll(Assembly, $"{PluginInfo.PLUGIN_GUID}");
 
         ConsoleCommandsHandler.RegisterConsoleCommands(typeof(ConsoleCommands));
+
+        SealSubPrefab.Register();
 
         Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
     }

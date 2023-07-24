@@ -13,7 +13,7 @@ internal class MaterialSetter : MonoBehaviour
         StasisField,
     }
 
-    public void Start()
+    public void AssignMaterial()
     {
         var mats = renderer.materials; // just setting index doesn't work because you get a different array than the actual one. It's basically passed by value rather than reference
         foreach (var index in materialIndexes)
