@@ -1,0 +1,1 @@
+We can use the default materials for most objects, but sometimes it is necessary or preferable to create a custom material in Unity where you set your own properties. Those materials go here.
