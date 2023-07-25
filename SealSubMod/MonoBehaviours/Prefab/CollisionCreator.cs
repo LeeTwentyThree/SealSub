@@ -5,6 +5,7 @@ internal class CollisionCreator : MonoBehaviour
     [SerializeField]
     private MeshFilter mesh;
     public CollisionMarker collisionParent;
+    public bool convex;
 
     public MeshFilter Mesh
     {
@@ -30,7 +31,9 @@ internal class CollisionCreator : MonoBehaviour
         collider.transform.rotation = Mesh.transform.rotation;
         collider.transform.localScale = Mesh.transform.localScale;
 
-        collider.AddComponent<MeshCollider>().sharedMesh = Mesh.mesh;
+        var meshCollider = collider.AddComponent<MeshCollider>();
+        meshCollider.sharedMesh = Mesh.mesh;
+        meshCollider.convex = convex;
     }
 }
 public class CollisionMarker : MonoBehaviour // useless class, just here so that I can put it on a single object as the collision parent
