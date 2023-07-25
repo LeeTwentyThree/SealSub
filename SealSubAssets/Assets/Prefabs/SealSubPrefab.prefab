@@ -2746,6 +2746,9 @@ MonoBehaviour:
   exteriorSkyApplier: {fileID: 5465353763737116582}
   interiorSkyApplier: {fileID: 3161625840756835589}
   windowSkyApplier: {fileID: 896603972056120945}
+  lightingController: {fileID: 1636038451278806775}
+  skyBaseGlass: {fileID: 0}
+  skyBaseInterior: {fileID: 0}
 --- !u!114 &5465353763737116582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2851,23 +2854,36 @@ MonoBehaviour:
   skies:
   - sky: {fileID: 0}
     masterIntensities:
-    - 1
-    - 1
-    - 1
+    - 0.1
+    - 0.1
+    - 0.1
     diffIntensities:
-    - 1
-    - 1
-    - 1
+    - 1.02
+    - 0.7
+    - 0.7
     specIntensities:
+    - 0.44
+    - 0.44
+    - 0.2
+  - sky: {fileID: 0}
+    masterIntensities:
+    - 1.3
     - 1
-    - 1
-    - 1
+    - 0.25
+    diffIntensities:
+    - 4
+    - 0.22
+    - 0.16
+    specIntensities:
+    - 1.5
+    - 0.44
+    - 0.2
   lights: []
   emissiveController:
     intensities:
+    - 1
+    - 0.7
     - 0
-    - 1
-    - 1
 --- !u!114 &8151198628979426584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4813,6 +4829,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mesh: {fileID: 7421429908968272915}
   collisionParent: {fileID: 2286599077004497397}
+--- !u!114 &4421683942831217206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9059825459280581577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1617506591, guid: db380c3672ed49c4fbac490b18d75cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9099057022980762332
 GameObject:
   m_ObjectHideFlags: 0
@@ -7745,6 +7773,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 486048442622859103, guid: 3d68a11161d9e564daf660c002083048,
         type: 3}
+      propertyPath: m_Color.b
+      value: 0.674
+      objectReference: {fileID: 0}
+    - target: {fileID: 486048442622859103, guid: 3d68a11161d9e564daf660c002083048,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 486048442622859103, guid: 3d68a11161d9e564daf660c002083048,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.035
+      objectReference: {fileID: 0}
+    - target: {fileID: 486048442622859103, guid: 3d68a11161d9e564daf660c002083048,
+        type: 3}
       propertyPath: m_Intensity
       value: 2
       objectReference: {fileID: 0}
@@ -8121,9 +8164,9 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8419753986417281604}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6792308633220921008 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3070286246198082804, guid: 3d68a11161d9e564daf660c002083048,
+--- !u!33 &1093176764305706953 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 8931561503634736525, guid: 3d68a11161d9e564daf660c002083048,
     type: 3}
   m_PrefabInstance: {fileID: 8419753986417281604}
   m_PrefabAsset: {fileID: 0}
@@ -8289,9 +8332,9 @@ MeshRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 8419753986417281604}
   m_PrefabAsset: {fileID: 0}
---- !u!33 &1093176764305706953 stripped
-MeshFilter:
-  m_CorrespondingSourceObject: {fileID: 8931561503634736525, guid: 3d68a11161d9e564daf660c002083048,
+--- !u!1 &6792308633220921008 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3070286246198082804, guid: 3d68a11161d9e564daf660c002083048,
     type: 3}
   m_PrefabInstance: {fileID: 8419753986417281604}
   m_PrefabAsset: {fileID: 0}
