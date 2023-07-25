@@ -7,13 +7,15 @@ internal class MaterialSetter : MonoBehaviour
     public MaterialType materialType;
 
     private static Material glassMaterial;
+    private static Material exteriorGlassMaterial;
 
     public enum MaterialType
     {
         WaterBarrier,
         ForceField,
         StasisField,
-        Glass
+        Glass,
+        ExteriorGlass
     }
 
     private void OnValidate()
@@ -46,6 +48,8 @@ internal class MaterialSetter : MonoBehaviour
                 return MaterialUtils.StasisFieldMaterial;
             case MaterialType.Glass:
                 return glassMaterial;
+            case MaterialType.ExteriorGlass:
+                return exteriorGlassMaterial;
             default:
                 return null;
         }
@@ -57,8 +61,12 @@ internal class MaterialSetter : MonoBehaviour
 
         yield return seamothTask;
 
-        glassMaterial = seamothTask.GetResult()
+        var material = seamothTask.GetResult()
             .transform.Find("Model/Submersible_SeaMoth/Submersible_seaMoth_geo/Submersible_SeaMoth_glass_geo")
             .GetComponent<Renderer>().material;
+
+        glassMaterial = new Material(material);
+        exteriorGlassMaterial = new Material(material);
+        exteriorGlassMaterial.SetFloat("_SpecInt", 50);
     }
 }

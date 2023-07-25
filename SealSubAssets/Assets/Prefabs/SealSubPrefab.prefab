@@ -3908,7 +3908,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 6538846066437713803}
   materialIndexes: 00000000
-  materialType: 3
+  materialType: 4
 --- !u!1 &6818866167954551676
 GameObject:
   m_ObjectHideFlags: 0
