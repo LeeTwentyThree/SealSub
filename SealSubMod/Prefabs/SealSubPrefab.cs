@@ -6,6 +6,7 @@ namespace SealSubMod.Prefabs;
 internal class SealSubPrefab
 {
     public static PrefabInfo Info { get; } = PrefabInfo.WithTechType("SealSub", "Seal Sub", "Seal Sub that makes me go yes");
+    public static TechType SealType { get; } = Info.TechType;
 
     public static void Register()
     {
