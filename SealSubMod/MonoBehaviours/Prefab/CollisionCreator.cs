@@ -2,8 +2,7 @@
 
 internal class CollisionCreator : MonoBehaviour
 {
-    [SerializeField]
-    private MeshFilter mesh;
+    [SerializeField] MeshFilter mesh;
     public CollisionMarker collisionParent;
     public bool convex;
 
@@ -15,6 +14,7 @@ internal class CollisionCreator : MonoBehaviour
             return mesh;
         }
     }
+
     public void OnValidate()
     {
         mesh = GetComponent<MeshFilter>();
@@ -23,6 +23,7 @@ internal class CollisionCreator : MonoBehaviour
             collisionParent = transform.root.gameObject.GetComponentInChildren<CollisionMarker>();
         }
     }
+
     public void Awake()
     {
         var collider = new GameObject(Mesh.name + "Collision");
