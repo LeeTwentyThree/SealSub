@@ -4501,7 +4501,7 @@ MonoBehaviour:
   storageRoot: {fileID: 7207866070783468191}
   defaultBattery: 43
   defaultBatteryCharge: 1
-  compatibleBatteries: 2b00000000000000
+  compatibleBatteries: 2b00000071100000
   allowBatteryReplacement: 1
   controlledObjects: []
   soundPowerUp: {fileID: 0}

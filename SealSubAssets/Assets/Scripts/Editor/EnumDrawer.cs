@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
-[CustomPropertyDrawer(typeof(Enum))]
+[CustomPropertyDrawer(typeof(TechType))]
 public class TechTypeDrawer : PropertyDrawer
 {
     private AdvancedStringOptionsDropdown _dropdown;
