@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace SealSubMod.MonoBehaviours.Prefab;
+﻿namespace SealSubMod.MonoBehaviours.Prefab;
 
 internal class MaterialSetter : MonoBehaviour
 {
@@ -26,6 +24,8 @@ internal class MaterialSetter : MonoBehaviour
 
     public void AssignMaterial()
     {
+        if (!renderer) throw new System.Exception($"Renderer is null on material setter {name}");
+
         var mats = renderer.materials; // just setting index doesn't work because you get a different array than the actual one. It's basically passed by value rather than reference
         foreach (var index in materialIndexes)
             mats[index] = GetMaterial(materialType);
