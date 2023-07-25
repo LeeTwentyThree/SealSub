@@ -67,6 +67,9 @@ internal class MaterialSetter : MonoBehaviour
 
         glassMaterial = new Material(material);
         exteriorGlassMaterial = new Material(material);
-        exteriorGlassMaterial.SetFloat("_SpecInt", 50);
+        exteriorGlassMaterial.SetFloat("_SpecInt", 100);
+        exteriorGlassMaterial.SetFloat("_Shininess", 8);
+        exteriorGlassMaterial.SetFloat("_Fresnel", 0.72f);
+        exteriorGlassMaterial.SetColor("_SpecColor", new Color(0.52f, 0.76f, 1f));
     }
 }
