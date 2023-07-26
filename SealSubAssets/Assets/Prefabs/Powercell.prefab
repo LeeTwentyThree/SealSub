@@ -44,6 +44,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   classId: 
+--- !u!1 &1435289243210033442
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 787526785507807850}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &787526785507807850
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435289243210033442}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5290911241191170319}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4732605782628041994
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,6 +88,7 @@ GameObject:
   - component: {fileID: 4640056350381598888}
   - component: {fileID: 6239050159518910624}
   - component: {fileID: 6708003829750580823}
+  - component: {fileID: 5375666381754999887}
   m_Layer: 0
   m_Name: Powercell
   m_TagString: Untagged
@@ -77,6 +108,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1023918662856165875}
+  - {fileID: 787526785507807850}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -116,7 +148,11 @@ MonoBehaviour:
   soundPowerDown: {fileID: 0}
   soundBatteryAdd: {fileID: 0}
   soundBatteryRemove: {fileID: 0}
-  batteryModels: []
+  batteryModels:
+  - model: {fileID: 0}
+    techType: 43
+  - model: {fileID: 0}
+    techType: 4209
 --- !u!114 &4640056350381598888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,3 +220,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5375666381754999887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4732605782628041994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 223952372, guid: db380c3672ed49c4fbac490b18d75cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 5290911241191170319}
+  localPos: {x: -0.22, y: 0.16, z: -0.14}
+  localAngles: {x: 270, y: 180, z: 0}
+  localScale: {x: 0.55, y: 0.55, z: 0.55}
