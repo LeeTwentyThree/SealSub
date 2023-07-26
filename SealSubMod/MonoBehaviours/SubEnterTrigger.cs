@@ -15,6 +15,6 @@ internal class SubEnterTrigger : MonoBehaviour
             player.SetPrecursorOutOfWater(setWalk);
             return;
         }
-        player.SetCurrentSub(setWalk ? subRoot : null);
+        player.SetCurrentSub(subRoot);
     }
 }
