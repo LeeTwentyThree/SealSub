@@ -30,7 +30,7 @@ internal class SealDockingBay : VehicleDockingBay
             }
         }
     }
-    internal void UpdateVehclPos(Vehicle vehcl)
+    internal void UpdateVehclPos(Vehicle vehcl, float interpolationfractionnumbervalue)
     {
         var vehclPos = vehcl.transform.position;
         var dockPos = dockingEndPos.position;
@@ -38,7 +38,9 @@ internal class SealDockingBay : VehicleDockingBay
         var direction = dockPos - vehclPos;
         var distance = direction.magnitude;
 
-        var force = Mathf.Lerp(MinForce, MaxForce, distance / MaxDistance) * direction;
+        var interp = (distance / MaxDistance) * interpolationfractionnumbervalue;
+
+        var force = Mathf.Lerp(MinForce, MaxForce, interp) * direction;
 
         vehcl.useRigidbody.AddForce(force, ForceMode);
 

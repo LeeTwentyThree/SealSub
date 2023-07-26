@@ -21,11 +21,11 @@ internal class DockingBayPatches
     public static bool IsSealBay(VehicleDockingBay bay) => bay is SealDockingBay;
     */
     [HarmonyPatch(nameof(VehicleDockingBay.UpdateDockedPosition))]
-    public static bool Prefix(VehicleDockingBay __instance, Vehicle vehicle)
+    public static bool Prefix(VehicleDockingBay __instance, Vehicle vehicle, float interpfraction)
     {
         if (__instance is not SealDockingBay seal) return true;
 
-        seal.UpdateVehclPos(vehicle);
+        seal.UpdateVehclPos(vehicle, interpfraction);
 
         return false;
     }
