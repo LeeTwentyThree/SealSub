@@ -1288,7 +1288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 3078211788724307999}
   materialIndexes: 01000000
-  materialType: 3
+  materialType: 5
 --- !u!1 &695516316639894687
 GameObject:
   m_ObjectHideFlags: 0
@@ -15835,7 +15835,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 6869517020899464625}
   materialIndexes: 01000000
-  materialType: 3
+  materialType: 5
 --- !u!1 &8339230217467724623
 GameObject:
   m_ObjectHideFlags: 0
