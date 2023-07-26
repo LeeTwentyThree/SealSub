@@ -5,7 +5,7 @@ internal class SealDockingBay : VehicleDockingBay
     //Mostly a marker class, to distinguish between normal docking bays and the seal bay in patches
     public static float MaxDistance = 3;
     public static float MinForce = 0.001f;
-    public static float MaxForce = 4;
+    public static float MaxForce = 20;
     public static ForceMode ForceMode = ForceMode.VelocityChange;
 
     public static float dockPushOutForce = 2;
@@ -21,7 +21,7 @@ internal class SealDockingBay : VehicleDockingBay
         if (!dockedVehicle) return;
         if(!dockedVehicle.CanPilot() || !dockedVehicle.GetPilotingMode()) return;
 
-        var outDirection = exit.position - dockedVehicle.transform.position;
+        var outDirection = (exit.position - dockedVehicle.transform.position).normalized;
         var dot = Vector3.Dot((dockedVehicle.transform.rotation * GameInput.GetMoveDirection()).normalized, outDirection.normalized);
 
         if(doubleDebug)ErrorMessage.AddMessage($"Dot product {dot}");
@@ -70,7 +70,7 @@ internal class SealDockingBay : VehicleDockingBay
 
         var force = Mathf.Lerp(MinForce, MaxForce, interp) * direction;
 
-        vehcl.useRigidbody.AddForce(force, ForceMode);
+        vehcl.useRigidbody.AddForce(force * Time.deltaTime, ForceMode);
 
         vehcl.useRigidbody.velocity *= Mathf.Pow(0.1f, Time.deltaTime);
     }
