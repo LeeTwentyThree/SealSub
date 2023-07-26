@@ -117,7 +117,11 @@ MonoBehaviour:
   soundPowerDown: {fileID: 0}
   soundBatteryAdd: {fileID: 0}
   soundBatteryRemove: {fileID: 0}
-  batteryModels: []
+  batteryModels:
+  - model: {fileID: 0}
+    techType: 43
+  - model: {fileID: 0}
+    techType: 4209
 --- !u!114 &4640056350381598888
 MonoBehaviour:
   m_ObjectHideFlags: 0
