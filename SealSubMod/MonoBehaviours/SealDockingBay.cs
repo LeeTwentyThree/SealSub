@@ -9,7 +9,7 @@ internal class SealDockingBay : VehicleDockingBay
     public static ForceMode ForceMode = ForceMode.VelocityChange;
 
     public static float dockPushOutForce = 2;
-    public static float dockPullInForceMult = 0.01f;
+    public static float dockPullInForceMult = 0.1f;
     public static float dotProductLimit = 0.9f;
 
 
@@ -29,7 +29,7 @@ internal class SealDockingBay : VehicleDockingBay
         if (dot >= dotProductLimit)
         {
             if(debug) ErrorMessage.AddMessage("Trying to undock!!!!!!!!!!!!!!");
-            dockedVehicle.useRigidbody.AddForce(outDirection * dockPushOutForce);
+            dockedVehicle.useRigidbody.AddForce(outDirection * dockPushOutForce, ForceMode);
             OnUndockingComplete(Player.main);
         }
     }
