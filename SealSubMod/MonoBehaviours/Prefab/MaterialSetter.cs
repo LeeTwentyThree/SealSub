@@ -8,6 +8,7 @@ internal class MaterialSetter : MonoBehaviour
 
     private static Material glassMaterial;
     private static Material exteriorGlassMaterial;
+    private static Material shinyGlassMaterial;
 
     public enum MaterialType
     {
@@ -15,7 +16,8 @@ internal class MaterialSetter : MonoBehaviour
         ForceField,
         StasisField,
         Glass,
-        ExteriorGlass
+        ExteriorGlass,
+        ShinyGlass
     }
 
     private void OnValidate()
@@ -50,6 +52,8 @@ internal class MaterialSetter : MonoBehaviour
                 return glassMaterial;
             case MaterialType.ExteriorGlass:
                 return exteriorGlassMaterial;
+            case MaterialType.ShinyGlass:
+                return shinyGlassMaterial;
             default:
                 return null;
         }
@@ -61,15 +65,22 @@ internal class MaterialSetter : MonoBehaviour
 
         yield return seamothTask;
 
-        var material = seamothTask.GetResult()
+        var seamothGlassMaterial = seamothTask.GetResult()
             .transform.Find("Model/Submersible_SeaMoth/Submersible_seaMoth_geo/Submersible_SeaMoth_glass_geo")
             .GetComponent<Renderer>().material;
 
-        glassMaterial = new Material(material);
-        exteriorGlassMaterial = new Material(material);
+        glassMaterial = new Material(seamothGlassMaterial);
+
+        exteriorGlassMaterial = new Material(seamothGlassMaterial);
         exteriorGlassMaterial.SetFloat("_SpecInt", 100);
         exteriorGlassMaterial.SetFloat("_Shininess", 8);
         exteriorGlassMaterial.SetFloat("_Fresnel", 0.72f);
         exteriorGlassMaterial.SetColor("_SpecColor", new Color(0.52f, 0.76f, 1f));
+
+        shinyGlassMaterial = new Material(seamothGlassMaterial);
+        shinyGlassMaterial.SetColor("_Color", new Color(1, 1, 1, 0.1f));
+        shinyGlassMaterial.SetFloat("_SpecInt", 25);
+        shinyGlassMaterial.SetFloat("_Shininess", 8);
+        shinyGlassMaterial.SetFloat("_Fresnel", 0.88f);
     }
 }
