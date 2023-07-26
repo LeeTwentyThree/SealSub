@@ -5,14 +5,14 @@ namespace SealSubMod.Commands; // I thought it looked nicer with a folder :)
 internal class ConsoleCommands
 {
     [ConsoleCommand("Sealsub")]
-    public static void SealSubCommand(string arg = "")
+    public static void SealSubCommand(bool setInside = false, string arg = "")
     {
         ErrorMessage.AddMessage($"Hello there, {(arg != "" ? arg : "bitch")}!");//worthless. I just thought would be funny
 
-        UWE.CoroutineHost.StartCoroutine(SpawnSeal());
+        UWE.CoroutineHost.StartCoroutine(SpawnSeal(setInside));
     }
 
-    private static IEnumerator SpawnSeal(Vector3? pos = null)
+    private static IEnumerator SpawnSeal(bool setInside, Vector3? pos = null)
     {
         if(pos == null) pos = Player.main.transform.position + (Camera.main.transform.forward * 50);
 
@@ -21,6 +21,8 @@ internal class ConsoleCommands
         var obj = GameObject.Instantiate(task.GetResult());
 
         obj.transform.position = (Vector3)pos;
+        if(setInside)
+            Player.main.currentSub = obj.GetComponent<SubRoot>();
     }
 
     [ConsoleCommand("SetWalking")]
@@ -49,7 +51,7 @@ internal class ConsoleCommands
     public static void BitchCommand(bool lights = false)
     {
         WarpForwardShortcut(1000);
-        SealSubCommand();
-        WarpForwardShortcut(50, true);
+        SealSubCommand(true);
+        WarpForwardShortcut(50);
     }
 }

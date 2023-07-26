@@ -6,7 +6,18 @@ internal class SubEnterTrigger : MonoBehaviour
     public SubRoot subRoot;
     public void OnTriggerEnter(Collider c)
     {
-        var player = c.gameObject.GetComponentInParent<Player>();
+        var player = UWE.Utils.GetComponentInHierarchy<Player>(c.gameObject);
+        if(!player)
+        {
+            //For collisions that contain the player but aren't the player (vehicles)
+            //you'd think it not necessary, but you'd apparently be wrong
+            var root = UWE.Utils.GetEntityRoot(c.gameObject);
+            if (!root)
+                return;
+
+            player = root.GetComponentInChildren<Player>();
+        }
+        
         if (!player) return;
 
         if(!subRoot) // if subroot isn't set, assume this is debug mode and just use precursor out of water
@@ -15,6 +26,8 @@ internal class SubEnterTrigger : MonoBehaviour
             player.SetPrecursorOutOfWater(setWalk);
             return;
         }
+
+        ErrorMessage.AddMessage($"Found player, setting walking {setWalk}");
         player.SetCurrentSub(setWalk ? subRoot : null, true);
     }
 }

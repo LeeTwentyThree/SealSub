@@ -38,7 +38,8 @@ internal class SealDockingBay : VehicleDockingBay
         var direction = dockPos - vehclPos;
         var distance = direction.magnitude;
 
-        var interp = (distance / MaxDistance) * interpolationfractionnumbervalue;
+        var interp = (distance / MaxDistance) * (interpolationfractionnumbervalue == 1 ? 1 : 0.25f);//1 means it's fully docked, so if it's not fully docked it's still getting pulled in
+                                                                                                    //and it was way too fast at getting pulled in, so slow it down
 
         var force = Mathf.Lerp(MinForce, MaxForce, interp) * direction;
 
