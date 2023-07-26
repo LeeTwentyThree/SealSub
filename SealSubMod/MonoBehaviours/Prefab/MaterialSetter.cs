@@ -9,6 +9,7 @@ internal class MaterialSetter : MonoBehaviour
     private static Material glassMaterial;
     private static Material exteriorGlassMaterial;
     private static Material shinyGlassMaterial;
+    private static Material interiorWindowGlassMaterial;
 
     public enum MaterialType
     {
@@ -17,7 +18,8 @@ internal class MaterialSetter : MonoBehaviour
         StasisField,
         Glass,
         ExteriorGlass,
-        ShinyGlass
+        ShinyGlass,
+        InteriorWindowGlass
     }
 
     private void OnValidate()
@@ -54,6 +56,8 @@ internal class MaterialSetter : MonoBehaviour
                 return exteriorGlassMaterial;
             case MaterialType.ShinyGlass:
                 return shinyGlassMaterial;
+            case MaterialType.InteriorWindowGlass:
+                return interiorWindowGlassMaterial;
             default:
                 return null;
         }
@@ -82,5 +86,11 @@ internal class MaterialSetter : MonoBehaviour
         shinyGlassMaterial.SetFloat("_SpecInt", 25);
         shinyGlassMaterial.SetFloat("_Shininess", 8);
         shinyGlassMaterial.SetFloat("_Fresnel", 0.88f);
+
+        interiorWindowGlassMaterial = new Material(seamothGlassMaterial);
+        interiorWindowGlassMaterial.SetColor("_Color", new Color(0.43f, 0.71f, 0.76f, 0.51f));
+        interiorWindowGlassMaterial.SetFloat("_SpecInt", 0.05f);
+        interiorWindowGlassMaterial.SetFloat("_Shininess", 8f);
+        interiorWindowGlassMaterial.SetFloat("_Fresnel", 0f);
     }
 }
