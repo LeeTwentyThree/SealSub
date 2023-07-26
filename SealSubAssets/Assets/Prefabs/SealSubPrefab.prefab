@@ -13204,7 +13204,7 @@ MonoBehaviour:
   requiresUndockingClearance: 0
   undockingClearanceCastDistance: 4
   castBoxCollider: {fileID: 0}
-  dockedCollision: {fileID: 0}
+  dockedCollision: {fileID: 2318522561001427112}
   bayDoorsOpenSFX: {fileID: 0}
   bayDoorsCloseSFX: {fileID: 0}
 --- !u!1 &6788798485556722104
