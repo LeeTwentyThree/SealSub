@@ -3132,6 +3132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mesh: {fileID: 6074922038289857912}
   collisionParent: {fileID: 2286599077004497397}
+  convex: 0
 --- !u!114 &7848538520912724320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6544,7 +6545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 1810123132801131634}
   materialIndexes: 01000000
-  materialType: 3
+  materialType: 5
 --- !u!1 &3484969382398151627
 GameObject:
   m_ObjectHideFlags: 0
@@ -12523,7 +12524,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 5626583642719243495}
   materialIndexes: 00000000
-  materialType: 3
+  materialType: 5
 --- !u!1 &6413234846756460553
 GameObject:
   m_ObjectHideFlags: 0
@@ -13843,7 +13844,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 929290521399664316}
   materialIndexes: 03000000
-  materialType: 3
+  materialType: 5
 --- !u!1 &7064658112140144403
 GameObject:
   m_ObjectHideFlags: 0
@@ -15087,7 +15088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 4061969682805396004}
   materialIndexes: 00000000
-  materialType: 3
+  materialType: 5
 --- !u!1 &7746117462749390239
 GameObject:
   m_ObjectHideFlags: 0
@@ -15246,7 +15247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 4231057280587874254}
   materialIndexes: 01000000
-  materialType: 3
+  materialType: 5
 --- !u!1 &7892136619158779685
 GameObject:
   m_ObjectHideFlags: 0
@@ -16053,7 +16054,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 655945757417934358}
   materialIndexes: 01000000
-  materialType: 3
+  materialType: 5
 --- !u!1 &8395663097308706380
 GameObject:
   m_ObjectHideFlags: 0
@@ -17302,6 +17303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mesh: {fileID: 7421429908968272915}
   collisionParent: {fileID: 2286599077004497397}
+  convex: 0
 --- !u!114 &4421683942831217206
 MonoBehaviour:
   m_ObjectHideFlags: 0
