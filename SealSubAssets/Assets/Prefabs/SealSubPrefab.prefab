@@ -17984,6 +17984,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6840522170822678885}
     m_Modifications:
+    - target: {fileID: 1530922723032794704, guid: 9b284a66f19e6de4782efd86eccca967,
+        type: 3}
+      propertyPath: localAngles.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4732605782628041994, guid: 9b284a66f19e6de4782efd86eccca967,
         type: 3}
       propertyPath: m_Name
@@ -18334,6 +18339,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6840522170822678885}
     m_Modifications:
+    - target: {fileID: 1530922723032794704, guid: 9b284a66f19e6de4782efd86eccca967,
+        type: 3}
+      propertyPath: localAngles.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4732605782628041994, guid: 9b284a66f19e6de4782efd86eccca967,
         type: 3}
       propertyPath: m_Name
@@ -18889,6 +18899,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6840522170822678885}
     m_Modifications:
+    - target: {fileID: 1530922723032794704, guid: 9b284a66f19e6de4782efd86eccca967,
+        type: 3}
+      propertyPath: localAngles.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4732605782628041994, guid: 9b284a66f19e6de4782efd86eccca967,
         type: 3}
       propertyPath: m_Name
@@ -19429,6 +19444,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6840522170822678885}
     m_Modifications:
+    - target: {fileID: 1530922723032794704, guid: 9b284a66f19e6de4782efd86eccca967,
+        type: 3}
+      propertyPath: localAngles.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4732605782628041994, guid: 9b284a66f19e6de4782efd86eccca967,
         type: 3}
       propertyPath: m_Name
@@ -20269,6 +20289,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6840522170822678885}
     m_Modifications:
+    - target: {fileID: 1530922723032794704, guid: 9b284a66f19e6de4782efd86eccca967,
+        type: 3}
+      propertyPath: localAngles.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4732605782628041994, guid: 9b284a66f19e6de4782efd86eccca967,
         type: 3}
       propertyPath: m_Name

@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 4640056350381598888}
   - component: {fileID: 6239050159518910624}
   - component: {fileID: 6708003829750580823}
+  - component: {fileID: 1530922723032794704}
   m_Layer: 0
   m_Name: Powercell
   m_TagString: Untagged
@@ -184,3 +185,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1530922723032794704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4732605782628041994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 223952372, guid: db380c3672ed49c4fbac490b18d75cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 5290911241191170319}
+  localPos: {x: -0.22, y: 0.16, z: -0.14}
+  localAngles: {x: 270, y: 180, z: 0}
+  localScale: {x: 0.55, y: 0.55, z: 0.55}
+  batterySource: {fileID: 3375308684282275064}
