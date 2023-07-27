@@ -6,6 +6,7 @@ internal class UseDiffuseForSpecular : MaterialModifier
 {
     public override void EditMaterial(Material material, Renderer renderer, int materialIndex, MaterialUtils.MaterialType materialType)
     {
-        material.SetTexture("_SpecTex", material.GetTexture("_MainTex"));
+        if (material.GetTexture(ShaderPropertyID._SpecTex) == null)
+            material.SetTexture(ShaderPropertyID._SpecTex, material.GetTexture(ShaderPropertyID._MainTex));
     }
 }

@@ -9,6 +9,7 @@ internal class SealSkyApplierManager : MonoBehaviour, IAsyncPrefabSetupOperation
     public SkyApplier exteriorSkyApplier;
     public SkyApplier interiorSkyApplier;
     public SkyApplier windowSkyApplier;
+    public float[] lightBrightnessMultipliers = new float[] {1, 0.5f, 0f};
 
     public LightingController lightingController;
 
@@ -53,6 +54,21 @@ internal class SealSkyApplierManager : MonoBehaviour, IAsyncPrefabSetupOperation
         skyBaseInterior = Instantiate(cyclops.transform.Find("SkyBaseInterior"), transform).GetComponent<Sky>();
         lightingController.skies[0].sky = skyBaseGlass;
         lightingController.skies[1].sky = skyBaseInterior;
+
+        var lights = gameObject.GetComponentsInChildren<Light>(true);
+        lightingController.lights = new MultiStatesLight[lights.Length];
+        for (int i = 0; i < lights.Length; i++)
+        {
+            var intensity = lights[i].intensity;
+            lightingController.lights[i] = new MultiStatesLight()
+            {
+                light = lights[i],
+                intensities = new float[]
+                {
+                    intensity * lightBrightnessMultipliers[0], intensity * lightBrightnessMultipliers[1], intensity * lightBrightnessMultipliers[2]
+                },
+            };
+        }
 
         var sub = GetComponent<SealSubRoot>();
         sub.interiorSky = skyBaseInterior;
