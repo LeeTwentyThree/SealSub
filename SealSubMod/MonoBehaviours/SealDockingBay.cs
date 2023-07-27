@@ -21,7 +21,7 @@ internal class SealDockingBay : VehicleDockingBay
         if (!dockedVehicle) return;
         if(!dockedVehicle.CanPilot() || !dockedVehicle.GetPilotingMode()) return;
 
-        var outDirection = (exit.position - dockedVehicle.transform.position).normalized;
+        var outDirection = GetOutDirection();
         var dot = Vector3.Dot((dockedVehicle.transform.rotation * GameInput.GetMoveDirection()).normalized, outDirection.normalized);
 
         if(doubleDebug)ErrorMessage.AddMessage($"Dot product {dot}");
@@ -32,6 +32,12 @@ internal class SealDockingBay : VehicleDockingBay
             dockedVehicle.useRigidbody.AddForce(outDirection * dockPushOutForce, ForceMode);
             OnUndockingComplete(Player.main);
         }
+    }
+
+    public Vector3 GetOutDirection()
+    {
+        if (!exit || !dockedVehicle) return -transform.forward;//not super accurate but good enough for if the vehicle isn't docked
+        return (exit.position - dockedVehicle.transform.position).normalized;//much more accurate
     }
 
     private new void LateUpdate()

@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using SealSubMod.MonoBehaviours;
+using System.Reflection.Emit;
 
 namespace SealSubMod.Patches;
 
@@ -49,5 +50,21 @@ internal class VehiclePatches
         __instance.mainAnimator.SetBool("enterAnimation", playEnterAnimation);
 
         return false;
+    }
+
+    [HarmonyPatch(nameof(Vehicle.Undock), MethodType.Enumerator)]
+    public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+    {
+        var matcher = new CodeMatcher(instructions);
+
+        matcher.MatchForward(false, new CodeMatch(OpCodes.Call, AccessTools.PropertyGetter(typeof(Vector3), nameof(Vector3.down))));
+        matcher.InsertAndAdvance(new CodeInstruction(OpCodes.Ldarg_0));
+        matcher.SetInstruction(new CodeInstruction(OpCodes.Call, AccessTools.Method(typeof(VehiclePatches), nameof(VehiclePatches.GetForceDirection))));
+
+        return matcher.InstructionEnumeration();
+    }
+    public static Vector3 GetForceDirection(VehicleDockingBay bay)
+    {
+        return bay is SealDockingBay seal ? seal.GetOutDirection() : Vector3.down;
     }
 }
