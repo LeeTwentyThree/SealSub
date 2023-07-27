@@ -23,4 +23,13 @@ internal class PlayerPatches
         //want to be safe here, it's better to accidentally return true than accidentally return false
         return false;
     }
+
+    [HarmonyPatch(nameof(Player.ExitLockedMode))]
+    public static void Prefix(ref bool findNewPosition)
+    {
+        if (Player.main.currentSub is not SealSubRoot) return;
+        if (!Player.main.currentMountedVehicle) return; 
+
+        findNewPosition = true;
+    }
 }
