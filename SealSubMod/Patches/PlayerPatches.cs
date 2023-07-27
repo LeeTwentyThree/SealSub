@@ -33,3 +33,96 @@ internal class PlayerPatches
         findNewPosition = true;
     }
 }
+
+
+public class ASD : BaseAddModuleGhost
+{
+    // BaseAddModuleGhost
+    // Token: 0x060003D8 RID: 984 RVA: 0x0001BCEC File Offset: 0x00019EEC
+    public override bool UpdatePlacement(Transform camera, float placeMaxDistance, out bool positionFound, out bool geometryChanged, ConstructableBase ghostModelParentConstructableBase)
+    {
+        positionFound = false;
+        geometryChanged = Builder.UpdateRotation(Base.HorizontalDirections.Length);
+
+
+        Base.Direction direction = Base.HorizontalDirections[Builder.lastRotation % Base.HorizontalDirections.Length];
+
+
+        Player Player = Player.main;
+        if (Player == null || Player.currentSub == null || /**/!Player.currentSub.isBase)//issue here. Seal isn't a base
+        {
+            geometryChanged = this.SetupInvalid();
+            return false;
+        }
+        this.targetBase = BaseGhost.FindBase(camera, 20f);//same here. Seal isn't a base, but a subroot
+        if (this.targetBase == null)
+        {
+            geometryChanged = this.SetupInvalid();
+            return false;
+        }
+
+
+        this.targetBase.SetPlacementGhost(this);//just a field set
+
+
+        ConstructableBase ConstructableBase = base.GetComponentInParent<ConstructableBase>();
+        float distance = (ConstructableBase != null) ? ConstructableBase.placeDefaultDistance : 0f;
+
+
+        Base.Face correctFace = new Base.Face(this.targetBase.WorldToGrid(camera.position + camera.forward * distance), direction);
+        //"correctFace".cell is always 1, 0, 1 for a single multipurpose room. May change for other rooms or base sizes
+        //direction is based on the direction the builder tool was rotated (using mouse scroll wheel), defaults to north always?
+
+
+        if (!this.targetBase.CanSetModule(ref correctFace, this.faceType))//checks if the room is valid and the sides are open and the top and bottom are closed
+        {//need to patch .CanSetModule too
+            geometryChanged = this.SetupInvalid();
+            return false;
+        }
+
+
+        Int3 cellNormalized = this.targetBase.NormalizeCell(correctFace.cell);//Some byte shit idk. Mostly able to ignore though, mostly just returns same value
+
+        var anchor = this.targetBase.GetAnchor();//I believe this is just the "starting point" or maybe the center?
+        Base.Face face2 = new Base.Face(correctFace.cell - anchor, correctFace.direction);
+
+
+
+        //anchored face is null when not snapped
+        //else is presumably the face it is snapped to
+        //example: `Face (1,0,1) North`
+        if (this.anchoredFace == null || this.anchoredFace.Value != face2)
+        {//triggers when NOT snapped to the "correct" face
+
+            this.anchoredFace = new Base.Face?(face2);//sets the anchor (snap point) to the "correct face"
+
+
+            Base.CellType cell = this.targetBase.GetCell(cellNormalized);//the room type. Can PROBABLY just use Base.CellType.Room
+
+
+            //the available space within the room
+            //for multipurpose rooms (Base.CellType.Room) it's (3, 1, 3) which means it is three slots wide on both sides and one slot tall
+            Int3 roomSize = Base.CellSize[(int)cell];
+            this.UpdateSize(roomSize);
+
+                                                                                            //should equal 3,0,3       should equal -1,0,-1
+            this.ghostBase.CopyFrom(this.targetBase, new Int3.Bounds(cellNormalized, (cellNormalized + roomSize - 1)), cellNormalized * -1);
+
+
+            Int3 cell2 = correctFace.cell - cellNormalized;
+
+            Base.Face face3 = new Base.Face(cell2, correctFace.direction);
+            this.ghostBase.SetFaceType(face3, this.faceType);
+            this.ghostBase.ClearMasks();
+            this.ghostBase.SetFaceMask(face3, true);
+            base.RebuildGhostGeometry(true);
+            geometryChanged = true;
+        }
+        ghostModelParentConstructableBase.transform.position = this.targetBase.GridToWorld(cellNormalized);
+        ghostModelParentConstructableBase.transform.rotation = this.targetBase.transform.rotation;
+        positionFound = true;
+        return !this.targetBase.IsCellUnderConstruction(correctFace.cell) && (ghostModelParentConstructableBase.transform.position.y <= float.PositiveInfinity || BaseGhost.GetDistanceToGround(ghostModelParentConstructableBase.transform.position) <= 25f);
+    }
+
+
+}
