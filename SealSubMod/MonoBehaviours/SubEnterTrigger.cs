@@ -27,7 +27,6 @@ internal class SubEnterTrigger : MonoBehaviour
             return;
         }
 
-        ErrorMessage.AddMessage($"Found player, setting walking {setWalk}");
         player.SetCurrentSub(setWalk ? subRoot : null, true);
     }
 }

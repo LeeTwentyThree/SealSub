@@ -8,8 +8,8 @@ internal class SealDockingBay : VehicleDockingBay
     public static float MaxForce = 20;
     public static ForceMode ForceMode = ForceMode.VelocityChange;
 
-    public static float dockPushOutForce = 2;
-    public static float dockPullInForceMult = 0.1f;
+    public static float dockPushOutForce = 30;
+    public static float dockPullInForceMult = 0.2f;
     public static float dotProductLimit = 0.9f;
 
 
@@ -21,6 +21,8 @@ internal class SealDockingBay : VehicleDockingBay
         if (!dockedVehicle) return;
         if(!dockedVehicle.CanPilot() || !dockedVehicle.GetPilotingMode()) return;
 
+        
+
         var outDirection = GetOutDirection();
         var dot = Vector3.Dot((dockedVehicle.transform.rotation * GameInput.GetMoveDirection()).normalized, outDirection.normalized);
 
@@ -29,8 +31,8 @@ internal class SealDockingBay : VehicleDockingBay
         if (dot >= dotProductLimit)
         {
             if(debug) ErrorMessage.AddMessage("Trying to undock!!!!!!!!!!!!!!");
-            dockedVehicle.useRigidbody.AddForce(outDirection * dockPushOutForce, ForceMode);
             OnUndockingComplete(Player.main);
+            //dockedVehicle.useRigidbody.AddForce(outDirection * dockPushOutForce, ForceMode);//doesn't seem to work? Idk.
         }
     }
 
