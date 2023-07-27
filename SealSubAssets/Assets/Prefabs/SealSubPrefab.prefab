@@ -9272,6 +9272,10 @@ MonoBehaviour:
   exteriorSkyApplier: {fileID: 5465353763737116582}
   interiorSkyApplier: {fileID: 3161625840756835589}
   windowSkyApplier: {fileID: 896603972056120945}
+  lightBrightnessMultipliers:
+  - 1
+  - 0.5
+  - 0
   lightingController: {fileID: 1636038451278806775}
   skyBaseGlass: {fileID: 0}
   skyBaseInterior: {fileID: 0}
@@ -21118,7 +21122,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 44f3a854b26e00844b0704d65e1b0f92, type: 2}
+      objectReference: {fileID: 2100000, guid: 617c2e47e4e4a5841925305e49686dfc, type: 2}
     - target: {fileID: 7018989803263791784, guid: 3d68a11161d9e564daf660c002083048,
         type: 3}
       propertyPath: m_IsActive
