@@ -2,6 +2,8 @@
 
 internal class SealDockingBay : VehicleDockingBay
 {
+    [SerializeField] FMOD_CustomLoopingEmitter _emitter;
+
     //Mostly a marker class, to distinguish between normal docking bays and the seal bay in patches
     public static float MaxDistance = 3;
     public static float MinForce = 0.001f;
@@ -15,6 +17,19 @@ internal class SealDockingBay : VehicleDockingBay
 
     public static bool debug = true;//useful
     public static bool doubleDebug = false;//sometimes useful but very screen spammy
+
+    public void Awake()
+    {
+        onDockedChanged += OnDockChange;
+    }
+
+    private void OnDockChange()
+    {
+        if (dockedVehicle)
+            _emitter.Start();
+        else
+            PlayUndockSound();
+    }
 
     public void FixedUpdate()
     {
@@ -34,6 +49,12 @@ internal class SealDockingBay : VehicleDockingBay
             OnUndockingComplete(Player.main);
             //dockedVehicle.useRigidbody.AddForce(outDirection * dockPushOutForce, ForceMode);//doesn't seem to work? Idk.
         }
+    }
+
+    public void PlayUndockSound()
+    {
+        FMODUWE.PlayOneShot(AudioUtils.GetFmodAsset("event:/tools/gravcannon/repulse"), transform.position);
+        _emitter.Stop();
     }
 
     public Vector3 GetOutDirection()
