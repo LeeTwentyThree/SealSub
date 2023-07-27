@@ -49,12 +49,12 @@ public class ASD : BaseAddModuleGhost
 
 
         Player Player = Player.main;
-        if (Player == null || Player.currentSub == null || /**/!Player.currentSub.isBase)//issue here. Seal isn't a base
+        if (Player == null || Player.currentSub == null || /**/!Player.currentSub.isBase)//issue here. Sub isn't a base
         {
             geometryChanged = this.SetupInvalid();
             return false;
         }
-        this.targetBase = BaseGhost.FindBase(camera, 20f);//same here. Seal isn't a base, but a subroot
+        this.targetBase = BaseGhost.FindBase(camera, 20f);//same here. Subs aren't bases, but subroots
         if (this.targetBase == null)
         {
             geometryChanged = this.SetupInvalid();
@@ -107,14 +107,23 @@ public class ASD : BaseAddModuleGhost
 
                                                                                             //should equal 3,0,3       should equal -1,0,-1
             this.ghostBase.CopyFrom(this.targetBase, new Int3.Bounds(cellNormalized, (cellNormalized + roomSize - 1)), cellNormalized * -1);
+            //I'm ultimately not entirely sure what this method does. Need to check around a bit more later
 
 
-            Int3 cell2 = correctFace.cell - cellNormalized;
+            //I think it would be the offset between the correct cell and the normalized one?
+            //but for multipurpose rooms this should just be 0,0,0
+            Int3 offset = correctFace.cell - cellNormalized;
+            //on second viewing this definition seems inaccurate. I'm not sure what this is
 
-            Base.Face face3 = new Base.Face(cell2, correctFace.direction);
-            this.ghostBase.SetFaceType(face3, this.faceType);
+
+            //I would initially think this to be an offset face
+            //but it's treated as the final position
+            Base.Face finalPositionMaybe = new Base.Face(offset, correctFace.direction);
+
+
+            this.ghostBase.SetFaceType(finalPositionMaybe, this.faceType);
             this.ghostBase.ClearMasks();
-            this.ghostBase.SetFaceMask(face3, true);
+            this.ghostBase.SetFaceMask(finalPositionMaybe, true);
             base.RebuildGhostGeometry(true);
             geometryChanged = true;
         }
@@ -123,6 +132,4 @@ public class ASD : BaseAddModuleGhost
         positionFound = true;
         return !this.targetBase.IsCellUnderConstruction(correctFace.cell) && (ghostModelParentConstructableBase.transform.position.y <= float.PositiveInfinity || BaseGhost.GetDistanceToGround(ghostModelParentConstructableBase.transform.position) <= 25f);
     }
-
-
 }
