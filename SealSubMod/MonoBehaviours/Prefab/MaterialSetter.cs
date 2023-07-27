@@ -1,4 +1,6 @@
-﻿namespace SealSubMod.MonoBehaviours.Prefab;
+﻿using HarmonyLib;
+
+namespace SealSubMod.MonoBehaviours.Prefab;
 
 internal class MaterialSetter : MonoBehaviour
 {
@@ -77,20 +79,21 @@ internal class MaterialSetter : MonoBehaviour
 
         exteriorGlassMaterial = new Material(seamothGlassMaterial);
         exteriorGlassMaterial.SetFloat("_SpecInt", 100);
-        exteriorGlassMaterial.SetFloat("_Shininess", 8);
-        exteriorGlassMaterial.SetFloat("_Fresnel", 0.72f);
-        exteriorGlassMaterial.SetColor("_SpecColor", new Color(0.52f, 0.76f, 1f));
+        exteriorGlassMaterial.SetFloat("_Shininess", 6.3f);
+        exteriorGlassMaterial.SetFloat("_Fresnel", 0.85f);
+        exteriorGlassMaterial.SetColor("_Color", new Color(0.33f, 0.58f, 0.71f, 0.1f));
+        exteriorGlassMaterial.SetColor("_SpecColor", new Color(0.5f, 0.76f, 1f, 1f));
 
         shinyGlassMaterial = new Material(seamothGlassMaterial);
-        shinyGlassMaterial.SetColor("_Color", new Color(1, 1, 1, 0.1f));
-        shinyGlassMaterial.SetFloat("_SpecInt", 25);
+        shinyGlassMaterial.SetColor("_Color", new Color(1, 1, 1, 0.2f));
+        shinyGlassMaterial.SetFloat("_SpecInt", 3);
         shinyGlassMaterial.SetFloat("_Shininess", 8);
-        shinyGlassMaterial.SetFloat("_Fresnel", 0.88f);
+        shinyGlassMaterial.SetFloat("_Fresnel", 0.78f);
 
         interiorWindowGlassMaterial = new Material(seamothGlassMaterial);
-        interiorWindowGlassMaterial.SetColor("_Color", new Color(0.43f, 0.71f, 0.76f, 0.51f));
-        interiorWindowGlassMaterial.SetFloat("_SpecInt", 0.05f);
-        interiorWindowGlassMaterial.SetFloat("_Shininess", 8f);
-        interiorWindowGlassMaterial.SetFloat("_Fresnel", 0f);
+        interiorWindowGlassMaterial.SetColor("_Color", new Color(0.67f, 0.71f, 0.76f, 0.56f));
+        interiorWindowGlassMaterial.SetFloat("_SpecInt", 2);
+        interiorWindowGlassMaterial.SetFloat("_Shininess", 6f);
+        interiorWindowGlassMaterial.SetFloat("_Fresnel", 0.88f);
     }
 }
