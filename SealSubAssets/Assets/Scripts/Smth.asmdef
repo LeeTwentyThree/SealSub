@@ -8,7 +8,8 @@
     "allowUnsafeCode": false,
     "overrideReferences": true,
     "precompiledReferences": [
-        "Assembly-CSharp.dll"
+        "Assembly-CSharp.dll",
+        "Assembly-CSharp-firstpass.dll"
     ],
     "autoReferenced": true,
     "defineConstraints": [],
