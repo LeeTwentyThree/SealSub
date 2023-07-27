@@ -26,9 +26,9 @@ internal class SealDockingBay : VehicleDockingBay
     private void OnDockChange()
     {
         if (dockedVehicle)
-            _emitter.Start();
+            _emitter.Play();
         else
-            PlayUndockSound();
+            _emitter.Stop();
     }
 
     public void FixedUpdate()
@@ -49,12 +49,6 @@ internal class SealDockingBay : VehicleDockingBay
             OnUndockingComplete(Player.main);
             //dockedVehicle.useRigidbody.AddForce(outDirection * dockPushOutForce, ForceMode);//doesn't seem to work? Idk.
         }
-    }
-
-    public void PlayUndockSound()
-    {
-        FMODUWE.PlayOneShot(AudioUtils.GetFmodAsset("event:/tools/gravcannon/repulse"), transform.position);
-        _emitter.Stop();
     }
 
     public Vector3 GetOutDirection()
