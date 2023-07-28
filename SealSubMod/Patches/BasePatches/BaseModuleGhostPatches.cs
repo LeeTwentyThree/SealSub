@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using SealSubMod.MonoBehaviours;
+using System;
 using Unity.Mathematics;
 using static SubFire;
 
@@ -59,6 +60,57 @@ internal class BaseModuleGhostPatches
 
         return false;
     }
+
+    [HarmonyPatch(nameof(BaseAddModuleGhost.Finish))]
+    public static bool Prefix(BaseAddModuleGhost __instance)
+    {
+        if (Player.main.currentSub is not SealSubRoot seal) return true;
+
+        var cam = MainCamera.camera;
+        var marker = BasePieceLocationMarker.GetNearest(cam.transform.position, cam.transform.forward, seal.GetComponentsInChildren<BasePieceLocationMarker>(true));
+        if (!marker) throw new InvalidOperationException("Shis fucked.");
+
+
+        if (!faceToPiece.TryGetValue(__instance.faceType, out var piece))
+        {
+            ErrorMessage.AddMessage($"Sorry! Piece type {__instance.faceType} is not supported in this vehicle!!!");
+            return false;
+        }
+        var model = __instance.GetComponentInParent<ConstructableBase>().model;
+        var position = model.transform.position + new Vector3(5, 0, 5);//for some unholy fucking reason. These are, again, offset weirdly :)
+        var rotation = Quaternion.Euler(Base.DirectionNormals[(int)__instance.anchoredFace.Value.direction]);
+
+
+        var prefab = Base.pieces[(int)piece].prefab;//for some fucking reason the geometry and the module are different things
+
+        var geomObj = GameObject.Instantiate(prefab, position, rotation, seal.transform);
+        geomObj.localRotation = Quaternion.Euler(rotations[__instance.anchoredFace.Value.direction]);
+        geomObj.gameObject.SetActive(true);
+
+        var module = GameObject.Instantiate(__instance.modulePrefab, position, rotation, geomObj.transform);
+
+        
+
+        return false;
+    }
+
+    public static Dictionary<Base.Direction, Vector3> rotations = new()
+    {
+        {Base.Direction.North, new Vector3(0, 270, 0) },
+        {Base.Direction.South, new Vector3(0, 90, 0) },
+        {Base.Direction.West, new Vector3(0, 180, 0) },
+        {Base.Direction.East, new Vector3(0, 0, 0) },
+    };
+
+    public static Dictionary<Base.FaceType, Base.Piece> faceToPiece = new Dictionary<Base.FaceType, Base.Piece>()
+    {
+        { Base.FaceType.BioReactor, Base.Piece.RoomBioReactor },
+        { Base.FaceType.NuclearReactor, Base.Piece.RoomNuclearReactor },
+        //{ Base.FaceType.WaterPark, Base.Piece. },//water park kinda sucks ngl
+        //{ Base.FaceType.Partition, Base.Piece.partition },//yea fuck this
+        //{ Base.FaceType.BioReactor, Base.Piece.RoomBioReactor },//there's one enum entry for every single god damn position AND rotation
+                                                                    //Were these people on crack what the fuck is this
+    };
 }
 
 public class BasePieceLocationMarker : MonoBehaviour
