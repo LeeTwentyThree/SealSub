@@ -9364,6 +9364,7 @@ GameObject:
   - component: {fileID: 5615475221119385633}
   - component: {fileID: 8173038905411883980}
   - component: {fileID: 2909535030716930024}
+  - component: {fileID: 9032330097685085433}
   m_Layer: 0
   m_Name: SealSubPrefab
   m_TagString: Untagged
@@ -9844,6 +9845,19 @@ MonoBehaviour:
   m_Script: {fileID: 440476314, guid: db380c3672ed49c4fbac490b18d75cc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9032330097685085433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4866449762628954070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 479358538, guid: db380c3672ed49c4fbac490b18d75cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yOffset: 5
 --- !u!1 &4880837948707173106
 GameObject:
   m_ObjectHideFlags: 0
