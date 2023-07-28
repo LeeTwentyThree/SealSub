@@ -45,7 +45,6 @@ public class ASD : BaseAddModuleGhost
         geometryChanged = Builder.UpdateRotation(Base.HorizontalDirections.Length);
 
 
-        Base.Direction direction = Base.HorizontalDirections[Builder.lastRotation % Base.HorizontalDirections.Length];
 
 
         Player Player = Player.main;
@@ -68,6 +67,8 @@ public class ASD : BaseAddModuleGhost
         ConstructableBase ConstructableBase = base.GetComponentInParent<ConstructableBase>();
         float distance = (ConstructableBase != null) ? ConstructableBase.placeDefaultDistance : 0f;
 
+
+        Base.Direction direction = Base.HorizontalDirections[Builder.lastRotation % Base.HorizontalDirections.Length];
 
         Base.Face correctFace = new Base.Face(this.targetBase.WorldToGrid(camera.position + camera.forward * distance), direction);
         //"correctFace".cell is always 1, 0, 1 for a single multipurpose room. May change for other rooms or base sizes
