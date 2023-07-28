@@ -2117,7 +2117,6 @@ MonoBehaviour:
   maxVelocity: 1000
   deceleration: 100
   engineAccel: 400
-  angularVel: 1000
 --- !u!1 &997153159166506515
 GameObject:
   m_ObjectHideFlags: 0
@@ -21616,6 +21615,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ab97dd2822f36174a862226d30f66ad5, type: 2}
+    - target: {fileID: 5998417277483285601, guid: 3d68a11161d9e564daf660c002083048,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: d539d7cdd8e048f41857fa51498f7458, type: 2}
     - target: {fileID: 6122773870194371343, guid: 3d68a11161d9e564daf660c002083048,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -21756,6 +21760,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6c1d544084e33134cbc83c03c48493ad, type: 2}
+    - target: {fileID: 7218661940710332278, guid: 3d68a11161d9e564daf660c002083048,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d539d7cdd8e048f41857fa51498f7458, type: 2}
+    - target: {fileID: 7218661940710332278, guid: 3d68a11161d9e564daf660c002083048,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ab97dd2822f36174a862226d30f66ad5, type: 2}
     - target: {fileID: 7222198209321566396, guid: 3d68a11161d9e564daf660c002083048,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
