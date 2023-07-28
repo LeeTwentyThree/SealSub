@@ -9428,7 +9428,7 @@ MonoBehaviour:
   noiseManager: {fileID: 0}
   shieldFX: {fileID: 0}
   upgradeConsole: {fileID: 0}
-  powerRelay: {fileID: 0}
+  powerRelay: {fileID: 4186614304085556204}
   enterHatchSFX: {fileID: 0}
   isBase: 0
   isCyclops: 0
