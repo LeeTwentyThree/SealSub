@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using SealSubMod.MonoBehaviours;
+using static ClipMapManager;
 
 namespace SealSubMod.Patches;
 
@@ -41,6 +42,22 @@ public class ASD : BaseAddModuleGhost
     // Token: 0x060003D8 RID: 984 RVA: 0x0001BCEC File Offset: 0x00019EEC
     public override bool UpdatePlacement(Transform camera, float placeMaxDistance, out bool positionFound, out bool geometryChanged, ConstructableBase ghostModelParentConstructableBase)
     {
+        for (int i = 0; i < Base.roomFaces.Length; i++)
+        {
+            Base.RoomFace roomFace = Base.roomFaces[i];
+            Base.Face face = new Base.Face(new Int3(0, 0, 0) + roomFace.offset, roomFace.direction);
+            if (this.ghostBase.GetFaceMask(face))
+            {
+                ErrorMessage.AddMessage($"Hello from face {face} and index {i}!");
+            }
+            else
+            {
+                ErrorMessage.AddMessage($"Goodbye from face {face} and index {i}!");
+            }
+        }
+
+
+
         positionFound = false;
         geometryChanged = Builder.UpdateRotation(Base.HorizontalDirections.Length);
 
