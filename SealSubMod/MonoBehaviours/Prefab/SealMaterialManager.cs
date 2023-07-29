@@ -14,5 +14,10 @@ internal class SealMaterialManager : MonoBehaviour, IOnAsyncPrefabTasksCompleted
         {
             materialSetter.AssignMaterial();
         }
+
+        foreach (var lateOperation in gameObject.GetComponentsInChildren<ILateMaterialOperation>(true))
+        {
+            lateOperation.OnLateMaterialOperation();
+        }
     }
 }
