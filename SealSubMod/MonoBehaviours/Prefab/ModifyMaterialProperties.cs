@@ -10,8 +10,8 @@ internal class ModifyMaterialProperties : MonoBehaviour, ILateMaterialOperation
 
     // These are for the editor only, they do NOT serialize and will be NULL!
 
-    public ColorProperty[] colorProperties;
-    public FloatProperty[] floatProperties;
+    public ColorProperty[] colorProperties = new ColorProperty[0];
+    public FloatProperty[] floatProperties = new FloatProperty[0];
 
     // The actual values should be accessed through these fields
 
