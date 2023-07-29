@@ -1,4 +1,5 @@
 ﻿using Nautilus.Assets;
+using Nautilus.Assets.Gadgets;
 using SealSubMod.Interfaces;
 
 namespace SealSubMod.Prefabs;
@@ -12,6 +13,18 @@ internal class SealSubPrefab
     {
         CustomPrefab prefab = new CustomPrefab(Info);
         prefab.SetGameObject(GetGameObject);
+        prefab.SetRecipe(new Nautilus.Crafting.RecipeData(
+            new CraftData.Ingredient(TechType.PlasteelIngot, 6),
+            new CraftData.Ingredient(TechType.EnameledGlass, 4),
+            new CraftData.Ingredient(TechType.AdvancedWiringKit, 2),
+            new CraftData.Ingredient(TechType.Benzene, 2),
+            new CraftData.Ingredient(TechType.Aerogel, 2),
+            new CraftData.Ingredient(TechType.Magnetite, 3),
+            new CraftData.Ingredient(TechType.Nickel, 4)
+            ))
+            .WithFabricatorType(CraftTree.Type.Constructor)
+            .WithStepsToFabricatorTab("Vehicles");
+        prefab.SetPdaGroupCategory(TechGroup.Constructor, TechCategory.Constructor);
         prefab.Register();
     }
 
