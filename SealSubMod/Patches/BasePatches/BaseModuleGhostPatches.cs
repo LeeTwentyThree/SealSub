@@ -9,7 +9,6 @@ namespace SealSubMod.Patches.BasePatches;
 [HarmonyPatch(typeof(BaseAddModuleGhost))]
 internal class BaseModuleGhostPatches
 {
-    public static bool posFound = true;
     public static Int3 cell = new Int3(1, 0, 1);//todo
     public static Int3 size = new Int3(2, 1, 2);//fuck with these values and try find why they're so restricted
 
@@ -22,7 +21,7 @@ internal class BaseModuleGhostPatches
         var examples = seal.GetComponentsInChildren<BasePieceLocationMarker>(true);
 
         var transCam = camera;
-        var marker = BasePieceLocationMarker.GetNearest(transCam.position, transCam.forward, examples);
+        var marker = BasePieceLocationMarker.GetNearest(transCam.position, transCam.forward, true, examples);
 
         if(!marker) return true;
 
@@ -54,7 +53,7 @@ internal class BaseModuleGhostPatches
         ghostModelParentConstructableBase.transform.position = marker.pos - new Vector3(5,0,5);//offset to account for the base offset that's applied for some reason
         ghostModelParentConstructableBase.transform.rotation = marker.rot;
         ghostModelParentConstructableBase.transform.parent = marker.transform;
-        positionFound = posFound;
+        positionFound = true;
         geometryChanged = true;
         __result = true;
 
@@ -67,7 +66,7 @@ internal class BaseModuleGhostPatches
         if (Player.main.currentSub is not SealSubRoot seal) return true;
 
         var cam = MainCamera.camera;
-        var marker = BasePieceLocationMarker.GetNearest(cam.transform.position, cam.transform.forward, seal.GetComponentsInChildren<BasePieceLocationMarker>(true));
+        var marker = BasePieceLocationMarker.GetNearest(cam.transform.position, cam.transform.forward, true, seal.GetComponentsInChildren<BasePieceLocationMarker>(true));
         if (!marker) throw new InvalidOperationException("Shis fucked.");
 
 
@@ -83,11 +82,18 @@ internal class BaseModuleGhostPatches
 
         var prefab = Base.pieces[(int)piece].prefab;//for some fucking reason the geometry and the module are different things
 
-        var geomObj = GameObject.Instantiate(prefab, position, rotation, seal.transform);
+        var geomObj = GameObject.Instantiate(prefab, position, rotation, marker.transform);
         geomObj.localRotation = Quaternion.Euler(rotations[__instance.anchoredFace.Value.direction]);
         geomObj.gameObject.SetActive(true);
 
         var module = GameObject.Instantiate(__instance.modulePrefab, position, rotation, geomObj.transform);
+
+        var constr = geomObj.gameObject.EnsureComponent<Constructable>();
+        constr.techType = Base.FaceToRecipe[(int)__instance.faceType];
+        constr.ExcludeFromSubParentRigidbody();//magic method all I know is it does things that I assume are helpful in some way
+
+        marker.PieceObject = geomObj.gameObject;
+        marker.AttachedBasePiece = piece;
 
         
 
@@ -115,29 +121,36 @@ internal class BaseModuleGhostPatches
 
 public class BasePieceLocationMarker : MonoBehaviour
 {
+    private Base.Piece _attachedBasePiece = Base.Piece.Invalid;//use for serialization too
+    public Base.Piece AttachedBasePiece
+    {
+        get
+        {
+            if (!PieceObject)//If the piece was removed
+                _attachedBasePiece = Base.Piece.Invalid;//should update this value propery, but I'm lazy and this works well enough
+            return _attachedBasePiece;
+        }
+        set => _attachedBasePiece = value;
+    }
+
+    public GameObject PieceObject = null;
+
     public Vector3 pos => transform.position;
     public quaternion rot => transform.rotation;
 
-    //https://forum.unity.com/threads/how-do-i-find-the-closest-point-on-a-line.340058/
-    public static Vector3 NearestPointOnLine(Vector3 linePnt, Vector3 lineDir, Vector3 pnt)
-    {
-        lineDir.Normalize();
-        var v = pnt - linePnt;
-        var d = Vector3.Dot(v, lineDir);
-        return linePnt + lineDir * d;
-    }
-
-    public static BasePieceLocationMarker GetNearest(Vector3 lineStart, Vector3 lineDir, params BasePieceLocationMarker[] markers)
+    public static BasePieceLocationMarker GetNearest(Vector3 position, Vector3 lineDir, bool mustBeFree, params BasePieceLocationMarker[] markers)
     {
         BasePieceLocationMarker shortestMarker = null;
-        var shortestDist = float.MaxValue;
+        var shortestDiff = float.MinValue;
         foreach(var marker in markers)
         {
-            var point = NearestPointOnLine(lineStart, lineDir, marker.pos);
-            var dist = (point - lineStart).sqrMagnitude;
-            if(dist < shortestDist)
+            if (mustBeFree && marker.AttachedBasePiece != Base.Piece.Invalid) continue;
+
+            var diff = Vector3.Dot(lineDir, marker.pos - position);
+
+            if(diff > shortestDiff)
             {
-                shortestDist = dist;
+                shortestDiff = diff;
                 shortestMarker = marker;
             }
         }

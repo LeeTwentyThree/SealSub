@@ -23,6 +23,8 @@ internal class ConsoleCommands
         obj.transform.position = (Vector3)pos;
         if(setInside)
             Player.main.currentSub = obj.GetComponent<SubRoot>();
+
+        CrafterLogic.NotifyCraftEnd(obj, Prefabs.SealSubPrefab.SealType);
     }
 
     [ConsoleCommand("SetWalking")]
