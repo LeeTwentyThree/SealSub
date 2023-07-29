@@ -25,11 +25,15 @@ internal class ModifyMaterialProperties : MonoBehaviour, ILateMaterialOperation
 
     private void OnValidate()
     {
+        colorPropertyNames = new string[colorProperties.Length];
+        colorPropertyValues = new Color[colorProperties.Length];
         for (int i = 0; i < colorProperties.Length; i++)
         {
             colorPropertyNames[i] = colorProperties[i].propertyName;
             colorPropertyValues[i] = colorProperties[i].color;
         }
+        floatPropertyNames = new string[floatProperties.Length];
+        floatPropertyValues = new float[floatProperties.Length];
         for (int i = 0; i < floatProperties.Length; i++)
         {
             floatPropertyNames[i] = floatProperties[i].propertyName;
