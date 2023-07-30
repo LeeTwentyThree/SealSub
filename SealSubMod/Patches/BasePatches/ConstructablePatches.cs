@@ -7,5 +7,5 @@ namespace SealSubMod.Patches.BasePatches;//not technically a base code patch, bu
 internal class ConstructablePatches
 {
     [HarmonyPatch(nameof(Constructable.InitializeModelCopy))]
-    public static bool Prefix(Constructable __instance) => Player.main.currentSub is SealSubRoot && __instance.GetComponentInParent<BasePieceLocationMarker>();
+    public static bool Prefix(Constructable __instance) => !(Player.main.currentSub is SealSubRoot && __instance.GetComponentInParent<BasePieceLocationMarker>());
 }
