@@ -23,10 +23,6 @@ internal class VehiclePatches
     [HarmonyPatch(nameof(Vehicle.ShouldSetKinematic))]
     public static bool Prefix(Vehicle __instance, ref bool __result)
     {
-        return true;//Patch doesn't really work very well for some reason
-        //vehicles seem to refuse to move in the seal dock for some reason
-        //yes its annoying
-
         if (!__instance.docked) return true;
         if (!__instance.GetComponentInParent<SealSubRoot>()) return true;
         __result = false;

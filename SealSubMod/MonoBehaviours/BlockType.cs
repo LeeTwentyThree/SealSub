@@ -9,11 +9,15 @@ namespace SealSubMod.MonoBehaviours;
 
 internal class BlockType : MonoBehaviour//test class, WIP
 {
-    public InspectorTypeField type;
+    private static List<Type> types = new List<Type>() 
+    {
+        typeof(Creature),
+        //others?
+    };
 
-    private const float pushVelocity = 3f;
+    private static float pushVelocity = 30f;
 
-    private Dictionary<Rigidbody, int> rigidBodyColliderCounts;
+    private Dictionary<Rigidbody, int> rigidBodyColliderCounts = new();
 
     private void FixedUpdate()
     {
@@ -44,7 +48,12 @@ internal class BlockType : MonoBehaviour//test class, WIP
         if (other.isTrigger)
             return null;
 
-        return other.GetComponentInParent(type.AssignedType);
+        foreach(var type in types)
+        {
+            var comp = other.GetComponentInParent(type);
+            if (comp) return comp;
+        }
+        return null;
     }
 
     private void Incr(Rigidbody rb)

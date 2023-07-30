@@ -59,7 +59,8 @@ internal class BaseAddWaterParkPatches
         }
 
 
-        ghostModelParentConstructableBase.transform.position = marker.pos - new Vector3(5, 0, 5); ;//offset to account for the base offset that's applied for some reason
+        ghostModelParentConstructableBase.transform.position = marker.pos;
+        ghostModelParentConstructableBase.tr.localPosition += -new Vector3(5, 0, 5);//offset to account for the base offset that's applied for some reason
         ghostModelParentConstructableBase.transform.rotation = marker.rot;
         ghostModelParentConstructableBase.transform.parent = marker.transform;
         positionFound = true;

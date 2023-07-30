@@ -50,9 +50,10 @@ internal class BaseModuleGhostPatches
         }
 
 
-        ghostModelParentConstructableBase.transform.position = marker.pos - new Vector3(5,0,5);//offset to account for the base offset that's applied for some reason
-        ghostModelParentConstructableBase.transform.rotation = marker.rot;
-        ghostModelParentConstructableBase.transform.parent = marker.transform;
+        ghostModelParentConstructableBase.tr.position = marker.pos;
+        ghostModelParentConstructableBase.tr.localPosition += -new Vector3(5, 0, 5);//offset to account for the base offset that's applied for some reason
+        ghostModelParentConstructableBase.tr.rotation = marker.rot;
+        ghostModelParentConstructableBase.tr.parent = marker.transform;
         positionFound = true;
         geometryChanged = true;
         __result = true;
@@ -76,17 +77,19 @@ internal class BaseModuleGhostPatches
             return false;
         }
         var model = __instance.GetComponentInParent<ConstructableBase>().model;
-        var position = model.transform.position + new Vector3(5, 0, 5);//for some unholy fucking reason. These are, again, offset weirdly :)
+        var position = model.transform.position;
         var rotation = Quaternion.Euler(Base.DirectionNormals[(int)__instance.anchoredFace.Value.direction]);
 
 
         var prefab = Base.pieces[(int)piece].prefab;//for some fucking reason the geometry and the module are different things
 
         var geomObj = GameObject.Instantiate(prefab, position, rotation, marker.transform);
+        geomObj.localPosition += new Vector3(5, 0, 5);//for some unholy fucking reason. These are, again, offset weirdly :)
         geomObj.localRotation = Quaternion.Euler(rotations[__instance.anchoredFace.Value.direction]);
         geomObj.gameObject.SetActive(true);
 
         var module = GameObject.Instantiate(__instance.modulePrefab, position, rotation, geomObj.transform);
+        module.transform.localPosition += new Vector3(5, 0, 5);
 
         var constr = geomObj.gameObject.EnsureComponent<Constructable>();
         constr.techType = Base.FaceToRecipe[(int)__instance.faceType];
