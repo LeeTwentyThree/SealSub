@@ -9867,7 +9867,7 @@ MonoBehaviour:
   powerRelay: {fileID: 4186614304085556204}
   enterHatchSFX: {fileID: 0}
   isBase: 0
-  isCyclops: 0
+  isCyclops: 1
   targetingTechTypeExcludeList: 
   LOD: {fileID: 8151198628979426584}
 --- !u!114 &3137969937843806533
