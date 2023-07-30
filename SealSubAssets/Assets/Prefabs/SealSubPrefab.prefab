@@ -1518,12 +1518,16 @@ MonoBehaviour:
   floatProperties:
   - propertyName: _Shininess
     value: 4
+  - propertyName: _GlowStrengthNight
+    value: 0.4
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames:
   - _Shininess
+  - _GlowStrengthNight
   floatPropertyValues:
   - 4
+  - 0.4
 --- !u!1 &695516316639894687
 GameObject:
   m_ObjectHideFlags: 0
@@ -2582,12 +2586,16 @@ MonoBehaviour:
   floatProperties:
   - propertyName: _Shininess
     value: 4
+  - propertyName: _GlowStrengthNight
+    value: 0.4
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames:
   - _Shininess
+  - _GlowStrengthNight
   floatPropertyValues:
   - 4
+  - 0.4
 --- !u!1 &1053382206571525795
 GameObject:
   m_ObjectHideFlags: 0
@@ -16668,12 +16676,16 @@ MonoBehaviour:
   floatProperties:
   - propertyName: _Shininess
     value: 4
+  - propertyName: _GlowStrengthNight
+    value: 0.4
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames:
   - _Shininess
+  - _GlowStrengthNight
   floatPropertyValues:
   - 4
+  - 0.4
 --- !u!1 &7746117462749390239
 GameObject:
   m_ObjectHideFlags: 0
@@ -17116,12 +17128,16 @@ MonoBehaviour:
   floatProperties:
   - propertyName: _Shininess
     value: 4
+  - propertyName: _GlowStrengthNight
+    value: 0.4
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames:
   - _Shininess
+  - _GlowStrengthNight
   floatPropertyValues:
   - 4
+  - 0.4
 --- !u!1 &8036856724885930200
 GameObject:
   m_ObjectHideFlags: 0
@@ -18581,12 +18597,16 @@ MonoBehaviour:
   floatProperties:
   - propertyName: _Shininess
     value: 4
+  - propertyName: _GlowStrengthNight
+    value: 0.4
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames:
   - _Shininess
+  - _GlowStrengthNight
   floatPropertyValues:
   - 4
+  - 0.4
 --- !u!1 &8842495626865906951
 GameObject:
   m_ObjectHideFlags: 0
@@ -19625,12 +19645,16 @@ MonoBehaviour:
   floatProperties:
   - propertyName: _Shininess
     value: 4
+  - propertyName: _GlowStrengthNight
+    value: 0.4
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames:
   - _Shininess
+  - _GlowStrengthNight
   floatPropertyValues:
   - 4
+  - 0.4
 --- !u!1001 &670893143625570729
 PrefabInstance:
   m_ObjectHideFlags: 0
