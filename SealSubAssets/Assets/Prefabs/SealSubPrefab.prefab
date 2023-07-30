@@ -10272,7 +10272,7 @@ MonoBehaviour:
   surfaceSplashSound: {fileID: 11400000, guid: 7cb31b5e5c47ce54c9a20212094c9786, type: 2}
   surfaceSplashVelocity: 0.1
   heightOffset: 5
-  localRotation: {x: 0, y: 0, z: 0}
+  localRotation: {x: -90, y: 180, z: 0}
   constructSound: {fileID: 11400000, guid: c19f8c31ff2bcc94cbbdd8f18b5aa1e4, type: 2}
 --- !u!114 &5598789682688038527
 MonoBehaviour:
