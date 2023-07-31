@@ -18,6 +18,8 @@ public class Plugin : BaseUnityPlugin
 
     internal static readonly AssetBundle assets = AssetBundleLoadingUtils.LoadFromAssetsFolder(Assembly, "sealsubassets");
 
+    internal static EquipmentType SealModuleEquipmentType { get; } = EnumHandler.AddEntry<EquipmentType>("SealModule");
+
     private void Awake()
     {
         // set project-scoped logger instance
