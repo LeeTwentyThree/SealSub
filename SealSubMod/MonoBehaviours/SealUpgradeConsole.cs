@@ -29,9 +29,9 @@ internal class SealUpgradeConsole : HandTarget, IHandTarget
         string[] slots = new string[]
         {
             "Module1",
-            "Module2",
             "Module3",
-            "Module4"
+            "Module4",
+            "Module6"
         };
         modules.AddSlots(slots);
     }
