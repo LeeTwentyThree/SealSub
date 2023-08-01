@@ -17,10 +17,19 @@ internal class DockingBayPatches
         return false;
     }
     [HarmonyPatch(nameof(VehicleDockingBay.DockVehicle))]
-    public static void Postfix(VehicleDockingBay __instance, Vehicle vehicle)
+    public static void Prefix(VehicleDockingBay __instance, Vehicle vehicle, ref bool __state)
     {
         if (__instance is not SealDockingBay seal) return;
 
-        Player.main.currentMountedVehicle = vehicle;//The player vehicle is set null, we don't want that because the player is still in the vehicle while docked
+        __state = Player.main.currentMountedVehicle == vehicle;//the player was in the vehicle getting docked
+    }
+
+    [HarmonyPatch(nameof(VehicleDockingBay.DockVehicle))]
+    public static void Postfix(VehicleDockingBay __instance, Vehicle vehicle, ref bool __state)
+    {
+        if (__instance is not SealDockingBay seal) return;
+
+        if(__state)
+            Player.main.currentMountedVehicle = vehicle;//The player vehicle is set null, we don't want that because the player is still in the vehicle while docked
     }
 }
