@@ -34,6 +34,8 @@ public class Plugin : BaseUnityPlugin
 
         UWE.CoroutineHost.StartCoroutine(MaterialSetter.LoadMaterialsAsync());
 
+        LanguageHandler.RegisterLocalizationFolder();
+
         Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
     }
 }

@@ -43,6 +43,9 @@
 		<SubPakDir>SealSubAssets/Packages/Subnautica</SubPakDir>
 		<PluginsDir>$(GameDir)\BepInEx\plugins</PluginsDir>
 	</PropertyGroup>
+	<ItemGroup>
+		<LocalizationFiles Include="Localization/*.json" />
+	</ItemGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<Optimize>True</Optimize>
 		<NoWarn>1701;1702;0649</NoWarn>
@@ -52,6 +55,8 @@
 	</PropertyGroup>
 	<Target Name="CopyToGameFolder" AfterTargets="Build">
 		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(PluginsDir)\$(TargetName)" />
+		<MakeDir Directories="$(PluginsDir)\$(TargetName)\Localization" />
+		<Copy SourceFiles="@(LocalizationFiles)" DestinationFolder="$(PluginsDir)\$(TargetName)\Localization" />
 	</Target>
 	<Target Name="CopyToThunderKitFolder" AfterTargets="Build">
 		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(SolutionDir)..\$(SubPakDir)" />
