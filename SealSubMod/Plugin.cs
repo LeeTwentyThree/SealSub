@@ -20,6 +20,8 @@ public class Plugin : BaseUnityPlugin
 
     internal static EquipmentType SealModuleEquipmentType { get; } = EnumHandler.AddEntry<EquipmentType>("SealModule");
 
+    internal static PingType SealPingType { get; } = EnumHandler.AddEntry<PingType>("SealSub");
+
     private void Awake()
     {
         // set project-scoped logger instance
