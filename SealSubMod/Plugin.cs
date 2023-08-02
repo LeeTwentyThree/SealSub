@@ -36,6 +36,11 @@ public class Plugin : BaseUnityPlugin
 
         LanguageHandler.RegisterLocalizationFolder();
 
+        for (int i = 0; i < 8; i++)
+        {
+            Equipment.slotMapping.Add($"SealModule{i}", SealModuleEquipmentType);
+        }
+
         Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
     }
 }

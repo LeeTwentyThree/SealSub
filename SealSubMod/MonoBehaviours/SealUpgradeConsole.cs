@@ -28,10 +28,10 @@ internal class SealUpgradeConsole : HandTarget, IHandTarget
         modules.onUnequip += OnUnequip;
         string[] slots = new string[]
         {
-            "Module1",
-            "Module3",
-            "Module4",
-            "Module6"
+            "SealModule1",
+            "SealModule2",
+            "SealModule3",
+            "SealModule4"
         };
         modules.AddSlots(slots);
     }
