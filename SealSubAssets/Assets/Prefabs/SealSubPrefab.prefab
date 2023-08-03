@@ -7389,9 +7389,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points:
   - {fileID: 5789077147269736700}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 6868681842456789865}
+  - {fileID: 2606153879426597343}
+  - {fileID: 4726303958981199518}
 --- !u!1 &3223481179982288125
 GameObject:
   m_ObjectHideFlags: 0
