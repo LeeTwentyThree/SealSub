@@ -20,7 +20,6 @@ internal class SealSubRuntimeSetup : MonoBehaviour, IAsyncPrefabSetupOperation
         vfxConstructing.transparentShaders = cyclops.transparentShaders;
         vfxConstructing.surfaceSplashFX = cyclops.surfaceSplashFX;
         GetComponent<PingInstance>().SetType(Plugin.SealPingType);
-        yield break;
     }
 
     // Non-serialized fields must be set in Start
