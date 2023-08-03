@@ -21,6 +21,7 @@ public class Plugin : BaseUnityPlugin
     internal static EquipmentType SealModuleEquipmentType { get; } = EnumHandler.AddEntry<EquipmentType>("SealModule");
 
     internal static PingType SealPingType { get; } = EnumHandler.AddEntry<PingType>("SealSub");
+        //.WithIcon(new Atlas.Sprite(assets.LoadAsset<Sprite>("SealSubPing")));
 
     private void Awake()
     {
