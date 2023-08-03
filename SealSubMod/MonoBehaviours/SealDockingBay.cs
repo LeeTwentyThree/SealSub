@@ -1,8 +1,12 @@
-﻿namespace SealSubMod.MonoBehaviours;
+﻿using TMPro;
+
+namespace SealSubMod.MonoBehaviours;
 
 internal class SealDockingBay : VehicleDockingBay
 {
     [SerializeField] FMOD_CustomLoopingEmitter _emitter;
+
+    [SerializeField] TextMeshProUGUI _text;
 
     //Mostly a marker class, to distinguish between normal docking bays and the seal bay in patches
     public static float MaxDistance = 3;
@@ -26,9 +30,15 @@ internal class SealDockingBay : VehicleDockingBay
     private void OnDockChange()
     {
         if (dockedVehicle)
+        {
             _emitter.Play();
+            _text.text = "Docked";
+        }
         else
+        {
             _emitter.Stop();
+            _text.text = "Ready to dock...";
+        }
     }
 
     public void FixedUpdate()

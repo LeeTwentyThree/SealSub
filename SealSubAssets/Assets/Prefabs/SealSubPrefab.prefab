@@ -15164,7 +15164,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ready to dock
+  m_text: Ready to dock...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -15191,8 +15191,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.36
-  m_fontSizeBase: 0.36
+  m_fontSize: 0.24
+  m_fontSizeBase: 0.24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -15907,6 +15907,7 @@ MonoBehaviour:
   bayDoorsOpenSFX: {fileID: 0}
   bayDoorsCloseSFX: {fileID: 0}
   _emitter: {fileID: 6019590177240640558}
+  _text: {fileID: 977141884243850843}
 --- !u!114 &6019590177240640558
 MonoBehaviour:
   m_ObjectHideFlags: 0
