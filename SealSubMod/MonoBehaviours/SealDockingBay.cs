@@ -32,7 +32,7 @@ internal class SealDockingBay : VehicleDockingBay
         if (dockedVehicle)
         {
             _emitter.Play();
-            _text.text = "Docked";
+            _text.text = $"{dockedVehicle.subName.GetName()} docked!";
         }
         else
         {
