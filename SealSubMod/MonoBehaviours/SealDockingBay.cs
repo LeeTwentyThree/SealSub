@@ -6,6 +6,8 @@ internal class SealDockingBay : VehicleDockingBay
 {
     [SerializeField] FMOD_CustomLoopingEmitter _emitter;
 
+    [SerializeField] TextMeshProUGUI _text;
+
     //Mostly a marker class, to distinguish between normal docking bays and the seal bay in patches
     public static float MaxDistance = 3;
     public static float MinForce = 0.001f;
@@ -30,10 +32,12 @@ internal class SealDockingBay : VehicleDockingBay
         if (dockedVehicle)
         {
             _emitter.Play();
+            _text.text = $"{dockedVehicle.subName.GetName()} docked!";
         }
         else
         {
             _emitter.Stop();
+            _text.text = "Ready to dock...";
         }
     }
 
