@@ -11040,8 +11040,8 @@ Transform:
   - {fileID: 4167594810106283352}
   - {fileID: 8431591854475959823}
   - {fileID: 7833400518798109700}
-  - {fileID: 5293483327172825341}
   - {fileID: 405739950940948049}
+  - {fileID: 5293483327172825341}
   - {fileID: 6283973713065450684}
   - {fileID: 3750239930411081162}
   - {fileID: 8010509841020619487}
@@ -22073,10 +22073,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8011593205016761111}
     m_Modifications:
+    - target: {fileID: 4660315542661625358, guid: 4bc88b278fdb31c4689b0bf72c31194e,
+        type: 3}
+      propertyPath: slots.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660315542661625358, guid: 4bc88b278fdb31c4689b0bf72c31194e,
+        type: 3}
+      propertyPath: slots.Array.data[0]
+      value: SealModule5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660315542661625358, guid: 4bc88b278fdb31c4689b0bf72c31194e,
+        type: 3}
+      propertyPath: slots.Array.data[1]
+      value: SealModule6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660315542661625358, guid: 4bc88b278fdb31c4689b0bf72c31194e,
+        type: 3}
+      propertyPath: slots.Array.data[2]
+      value: SealModule7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660315542661625358, guid: 4bc88b278fdb31c4689b0bf72c31194e,
+        type: 3}
+      propertyPath: slots.Array.data[3]
+      value: SealModule8
+      objectReference: {fileID: 0}
     - target: {fileID: 5810400879522624263, guid: 4bc88b278fdb31c4689b0bf72c31194e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 5810400879522624263, guid: 4bc88b278fdb31c4689b0bf72c31194e,
         type: 3}
@@ -23483,10 +23508,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8011593205016761111}
     m_Modifications:
+    - target: {fileID: 4660315542661625358, guid: 4bc88b278fdb31c4689b0bf72c31194e,
+        type: 3}
+      propertyPath: slots.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660315542661625358, guid: 4bc88b278fdb31c4689b0bf72c31194e,
+        type: 3}
+      propertyPath: slots.Array.data[0]
+      value: SealModule1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660315542661625358, guid: 4bc88b278fdb31c4689b0bf72c31194e,
+        type: 3}
+      propertyPath: slots.Array.data[1]
+      value: SealModule2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660315542661625358, guid: 4bc88b278fdb31c4689b0bf72c31194e,
+        type: 3}
+      propertyPath: slots.Array.data[2]
+      value: SealModule3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660315542661625358, guid: 4bc88b278fdb31c4689b0bf72c31194e,
+        type: 3}
+      propertyPath: slots.Array.data[3]
+      value: SealModule4
+      objectReference: {fileID: 0}
     - target: {fileID: 5810400879522624263, guid: 4bc88b278fdb31c4689b0bf72c31194e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5810400879522624263, guid: 4bc88b278fdb31c4689b0bf72c31194e,
         type: 3}

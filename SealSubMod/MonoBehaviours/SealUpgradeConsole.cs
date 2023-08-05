@@ -10,6 +10,8 @@ internal class SealUpgradeConsole : HandTarget, IHandTarget
 
     [SerializeField] private GameObject[] moduleModels;
 
+    [SerializeField] private string[] slots;
+
     public override void Awake()
     {
         base.Awake();
@@ -26,13 +28,6 @@ internal class SealUpgradeConsole : HandTarget, IHandTarget
         UpdateVisuals();
         modules.onEquip += OnEquip;
         modules.onUnequip += OnUnequip;
-        string[] slots = new string[]
-        {
-            "SealModule1",
-            "SealModule2",
-            "SealModule3",
-            "SealModule4"
-        };
         modules.AddSlots(slots);
     }
 
