@@ -29,7 +29,8 @@ internal class uGUI_EquipmentPatches
     {
         sealSubModuleImage.sprite = Plugin.assets.LoadAsset<Sprite>("SealSubModulesBackground");
         sealSubModuleImage.gameObject.name = "Seal";
-        sealSubModuleImage.transform.localScale = new Vector3(1.4f, 1.4f, 1);
+        sealSubModuleImage.transform.localScale = new Vector3(1.3f, 1.3f, 1);
+        sealSubModuleImage.transform.localPosition = new Vector3(210, -135, 0);
     }
 
     private static uGUI_EquipmentSlot CloneSlot(uGUI_Equipment equipmentMenu, string childName, string newSlotName)
