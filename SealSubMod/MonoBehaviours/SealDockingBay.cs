@@ -32,7 +32,8 @@ internal class SealDockingBay : VehicleDockingBay
         if (dockedVehicle)
         {
             _emitter.Play();
-            _text.text = $"{dockedVehicle.subName.GetName()} docked";
+            string vehicleName = dockedVehicle.subName != null ? dockedVehicle.subName.GetName() : "vehicle";
+            _text.text = $"{vehicleName} docked";
         }
         else
         {
