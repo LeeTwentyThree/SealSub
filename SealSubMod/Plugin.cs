@@ -20,8 +20,7 @@ public class Plugin : BaseUnityPlugin
 
     internal static EquipmentType SealModuleEquipmentType { get; } = EnumHandler.AddEntry<EquipmentType>("SealModule");
 
-    internal static PingType SealPingType { get; } = EnumHandler.AddEntry<PingType>("SealSub");
-        //.WithIcon(new Atlas.Sprite(assets.LoadAsset<Sprite>("SealSubPing")));
+    internal static PingType SealPingType { get; private set; }
 
     private void Awake()
     {
@@ -38,6 +37,9 @@ public class Plugin : BaseUnityPlugin
         UWE.CoroutineHost.StartCoroutine(MaterialSetter.LoadMaterialsAsync());
 
         LanguageHandler.RegisterLocalizationFolder();
+
+        SealPingType = EnumHandler.AddEntry<PingType>("SealSub")
+            .WithIcon(new Atlas.Sprite(assets.LoadAsset<Sprite>("SealSubPing")));
 
         for (int i = 0; i < 8; i++)
         {
