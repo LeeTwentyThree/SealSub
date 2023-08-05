@@ -41,7 +41,7 @@ public class Plugin : BaseUnityPlugin
         SealPingType = EnumHandler.AddEntry<PingType>("SealSub")
             .WithIcon(new Atlas.Sprite(assets.LoadAsset<Sprite>("SealSubPing")));
 
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i <= 8; i++)
         {
             Equipment.slotMapping.Add($"SealModule{i}", SealModuleEquipmentType);
         }
