@@ -10,7 +10,7 @@ internal static class ModAudio
 
     public static void RegisterAudio(AssetBundle bundle)
     {
-        
+        AddWorldSoundEffect(bundle.LoadAsset<AudioClip>("SealHorn"), "SealHorn");
     }
 
     private static void AddSubVoiceLine(AudioClip clip, string soundPath, string subtitles)
@@ -30,12 +30,12 @@ internal static class ModAudio
         {
             sound.set3DMinMaxDistance(minDistance, maxDistance);
         }
-        CustomSoundHandler.RegisterCustomSound(soundPath, sound, string.IsNullOrEmpty(overrideBus) ? AudioUtils.BusPaths.VoiceOvers : overrideBus);
+        CustomSoundHandler.RegisterCustomSound(soundPath, sound, string.IsNullOrEmpty(overrideBus) ? AudioUtils.BusPaths.PlayerSFXs : overrideBus);
     }
 
     private static void AddInterfaceSoundEffect(AudioClip clip, string soundPath)
     {
         var sound = AudioUtils.CreateSound(clip, k2DSoundModes);
-        CustomSoundHandler.RegisterCustomSound(soundPath, sound, AudioUtils.BusPaths.VoiceOvers);
+        CustomSoundHandler.RegisterCustomSound(soundPath, sound, AudioUtils.BusPaths.PlayerSFXs);
     }
 }
