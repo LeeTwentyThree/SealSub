@@ -2335,7 +2335,7 @@ MonoBehaviour:
   playOnAwake: 0
   stopImmediatelyOnDisable: 0
   followParent: 1
-  restartOnPlay: 0
+  restartOnPlay: 1
   debug: 0
   subtitlesKey: 
   playSubtitlesWithUnscaledTime: 1
@@ -5436,7 +5436,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2074586683626888125}
   m_LocalRotation: {x: 0.33308703, y: -0, z: -0, w: 0.9428961}
-  m_LocalPosition: {x: 0, y: 0, z: -0.256}
+  m_LocalPosition: {x: 0, y: 0, z: -0.56}
   m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
   m_Children:
   - {fileID: 623911803365610545}
@@ -5445,7 +5445,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 38.913002, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -0.38}
+  m_AnchoredPosition: {x: 0, y: -0.48}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6226181919109920245
