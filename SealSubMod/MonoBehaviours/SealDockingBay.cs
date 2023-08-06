@@ -25,6 +25,7 @@ internal class SealDockingBay : VehicleDockingBay
     public void Awake()
     {
         onDockedChanged += OnDockChange;
+        OnDockChange();
     }
 
     private void OnDockChange()
@@ -38,7 +39,7 @@ internal class SealDockingBay : VehicleDockingBay
         else
         {
             _emitter.Stop();
-            _text.text = "Ready to dock...";
+            _text.text = "Ready to dock";
         }
     }
 
