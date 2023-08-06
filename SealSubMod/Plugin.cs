@@ -46,6 +46,8 @@ public class Plugin : BaseUnityPlugin
             Equipment.slotMapping.Add($"SealModule{i}", SealModuleEquipmentType);
         }
 
+        ModAudio.RegisterAudio(assets);
+
         Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
     }
 }
