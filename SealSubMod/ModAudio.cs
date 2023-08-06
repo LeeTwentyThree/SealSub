@@ -30,12 +30,12 @@ internal static class ModAudio
         {
             sound.set3DMinMaxDistance(minDistance, maxDistance);
         }
-        CustomSoundHandler.RegisterCustomSound(soundPath, sound, string.IsNullOrEmpty(overrideBus) ? "WHAT DO I PUT HERE!??!?!" : overrideBus);
+        CustomSoundHandler.RegisterCustomSound(soundPath, sound, string.IsNullOrEmpty(overrideBus) ? AudioUtils.BusPaths.VoiceOvers : overrideBus);
     }
 
     private static void AddInterfaceSoundEffect(AudioClip clip, string soundPath)
     {
         var sound = AudioUtils.CreateSound(clip, k2DSoundModes);
-        CustomSoundHandler.RegisterCustomSound(soundPath, sound, "WHAT DO I PUT HERE!??!?!");
+        CustomSoundHandler.RegisterCustomSound(soundPath, sound, AudioUtils.BusPaths.VoiceOvers);
     }
 }
