@@ -5,7 +5,7 @@ namespace SealSubMod.MonoBehaviours.Prefab;
 
 internal class SpawnSteeringWheel : MonoBehaviour, IAsyncPrefabSetupOperation
 {
-    public IEnumerator SetupPrefabAsync()
+    public IEnumerator SetupPrefabAsync(GameObject prefabRoot)
     {
         yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();
         var model = CyclopsReferenceManager.CyclopsReference.transform.Find("CyclopsMeshAnimated/Submarine_Steering_Console").gameObject;

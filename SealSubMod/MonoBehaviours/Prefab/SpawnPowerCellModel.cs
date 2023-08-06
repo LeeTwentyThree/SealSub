@@ -19,7 +19,7 @@ internal class SpawnPowerCellModel : MonoBehaviour, IAsyncPrefabSetupOperation
     }
 
     // isn't this such a useful interface??!?!??!?!? ikr?!?
-    public IEnumerator SetupPrefabAsync()
+    public IEnumerator SetupPrefabAsync(GameObject prefabRoot)
     {
         // if it doesn't exist then what's the point of using it
         yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();

@@ -2,5 +2,5 @@
 
 internal interface IAsyncPrefabSetupOperation
 {
-    IEnumerator SetupPrefabAsync();
+    IEnumerator SetupPrefabAsync(GameObject prefabRoot);
 }

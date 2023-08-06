@@ -9,7 +9,7 @@ internal class SealSubRuntimeSetup : MonoBehaviour, IAsyncPrefabSetupOperation
     [SerializeField] float waterLevelYOffset = 3;
 
     // Serialized fields can be set in SetupPrefabAsync
-    public IEnumerator SetupPrefabAsync()
+    public IEnumerator SetupPrefabAsync(GameObject prefabRoot)
     {
         yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();
         var cyclops = CyclopsReferenceManager.CyclopsReference.gameObject.GetComponent<VFXConstructing>();

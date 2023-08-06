@@ -37,7 +37,7 @@ internal class SealSubPrefab
         var asyncOperations = prefab.GetComponentsInChildren<IAsyncPrefabSetupOperation>(true);
         foreach (var task in asyncOperations)
         {
-            yield return task.SetupPrefabAsync();
+            yield return task.SetupPrefabAsync(prefab);
         }
         
         var onCompleted = prefab.GetComponentsInChildren<IOnAsyncPrefabTasksCompleted>(true);

@@ -46,7 +46,7 @@ internal class SealSkyApplierManager : MonoBehaviour, IAsyncPrefabSetupOperation
         windowSkyApplier.renderers = _windowRenderers.ToArray();
     }
 
-    public IEnumerator SetupPrefabAsync()
+    public IEnumerator SetupPrefabAsync(GameObject prefabRoot)
     {
         yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();
         var cyclops = CyclopsReferenceManager.CyclopsReference;

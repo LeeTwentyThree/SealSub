@@ -11,7 +11,7 @@ internal class PrefabSlot : MonoBehaviour, IAsyncPrefabSetupOperation
     [SerializeField] string classId;
     [SerializeField] TechType techType;
 
-    public IEnumerator SetupPrefabAsync()
+    public IEnumerator SetupPrefabAsync(GameObject prefabRoot)
     {
         GameObject prefab;
         if (mode == Mode.ClassId)
