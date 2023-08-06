@@ -25,6 +25,5 @@ internal class SealSubRuntimeSetup : MonoBehaviour, IAsyncPrefabSetupOperation
     // Non-serialized fields must be set in Start
     private void Start()
     {
-        GetComponent<WorldForces>().waterDepth = Ocean.GetOceanLevel() + waterLevelYOffset;
     }
 }
