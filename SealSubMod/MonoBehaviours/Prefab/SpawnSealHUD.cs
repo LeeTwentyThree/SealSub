@@ -12,11 +12,6 @@ internal class SpawnSealHUD : MonoBehaviour, IAsyncPrefabSetupOperation
         var spawned = Instantiate(model, transform);
         spawned.transform.localPosition = Vector3.zero;
         spawned.transform.localEulerAngles = new Vector3(0, 0, 0);
-        var manager = spawned.GetComponent<CyclopsHelmHUDManager>();
-        var root = transform.parent.gameObject;
-        manager.subRoot = root.GetComponent<SubRoot>();
-        manager.subLiveMixin = root.GetComponent<LiveMixin>();
-        manager.LOD = root.GetComponent<BehaviourLOD>();
-        manager.motorMode = root.GetComponent<CyclopsMotorMode>();
+        DestroyImmediate(spawned.GetComponent<CyclopsHelmHUDManager>());
     }
 }
