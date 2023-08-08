@@ -1898,20 +1898,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 7625063335280371352}
   materialIndices: 00000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _Shininess
-    value: 4
-  - propertyName: _GlowStrengthNight
-    value: 0.4
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _Shininess
-  - _GlowStrengthNight
-  floatPropertyValues:
-  - 4
-  - 0.4
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!1 &695516316639894687
 GameObject:
   m_ObjectHideFlags: 0
@@ -2260,16 +2250,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 2875074608097146405}
   materialIndices: 00000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _Shininess
-    value: 7.8
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _Shininess
-  floatPropertyValues:
-  - 7.8
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!1 &840355977769882335
 GameObject:
   m_ObjectHideFlags: 0
@@ -3045,20 +3029,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 4862498854771506253}
   materialIndices: 00000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _Shininess
-    value: 4
-  - propertyName: _GlowStrengthNight
-    value: 0.4
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _Shininess
-  - _GlowStrengthNight
-  floatPropertyValues:
-  - 4
-  - 0.4
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!114 &7987902524171774308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4202,20 +4176,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 1145183412935659746}
   materialIndices: 00000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _Shininess
-    value: 8
-  - propertyName: _SpecInt
-    value: 2
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _Shininess
-  - _SpecInt
-  floatPropertyValues:
-  - 8
-  - 2
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!1 &1622859490201185257
 GameObject:
   m_ObjectHideFlags: 0
@@ -4318,16 +4282,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 1877681144887026159}
   materialIndices: 00000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _Shininess
-    value: 7.8
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _Shininess
-  floatPropertyValues:
-  - 7.8
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!1 &1643029035103641643
 GameObject:
   m_ObjectHideFlags: 0
@@ -5065,24 +5023,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 6392547993426189846}
   materialIndices: 00000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _SpecInt
-    value: 3
-  - propertyName: _Shininess
-    value: 5
-  - propertyName: _Fresnel
-    value: 0
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _SpecInt
-  - _Shininess
-  - _Fresnel
-  floatPropertyValues:
-  - 3
-  - 5
-  - 0
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!114 &4612117478462911003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6015,20 +5959,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 7916705424113194607}
   materialIndices: 00000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _Shininess
-    value: 8
-  - propertyName: _SpecInt
-    value: 2
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _Shininess
-  - _SpecInt
-  floatPropertyValues:
-  - 8
-  - 2
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!1 &2187750602797815791
 GameObject:
   m_ObjectHideFlags: 0
@@ -6579,16 +6513,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 1271365163119989797}
   materialIndices: 01000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _Shininess
-    value: 7.8
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _Shininess
-  floatPropertyValues:
-  - 7.8
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!1 &2438646426517751890
 GameObject:
   m_ObjectHideFlags: 0
@@ -8261,24 +8189,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 7315816958416206667}
   materialIndices: 00000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _SpecInt
-    value: 3
-  - propertyName: _Shininess
-    value: 5
-  - propertyName: _Fresnel
-    value: 0
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _SpecInt
-  - _Shininess
-  - _Fresnel
-  floatPropertyValues:
-  - 3
-  - 5
-  - 0
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!1 &3280264601680248121
 GameObject:
   m_ObjectHideFlags: 0
@@ -9147,16 +9061,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 63617962326999919}
   materialIndices: 00000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _Shininess
-    value: 7.8
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _Shininess
-  floatPropertyValues:
-  - 7.8
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!1 &3685704750455600124
 GameObject:
   m_ObjectHideFlags: 0
@@ -9249,16 +9157,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 1221935023012126002}
   materialIndices: 01000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _Shininess
-    value: 7.8
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _Shininess
-  floatPropertyValues:
-  - 7.8
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!1 &3733849965846133410
 GameObject:
   m_ObjectHideFlags: 0
@@ -10388,20 +10290,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 3045124559077561888}
   materialIndices: 00000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _Shininess
-    value: 8
-  - propertyName: _SpecInt
-    value: 2
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _Shininess
-  - _SpecInt
-  floatPropertyValues:
-  - 8
-  - 2
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!1 &4192894692064324263
 GameObject:
   m_ObjectHideFlags: 0
@@ -10459,16 +10351,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 1513198170527987978}
   materialIndices: 00000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _Shininess
-    value: 4
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _Shininess
-  floatPropertyValues:
-  - 4
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!114 &8157507361274350106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11321,16 +11207,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 8332440719985365999}
   materialIndices: 00000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _Shininess
-    value: 8
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _Shininess
-  floatPropertyValues:
-  - 8
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!1 &4689449606611655603
 GameObject:
   m_ObjectHideFlags: 0
@@ -11434,16 +11314,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 5436843197158206609}
   materialIndices: 00000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _Shininess
-    value: 7.8
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _Shininess
-  floatPropertyValues:
-  - 7.8
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!1 &4768922814135839348
 GameObject:
   m_ObjectHideFlags: 0
@@ -14457,20 +14331,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 2988786099967730472}
   materialIndices: 00000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _SpecInt
-    value: 2
-  - propertyName: _Shininess
-    value: 8
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _SpecInt
-  - _Shininess
-  floatPropertyValues:
-  - 2
-  - 8
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!1 &5798943639114315618
 GameObject:
   m_ObjectHideFlags: 0
@@ -15356,16 +15220,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 7063765219997190527}
   materialIndices: 00000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _Shininess
-    value: 4
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _Shininess
-  floatPropertyValues:
-  - 4
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!114 &4420319498839369017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16973,16 +16831,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 5817293009702605219}
   materialIndices: 00000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _Shininess
-    value: 7.8
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _Shininess
-  floatPropertyValues:
-  - 7.8
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!1 &6858640651410924069
 GameObject:
   m_ObjectHideFlags: 0
@@ -18444,20 +18296,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 3330479291643392094}
   materialIndices: 00000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _SpecInt
-    value: 2
-  - propertyName: _Shininess
-    value: 8
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _SpecInt
-  - _Shininess
-  floatPropertyValues:
-  - 2
-  - 8
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!114 &4785734774680941818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18472,24 +18314,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 1705259899316407597}
   materialIndices: 01000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _SpecInt
-    value: 3
-  - propertyName: _Shininess
-    value: 5
-  - propertyName: _Fresnel
-    value: 0
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _SpecInt
-  - _Shininess
-  - _Fresnel
-  floatPropertyValues:
-  - 3
-  - 5
-  - 0
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!114 &6580463532999308054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19024,16 +18852,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 1754024946254432479}
   materialIndices: 00000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _Shininess
-    value: 7.8
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _Shininess
-  floatPropertyValues:
-  - 7.8
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!114 &421761685402273855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19060,20 +18882,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 6617326743791140569}
   materialIndices: 00000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _Shininess
-    value: 4
-  - propertyName: _GlowStrengthNight
-    value: 0.4
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _Shininess
-  - _GlowStrengthNight
-  floatPropertyValues:
-  - 4
-  - 0.4
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!1 &7746117462749390239
 GameObject:
   m_ObjectHideFlags: 0
@@ -19144,24 +18956,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 5710774367642601626}
   materialIndices: 00000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _SpecInt
-    value: 3
-  - propertyName: _Shininess
-    value: 5
-  - propertyName: _Fresnel
-    value: 0
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _SpecInt
-  - _Shininess
-  - _Fresnel
-  floatPropertyValues:
-  - 3
-  - 5
-  - 0
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!1 &7766830209966912002
 GameObject:
   m_ObjectHideFlags: 0
@@ -19641,20 +19439,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 8282565173993644683}
   materialIndices: 00000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _Shininess
-    value: 4
-  - propertyName: _GlowStrengthNight
-    value: 0.4
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _Shininess
-  - _GlowStrengthNight
-  floatPropertyValues:
-  - 4
-  - 0.4
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!1 &8036856724885930200
 GameObject:
   m_ObjectHideFlags: 0
@@ -20941,20 +20729,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 3242314467625621009}
   materialIndices: 00000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _Shininess
-    value: 8
-  - propertyName: _SpecInt
-    value: 2
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _Shininess
-  - _SpecInt
-  floatPropertyValues:
-  - 8
-  - 2
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!1 &8755364419476426200
 GameObject:
   m_ObjectHideFlags: 0
@@ -21200,20 +20978,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 8849590338898166158}
   materialIndices: 00000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _Shininess
-    value: 4
-  - propertyName: _GlowStrengthNight
-    value: 0.4
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _Shininess
-  - _GlowStrengthNight
-  floatPropertyValues:
-  - 4
-  - 0.4
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!1 &8842495626865906951
 GameObject:
   m_ObjectHideFlags: 0
@@ -22320,16 +22088,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 8445027080050255794}
   materialIndices: 00000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _Shininess
-    value: 4
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _Shininess
-  floatPropertyValues:
-  - 4
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!114 &2969049687086964222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22356,20 +22118,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 97904135598484218}
   materialIndices: 00000000
-  colorProperties: []
-  floatProperties:
-  - propertyName: _Shininess
-    value: 4
-  - propertyName: _GlowStrengthNight
-    value: 0.4
   colorPropertyNames: []
   colorPropertyValues: []
-  floatPropertyNames:
-  - _Shininess
-  - _GlowStrengthNight
-  floatPropertyValues:
-  - 4
-  - 0.4
+  floatPropertyNames: []
+  floatPropertyValues: []
 --- !u!114 &7849349380365759198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26234,6 +25986,11 @@ PrefabInstance:
       propertyPath: m_Intensity
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2443269789238156234, guid: 3d68a11161d9e564daf660c002083048,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 44f3a854b26e00844b0704d65e1b0f92, type: 2}
     - target: {fileID: 2484853095234301757, guid: 3d68a11161d9e564daf660c002083048,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -26354,6 +26111,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 8d617f9bdfadf83458e333f9bb0e0fa0, type: 2}
+    - target: {fileID: 3587817005034789073, guid: 3d68a11161d9e564daf660c002083048,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 44f3a854b26e00844b0704d65e1b0f92, type: 2}
     - target: {fileID: 3609595656506534476, guid: 3d68a11161d9e564daf660c002083048,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -26509,6 +26271,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6c1d544084e33134cbc83c03c48493ad, type: 2}
+    - target: {fileID: 5630806159621812827, guid: 3d68a11161d9e564daf660c002083048,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 44f3a854b26e00844b0704d65e1b0f92, type: 2}
     - target: {fileID: 5635227813461391058, guid: 3d68a11161d9e564daf660c002083048,
         type: 3}
       propertyPath: m_LocalScale.y
@@ -26595,6 +26362,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 35a2ff6c77974c34287595b0239a9ad1, type: 2}
+    - target: {fileID: 6464143021901329843, guid: 3d68a11161d9e564daf660c002083048,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 617c2e47e4e4a5841925305e49686dfc, type: 2}
+    - target: {fileID: 6464143021901329843, guid: 3d68a11161d9e564daf660c002083048,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: f4ce5221a1b2bb84ea02e7925e06c40c, type: 2}
     - target: {fileID: 6468956067537193606, guid: 3d68a11161d9e564daf660c002083048,
         type: 3}
       propertyPath: m_LocalScale.y
