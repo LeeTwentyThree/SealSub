@@ -55,7 +55,10 @@ internal class SealSkyApplierManager : MonoBehaviour, IAsyncPrefabSetupOperation
         lightingController.skies[0].sky = skyBaseGlass;
         lightingController.skies[1].sky = skyBaseInterior;
 
-        var lights = gameObject.GetComponentsInChildren<Light>(true);
+        var lights = gameObject.GetComponentsInChildren<Light>(true)
+            .Where((l) => l.gameObject.GetComponent<ExcludeLightFromController>() == null)
+            .ToArray();
+
         lightingController.lights = new MultiStatesLight[lights.Length];
         for (int i = 0; i < lights.Length; i++)
         {
