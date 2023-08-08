@@ -1910,6 +1910,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 7625063335280371352}
   materialIndices: 00000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -2262,6 +2264,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 2875074608097146405}
   materialIndices: 00000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -3041,6 +3045,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 4862498854771506253}
   materialIndices: 00000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -4200,6 +4206,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 1145183412935659746}
   materialIndices: 00000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -4306,6 +4314,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 1877681144887026159}
   materialIndices: 00000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -5047,6 +5057,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 6392547993426189846}
   materialIndices: 00000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -5676,7 +5688,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   debug: 0
-  handText: Enter Seal Sub (please add proper localization)
+  handText: EnterSealSub
 --- !u!114 &6467164596184884314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5983,6 +5995,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 7916705424113194607}
   materialIndices: 00000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -6537,6 +6551,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 1271365163119989797}
   materialIndices: 01000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -8213,6 +8229,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 7315816958416206667}
   materialIndices: 00000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -9085,6 +9103,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 63617962326999919}
   materialIndices: 00000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -9181,6 +9201,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 1221935023012126002}
   materialIndices: 01000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -10314,6 +10336,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 3045124559077561888}
   materialIndices: 00000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -10375,6 +10399,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 1513198170527987978}
   materialIndices: 00000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -11231,6 +11257,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 8332440719985365999}
   materialIndices: 00000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -11338,6 +11366,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 5436843197158206609}
   materialIndices: 00000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -14367,6 +14397,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 2988786099967730472}
   materialIndices: 00000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -15256,6 +15288,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 7063765219997190527}
   materialIndices: 00000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -16867,6 +16901,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 5817293009702605219}
   materialIndices: 00000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -18332,6 +18368,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 3330479291643392094}
   materialIndices: 00000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -18350,6 +18388,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 1705259899316407597}
   materialIndices: 01000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -18888,6 +18928,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 1754024946254432479}
   materialIndices: 00000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -18918,6 +18960,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 6617326743791140569}
   materialIndices: 00000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -18992,6 +19036,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 5710774367642601626}
   materialIndices: 00000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -19487,6 +19533,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 8282565173993644683}
   materialIndices: 00000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -20777,6 +20825,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 3242314467625621009}
   materialIndices: 00000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -21026,6 +21076,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 8849590338898166158}
   materialIndices: 00000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -22136,6 +22188,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 8445027080050255794}
   materialIndices: 00000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
@@ -22166,6 +22220,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 97904135598484218}
   materialIndices: 00000000
+  colorProperties: []
+  floatProperties: []
   colorPropertyNames: []
   colorPropertyValues: []
   floatPropertyNames: []
