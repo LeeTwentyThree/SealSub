@@ -10,17 +10,13 @@ internal static class ModAudio
 
     public static void RegisterAudio(AssetBundle bundle)
     {
-        AddWorldSoundEffect(bundle.LoadAsset<AudioClip>("SealHorn"), "SealHorn");
+        AddSubVoiceLine(bundle.LoadAsset<AudioClip>("SealWelcomeAboard"), "SealWelcomeAboard");
     }
 
-    private static void AddSubVoiceLine(AudioClip clip, string soundPath, string subtitles)
+    private static void AddSubVoiceLine(AudioClip clip, string soundPath)
     {
         var sound = AudioUtils.CreateSound(clip, kStreamSoundModes);
         CustomSoundHandler.RegisterCustomSound(soundPath, sound, AudioUtils.BusPaths.VoiceOvers);
-        if (!string.IsNullOrEmpty(subtitles))
-        {
-            LanguageHandler.SetLanguageLine(soundPath, subtitles);
-        }
     }
 
     private static void AddWorldSoundEffect(AudioClip clip, string soundPath, float minDistance = 1f, float maxDistance = 100f, string overrideBus = null)

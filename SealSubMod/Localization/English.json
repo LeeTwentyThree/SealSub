@@ -1,4 +1,6 @@
 ﻿{
   "SealSub": "Seal Submarine",
-  "Tooltip_SealSub": "Hello there, Bitch!"
+  "Tooltip_SealSub": "Hello there, Bitch!",
+
+  "SealWelcomeAboard": "Welcome aboard captain. All systems online."
 }
