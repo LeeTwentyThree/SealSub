@@ -11,6 +11,9 @@ internal static class ModAudio
     public static void RegisterAudio(AssetBundle bundle)
     {
         AddSubVoiceLine(bundle.LoadAsset<AudioClip>("SealWelcomeAboard"), "SealWelcomeAboard");
+        AddSubVoiceLine(bundle.LoadAsset<AudioClip>("SealEngineOn"), "SealEngineOn");
+        AddSubVoiceLine(bundle.LoadAsset<AudioClip>("SealEngineOff"), "SealEngineOff");
+        AddSubVoiceLine(bundle.LoadAsset<AudioClip>("SealSubEasterEgg"), "SealSubEasterEgg");
     }
 
     private static void AddSubVoiceLine(AudioClip clip, string soundPath)

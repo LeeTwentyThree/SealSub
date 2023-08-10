@@ -3,5 +3,8 @@
   "Tooltip_SealSub": "Hello there, Bitch!",
 
   "EnterSealSub": "Board Seal",
-  "SealWelcomeAboard": "Welcome aboard captain. All systems online."
+  "SealWelcomeAboard": "SEAL: Welcome aboard captain. All systems online.",
+  "SealSubEasterEgg": "SEAL: Crazy? I was crazy once. They locked me in a room. A rubber room. A rubber room with rats. Rats make me crazy.",
+  "SealEngineOn": "SEAL: Engine Powering Up",
+  "SealEngineOff": "SEAL: Engine Powering Down"
 }
