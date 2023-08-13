@@ -1,17 +1,28 @@
-﻿using HarmonyLib;
+﻿using UnityEngine.UI;
+using SealSubMod.Utility;
 
 namespace SealSubMod.MonoBehaviours.Prefab;
 
 internal class MaterialSetter : MonoBehaviour
 {
+    [Header("Method of material setting")]
+
+    public Mode mode;
+
+    [Header("For single renderer mode")]
+
     public Renderer renderer;
     public int[] materialIndexes = new[] { 0 };
+
+    [Header("The material to apply")]
+
     public MaterialType materialType;
 
     private static Material glassMaterial;
     private static Material exteriorGlassMaterial;
     private static Material shinyGlassMaterial;
     private static Material interiorWindowGlassMaterial;
+    private static Material holographicUIMaterial;
 
     public enum MaterialType
     {
@@ -21,7 +32,8 @@ internal class MaterialSetter : MonoBehaviour
         Glass,
         ExteriorGlass,
         ShinyGlass,
-        InteriorWindowGlass
+        InteriorWindowGlass,
+        HolographicUI
     }
 
     private void OnValidate()
@@ -30,17 +42,39 @@ internal class MaterialSetter : MonoBehaviour
             renderer = GetComponent<Renderer>();
     }
 
-    public void AssignMaterial()
+    public void AssignMaterials()
     {
-        if (!renderer) throw new System.Exception($"Renderer is null on material setter {name}");
+        switch (mode)
+        {
+            case Mode.SingleRenderer:
+                if (!renderer) throw new System.Exception($"Renderer is null on material setter {name}");
+                var mats = renderer.materials; // just setting index doesn't work because you get a different array than the actual one. It's basically passed by value rather than reference
+                foreach (var index in materialIndexes)
+                    mats[index] = GetMaterial(materialType);
+                renderer.materials = mats;
+                break;
 
-        var mats = renderer.materials; // just setting index doesn't work because you get a different array than the actual one. It's basically passed by value rather than reference
-        foreach (var index in materialIndexes)
-            mats[index] = GetMaterial(materialType);
-        renderer.materials = mats;
+            case Mode.AllChildRenderers:
+                foreach (var childRenderer in gameObject.GetComponentsInChildren<Renderer>(true))
+                {
+                    var childRendererMats = childRenderer.materials; // just setting index doesn't work because you get a different array than the actual one. It's basically passed by value rather than reference
+                    for (int i = 0; i < childRendererMats.Length; i++)
+                        childRendererMats[i] = GetMaterial(materialType);
+                    childRenderer.materials = childRendererMats;
+                }
+                break;
+
+            case Mode.AllChildGraphics:
+                foreach (var graphic in gameObject.GetComponentsInChildren<Graphic>(true))
+                {
+                    graphic.material = GetMaterial(materialType);
+                }
+                break;
+
+        }
     }
 
-    public void Start() => AssignMaterial();//Here for now ig yea sure idk idc 
+    // public void Start() => AssignMaterials();//Here for now ig yea sure idk idc 
 
     public static Material GetMaterial(MaterialType type)
     {
@@ -60,6 +94,8 @@ internal class MaterialSetter : MonoBehaviour
                 return shinyGlassMaterial;
             case MaterialType.InteriorWindowGlass:
                 return interiorWindowGlassMaterial;
+            case MaterialType.HolographicUI:
+                return holographicUIMaterial;
             default:
                 return null;
         }
@@ -95,5 +131,19 @@ internal class MaterialSetter : MonoBehaviour
         interiorWindowGlassMaterial.SetFloat("_SpecInt", 2);
         interiorWindowGlassMaterial.SetFloat("_Shininess", 6f);
         interiorWindowGlassMaterial.SetFloat("_Fresnel", 0.88f);
+
+        yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();
+
+        holographicUIMaterial = new Material(
+            CyclopsReferenceManager.CyclopsReference.transform.Find("HelmHUD/HelmHUDVisuals/Canvas_LeftHUD/EngineOnUI/EngineOff_Button")
+            .GetComponent<Image>().material
+            );
+    }
+    
+    public enum Mode
+    {
+        SingleRenderer,
+        AllChildRenderers,
+        AllChildGraphics
     }
 }
