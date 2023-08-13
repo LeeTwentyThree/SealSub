@@ -14,6 +14,8 @@ internal static class ModAudio
         AddSubVoiceLine(bundle.LoadAsset<AudioClip>("SealEngineOn"), "SealEngineOn");
         AddSubVoiceLine(bundle.LoadAsset<AudioClip>("SealEngineOff"), "SealEngineOff");
         AddSubVoiceLine(bundle.LoadAsset<AudioClip>("SealSubEasterEgg"), "SealSubEasterEgg");
+
+        AddWorldSoundEffect(bundle.LoadAsset<AudioClip>("SealSubHorn"), "SealSubHorn");
     }
 
     private static void AddSubVoiceLine(AudioClip clip, string soundPath)
