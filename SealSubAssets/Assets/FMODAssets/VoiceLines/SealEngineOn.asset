@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 1892026953, guid: a6a460bc9cda68a8c89553f1ec5be757, type: 3}
   m_Name: SealEngineOn
   m_EditorClassIdentifier: 
-  path: SealWelcomeAboard
+  path: SealEngineOn
   id: 
