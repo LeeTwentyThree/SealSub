@@ -12,8 +12,11 @@ internal class SealHelmHUDManager : MonoBehaviour
     [SerializeField] CanvasGroup canvasGroup;
 
     [SerializeField] GameObject engineOffIndicator;
+    [SerializeField] TextMeshProUGUI powerText;
 
     private bool hudActive;
+
+    private int lastDisplayedPowerPercentage = -1;
 
     private void OnValidate()
     {
@@ -32,6 +35,13 @@ internal class SealHelmHUDManager : MonoBehaviour
         if (subLiveMixin.IsAlive())
         {
             engineOffIndicator.SetActive(!motorMode.engineOn);
+
+            int powerPercentage = subRoot.powerRelay.GetMaxPower() == 0 ? 0 : Mathf.CeilToInt(subRoot.powerRelay.GetPower() / subRoot.powerRelay.GetMaxPower() * 100f);
+            if (lastDisplayedPowerPercentage != powerPercentage)
+            {
+                powerText.text = string.Format("{0}%", powerPercentage);
+                lastDisplayedPowerPercentage = powerPercentage;
+            }
         }
         if (Player.main.currentSub == subRoot && !subRoot.subDestroyed)
         {
