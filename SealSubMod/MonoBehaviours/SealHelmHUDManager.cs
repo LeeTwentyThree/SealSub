@@ -1,4 +1,6 @@
-﻿namespace SealSubMod.MonoBehaviours;
+﻿using TMPro;
+
+namespace SealSubMod.MonoBehaviours;
 
 internal class SealHelmHUDManager : MonoBehaviour
 {
@@ -8,6 +10,8 @@ internal class SealHelmHUDManager : MonoBehaviour
     [SerializeField] BehaviourLOD LOD;
     [SerializeField] GameObject hornObject;
     [SerializeField] CanvasGroup canvasGroup;
+
+    [SerializeField] GameObject engineOffIndicator;
 
     private bool hudActive;
 
@@ -27,7 +31,7 @@ internal class SealHelmHUDManager : MonoBehaviour
         }
         if (subLiveMixin.IsAlive())
         {
-            // Implement health display etc here...
+            engineOffIndicator.SetActive(!motorMode.engineOn);
         }
         if (Player.main.currentSub == subRoot && !subRoot.subDestroyed)
         {
