@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using UnityEngine.UI;
+using TMPro;
 
 namespace SealSubMod.MonoBehaviours;
 
@@ -10,13 +11,20 @@ internal class SealHelmHUDManager : MonoBehaviour
     [SerializeField] BehaviourLOD LOD;
     [SerializeField] GameObject hornObject;
     [SerializeField] CanvasGroup canvasGroup;
+    [SerializeField] CrushDamage crushDamage;
+    [SerializeField] CyclopsNoiseManager noiseManager;
 
     [SerializeField] GameObject engineOffIndicator;
     [SerializeField] TextMeshProUGUI powerText;
+    [SerializeField] TextMeshProUGUI depthText;
+    [SerializeField] Image hpBar;
+    [SerializeField] Image noiseBar;
 
     private bool hudActive;
 
     private int lastDisplayedPowerPercentage = -1;
+    private int lastDisplayedDepth = -1;
+    private int lastDisplayedCrushDepth = -1;
 
     private void OnValidate()
     {
@@ -36,12 +44,36 @@ internal class SealHelmHUDManager : MonoBehaviour
         {
             engineOffIndicator.SetActive(!motorMode.engineOn);
 
+            float healthFraction = subLiveMixin.GetHealthFraction();
+            hpBar.fillAmount = Mathf.Lerp(hpBar.fillAmount, healthFraction, Time.deltaTime * 2f);
+            float noisePercent = noiseManager.GetNoisePercent();
+            noiseBar.fillAmount = Mathf.Lerp(noiseBar.fillAmount, noisePercent, Time.deltaTime);
+
             int powerPercentage = subRoot.powerRelay.GetMaxPower() == 0 ? 0 : Mathf.CeilToInt(subRoot.powerRelay.GetPower() / subRoot.powerRelay.GetMaxPower() * 100f);
             if (lastDisplayedPowerPercentage != powerPercentage)
             {
                 powerText.text = string.Format("{0}%", powerPercentage);
                 lastDisplayedPowerPercentage = powerPercentage;
             }
+
+            int depth = (int)crushDamage.GetDepth();
+            int crushDepth = (int)crushDamage.crushDepth;
+
+            Color depthTextColor = Color.white;
+
+            if (depth >= crushDepth)
+            {
+                depthTextColor = Color.red;
+            }
+
+            if (lastDisplayedDepth != depth || lastDisplayedCrushDepth != crushDepth)
+            {
+                lastDisplayedDepth = depth;
+                lastDisplayedCrushDepth = crushDepth;
+                depthText.text = string.Format("{0}m / {1}m", depth, crushDepth);
+            }
+
+            depthText.color = depthTextColor;
         }
         if (Player.main.currentSub == subRoot && !subRoot.subDestroyed)
         {
