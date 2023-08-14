@@ -34,6 +34,11 @@ internal class SealHelmHUDManager : MonoBehaviour
         if (LOD == null) LOD = gameObject.GetComponentInParent<BehaviourLOD>();
     }
 
+    private void Start()
+    {
+        canvasGroup.alpha = 0;
+    }
+
     private void Update()
     {
         if (!LOD.IsFull())
