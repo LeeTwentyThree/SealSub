@@ -109,6 +109,9 @@ internal class SealHelmHUDManager : MonoBehaviour
         hornObject.SetActive(false);
     }
 
+    // SHOULD BE REPLACED WITH A NEW METHOD LATER BECAUSE WE ARE NOT USING THE SubFire CLASS!!!
+    // This is a Unity message that is broadcasted by SubFire.OnTakeDamage
+
     public void OnTakeCollisionDamage(float value)
     {
         value *= 1.5f;
