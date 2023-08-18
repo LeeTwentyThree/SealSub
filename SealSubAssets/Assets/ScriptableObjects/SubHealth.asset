@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 860462017, guid: 06dd3d5416bf43ea368cc39ff96e6d5a, type: 3}
   m_Name: SubHealth
   m_EditorClassIdentifier: 
-  maxHealth: 100000
-  minDamageForSound: 100
+  maxHealth: 1000
+  minDamageForSound: 10
   loopEffectBelowPercent: 0
   damageEffect: {fileID: 0}
   deathEffect: {fileID: 0}
   electricalDamageEffect: {fileID: 0}
   loopingDamageEffect: {fileID: 0}
   destroyOnDeath: 0
-  weldable: 1
+  weldable: 0
   knifeable: 0
   canResurrect: 0
   passDamageDataOnDeath: 0
