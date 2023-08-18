@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using SealSubMod.Interfaces;
+using TMPro;
 
 namespace SealSubMod.MonoBehaviours;
 
@@ -41,6 +42,8 @@ internal class SealDockingBay : VehicleDockingBay
             _emitter.Stop();
             _text.text = "Ready to dock";
         }
+
+        UWE.Utils.GetEntityRoot(gameObject).GetComponentsInChildren<IOnDockChange>().ForEach((dockChange) => dockChange.OnDockChange(dockedVehicle));
     }
 
     public void FixedUpdate()

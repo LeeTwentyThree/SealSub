@@ -15,7 +15,7 @@ internal class BlockType : MonoBehaviour//test class, WIP
         //others?
     };
 
-    private static float pushVelocity = 30f;
+    private static float pushVelocity = 2f;
 
     private Dictionary<Rigidbody, int> rigidBodyColliderCounts = new();
 
