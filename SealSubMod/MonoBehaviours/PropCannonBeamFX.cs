@@ -4,8 +4,9 @@ namespace SealSubMod.MonoBehaviours;
 
 internal class PropCannonBeamFX : MonoBehaviour, IOnDockChange
 {
-    public static float VectorRandomRange = 0.85f;
-    public static float centerOffset = 0.1f;
+    public static float VectorRandomRange = 0.35f;
+    public static float centerOffset = 0.85f;
+    public static float leftRightOffset = 0.5f;
 
 
 
@@ -57,12 +58,17 @@ internal class PropCannonBeamFX : MonoBehaviour, IOnDockChange
     {
         return (_target.position - transform.position).normalized;
     }
+    public static Vector3 NearestPointOnLine(Vector3 linePnt, Vector3 lineDir, Vector3 pnt)
+    {
+        lineDir.Normalize();
+        var v = pnt - linePnt;
+        var d = Vector3.Dot(v, lineDir);
+        return linePnt + lineDir * d;
+    }
 
     public Vector3 GetOriginPosition()
     {
-        return transform.position;//update a bit
-        //make it go along the track
-        //At the closest point of the track to the target
+        return NearestPointOnLine(transform.position + (transform.right * leftRightOffset), transform.right, _target.transform.position);
     }
 
     public IEnumerator Start()

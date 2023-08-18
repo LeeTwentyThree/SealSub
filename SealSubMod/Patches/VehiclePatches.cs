@@ -10,14 +10,15 @@ namespace SealSubMod.Patches;
 internal class VehiclePatches
 {
     [HarmonyPatch(nameof(Vehicle.UpdateCollidersForDocking))]
-    public static bool Prefix(Vehicle __instance, bool docked)
+    public static void Postfix(Vehicle __instance, bool docked)
     {
-        if (!docked || !__instance) return true;
+        if (!docked || !__instance) return;
 
-        if (!__instance.GetComponentInParent<SealSubRoot>()) return true;
+        if (!__instance.GetComponentInParent<SealSubRoot>()) return;
 
-        __instance.collisionModel.SetActive(true);//it's set inactive when docking, but we want it active at all times for the seal dock
-        return false;
+        //it's set inactive when docking, but we want it active at all times for the seal dock
+        __instance.disableDockedColliders.ForEach(col => col.enabled = true);
+        __instance.collisionModel.SetActive(true);
     }
 
     [HarmonyPatch(nameof(Vehicle.ShouldSetKinematic))]

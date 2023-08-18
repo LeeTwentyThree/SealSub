@@ -97,7 +97,8 @@ internal class SealDockingBay : VehicleDockingBay
     internal void UpdateVehclPos(Vehicle vehcl, float interpolationfractionnumbervalue)
     {
         var vehclPos = vehcl.transform.position;
-        var dockPos = dockingEndPos.position;
+        var dockPos = vehcl is Exosuit ? dockingEndPosExo.position : dockingEndPos.position;
+        
 
         var direction = dockPos - vehclPos;
         var distance = direction.magnitude;
