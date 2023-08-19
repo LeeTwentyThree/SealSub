@@ -1,17 +1,19 @@
 ﻿using SealSubMod.Interfaces;
+using SealSubMod.MonoBehaviours.Abstract;
 using SealSubMod.Utility;
 
 namespace SealSubMod.MonoBehaviours.Prefab;
 
 // Class for assigning component fields at runtime
-internal class SealSubRuntimeSetup : MonoBehaviour, IAsyncPrefabSetupOperation
+internal class SealSubRuntimeSetup : PrefabModifierAsync
 {
     [SerializeField] float waterLevelYOffset = 3;
 
     // Serialized fields can be set in SetupPrefabAsync
-    public IEnumerator SetupPrefabAsync(GameObject prefabRoot)
+    public override IEnumerator SetupPrefabAsync(GameObject prefabRoot)
     {
-        yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();
+        if(!CyclopsReferenceManager.CyclopsReference)
+            yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();
         var cyclops = CyclopsReferenceManager.CyclopsReference.gameObject.GetComponent<VFXConstructing>();
         var vfxConstructing = GetComponent<VFXConstructing>();
         vfxConstructing.ghostMaterial = cyclops.ghostMaterial;

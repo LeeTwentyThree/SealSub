@@ -1,9 +1,10 @@
 ﻿using SealSubMod.Interfaces;
+using SealSubMod.MonoBehaviours.Abstract;
 using UWE;
 
 namespace SealSubMod.MonoBehaviours.Prefab;
 
-internal class PrefabSlot : MonoBehaviour, IAsyncPrefabSetupOperation
+internal class PrefabSlot : PrefabModifierAsync
 {
     [Header("Whether the Class ID or TechType is used:")]
     [SerializeField] Mode mode;
@@ -11,7 +12,7 @@ internal class PrefabSlot : MonoBehaviour, IAsyncPrefabSetupOperation
     [SerializeField] string classId;
     [SerializeField] TechType techType;
 
-    public IEnumerator SetupPrefabAsync(GameObject prefabRoot)
+    public override IEnumerator SetupPrefabAsync(GameObject prefabRoot)
     {
         GameObject prefab;
         if (mode == Mode.ClassId)

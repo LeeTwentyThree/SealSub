@@ -132,7 +132,8 @@ internal class MaterialSetter : MonoBehaviour
         interiorWindowGlassMaterial.SetFloat("_Shininess", 6f);
         interiorWindowGlassMaterial.SetFloat("_Fresnel", 0.88f);
 
-        yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();
+        if(!CyclopsReferenceManager.CyclopsReference)
+            yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();
 
         holographicUIMaterial = new Material(
             CyclopsReferenceManager.CyclopsReference.transform.Find("HelmHUD/HelmHUDVisuals/Canvas_LeftHUD/EngineOnUI/EngineOff_Button")

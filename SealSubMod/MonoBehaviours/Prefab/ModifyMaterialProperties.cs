@@ -1,9 +1,10 @@
 ﻿using SealSubMod.Interfaces;
+using SealSubMod.MonoBehaviours.Abstract;
 using System;
 
 namespace SealSubMod.MonoBehaviours.Prefab;
 
-internal class ModifyMaterialProperties : MonoBehaviour, ILateMaterialOperation
+internal class ModifyMaterialProperties : PrefabModifier
 {
     public Renderer renderer;
     public int[] materialIndices = new[] { 0 };
@@ -46,7 +47,7 @@ internal class ModifyMaterialProperties : MonoBehaviour, ILateMaterialOperation
             renderer = GetComponent<Renderer>();
     }
 
-    public void OnLateMaterialOperation()
+    public override void OnLateMaterialOperation()
     {
         if (!renderer) throw new Exception($"Renderer is null on material setter {name}");
 

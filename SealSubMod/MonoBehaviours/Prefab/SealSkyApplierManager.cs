@@ -1,10 +1,11 @@
 ﻿using mset;
 using SealSubMod.Interfaces;
+using SealSubMod.MonoBehaviours.Abstract;
 using SealSubMod.Utility;
 
 namespace SealSubMod.MonoBehaviours.Prefab;
 
-internal class SealSkyApplierManager : MonoBehaviour, IAsyncPrefabSetupOperation, IOnAsyncPrefabTasksCompleted
+internal class SealSkyApplierManager : PrefabModifierAsync
 {
     public SkyApplier exteriorSkyApplier;
     public SkyApplier interiorSkyApplier;
@@ -20,7 +21,7 @@ internal class SealSkyApplierManager : MonoBehaviour, IAsyncPrefabSetupOperation
     private List<Renderer> _exteriorRenderers = new List<Renderer>();
     private List<Renderer> _windowRenderers = new List<Renderer>();
 
-    public void OnAsyncPrefabTasksCompleted()
+    public override void OnAsyncPrefabTasksCompleted()
     {
         var allRenderers = gameObject.GetComponentsInChildren<Renderer>(true);
         foreach (var r in allRenderers)
@@ -46,9 +47,10 @@ internal class SealSkyApplierManager : MonoBehaviour, IAsyncPrefabSetupOperation
         windowSkyApplier.renderers = _windowRenderers.ToArray();
     }
 
-    public IEnumerator SetupPrefabAsync(GameObject prefabRoot)
+    public override IEnumerator SetupPrefabAsync(GameObject prefabRoot)
     {
-        yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();
+        if(!CyclopsReferenceManager.CyclopsReference)
+            yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();
         var cyclops = CyclopsReferenceManager.CyclopsReference;
         skyBaseGlass = Instantiate(cyclops.transform.Find("SkyBaseGlass"), transform).GetComponent<Sky>();
         skyBaseInterior = Instantiate(cyclops.transform.Find("SkyBaseInterior"), transform).GetComponent<Sky>();

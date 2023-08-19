@@ -1,13 +1,12 @@
-﻿using SealSubMod.Interfaces;
+﻿using SealSubMod.MonoBehaviours.Abstract;
 using TMPro;
 
 namespace SealSubMod.MonoBehaviours.Prefab;
 
-internal class ApplyFontToText : MonoBehaviour, IAsyncPrefabSetupOperation
+internal class ApplyFontToText : PrefabModifier
 {
-    public IEnumerator SetupPrefabAsync(GameObject prefabRoot)
+    public override void OnAsyncPrefabTasksCompleted()
     {
         GetComponent<TextMeshProUGUI>().font = FontUtils.Aller_Rg;
-        yield break;
     }
 }

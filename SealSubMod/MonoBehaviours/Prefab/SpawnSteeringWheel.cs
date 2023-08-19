@@ -1,13 +1,15 @@
 ﻿using SealSubMod.Interfaces;
+using SealSubMod.MonoBehaviours.Abstract;
 using SealSubMod.Utility;
 
 namespace SealSubMod.MonoBehaviours.Prefab;
 
-internal class SpawnSteeringWheel : MonoBehaviour, IAsyncPrefabSetupOperation
+internal class SpawnSteeringWheel : PrefabModifierAsync
 {
-    public IEnumerator SetupPrefabAsync(GameObject prefabRoot)
+    public override IEnumerator SetupPrefabAsync(GameObject prefabRoot)
     {
-        yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();
+        if(!CyclopsReferenceManager.CyclopsReference)
+            yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();
         var model = CyclopsReferenceManager.CyclopsReference.transform.Find("CyclopsMeshAnimated/Submarine_Steering_Console").gameObject;
         var spawned = Instantiate(model, transform);
         spawned.transform.localPosition = Vector3.zero;

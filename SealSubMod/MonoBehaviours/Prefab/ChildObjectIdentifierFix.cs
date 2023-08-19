@@ -1,18 +1,18 @@
 ﻿using SealSubMod.Interfaces;
+using SealSubMod.MonoBehaviours.Abstract;
 
 namespace SealSubMod.MonoBehaviours.Prefab;
 
 // If a child object identifier is not assigned a consistent Class ID, its contents will be reset with every session!!!
 
-internal class ChildObjectIdentifierFix : MonoBehaviour, IAsyncPrefabSetupOperation
+internal class ChildObjectIdentifierFix : PrefabModifier
 {
     public string classId;
     public ChildObjectIdentifier childObjectIdentifier;
 
-    public IEnumerator SetupPrefabAsync(GameObject prefabRoot)
+    public override void OnAsyncPrefabTasksCompleted()
     {
         childObjectIdentifier.ClassId = classId;
-        yield break;
     }
 
     private void OnValidate()

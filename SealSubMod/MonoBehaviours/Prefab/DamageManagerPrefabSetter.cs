@@ -1,15 +1,17 @@
 ﻿using SealSubMod.Interfaces;
+using SealSubMod.MonoBehaviours.Abstract;
 using SealSubMod.Utility;
 
 namespace SealSubMod.MonoBehaviours.Prefab;
 
-internal class DamageManagerPrefabSetter : MonoBehaviour, IAsyncPrefabSetupOperation
+internal class DamageManagerPrefabSetter : PrefabModifierAsync
 {
     [SerializeField] CyclopsExternalDamageManager manager;
 
-    public IEnumerator SetupPrefabAsync(GameObject prefabRoot)
+    public override IEnumerator SetupPrefabAsync(GameObject prefabRoot)
     {
-        yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();
+        if(!CyclopsReferenceManager.CyclopsReference)
+            yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();
         manager.fxPrefabs = CyclopsReferenceManager.CyclopsReference.GetComponentInChildren<CyclopsExternalDamageManager>(true).fxPrefabs;
     }
 }

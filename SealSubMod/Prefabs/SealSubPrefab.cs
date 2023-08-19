@@ -1,6 +1,6 @@
 ﻿using Nautilus.Assets;
 using Nautilus.Assets.Gadgets;
-using SealSubMod.Interfaces;
+using SealSubMod.MonoBehaviours.Abstract;
 
 namespace SealSubMod.Prefabs;
 
@@ -34,16 +34,20 @@ internal class SealSubPrefab
         model.SetActive(false);
         var prefab = Object.Instantiate(model);
 
-        var asyncOperations = prefab.GetComponentsInChildren<IAsyncPrefabSetupOperation>(true);
-        foreach (var task in asyncOperations)
+        var prefabModifiers = prefab.GetComponentsInChildren<PrefabModifier>(true);
+        foreach (var modifier in prefabModifiers.Where(modifier => modifier is PrefabModifierAsync).Cast<PrefabModifierAsync>())
         {
-            yield return task.SetupPrefabAsync(prefab);
+            yield return modifier.SetupPrefabAsync(prefab);
         }
-        
-        var onCompleted = prefab.GetComponentsInChildren<IOnAsyncPrefabTasksCompleted>(true);
-        foreach (var leeʼsUnnamedVariable in onCompleted)
-        {
+
+        foreach (var leeʼsUnnamedVariable in prefabModifiers)
+        {//hate you lee
             leeʼsUnnamedVariable.OnAsyncPrefabTasksCompleted();
+        }
+
+        foreach (var lateOperation in prefabModifiers)
+        {
+            lateOperation.OnLateMaterialOperation();//moved here because I thought having all the prefab modifying happening in the same place was a bit nicer
         }
 
         gameObject.Set(prefab);
