@@ -45,7 +45,7 @@ internal class SealUpgradeConsole : HandTarget, IHandTarget
     {
         for (int i = 0; i < moduleModels.Length; i++)
         {
-            SetModuleVisibility($"Module{i}", moduleModels[i]);
+            SetModuleVisibility(slots[i], moduleModels[i]);
         }
     }
 

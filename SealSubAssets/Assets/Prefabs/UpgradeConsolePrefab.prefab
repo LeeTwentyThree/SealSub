@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2421479999279354910}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.165, y: 0.16, z: -0.5}
+  m_LocalPosition: {x: -0.206, y: 0.16, z: 0.122}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5810400879522624263}
@@ -113,7 +113,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3621252509495967307}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.19, y: 0.16, z: -0.5}
+  m_LocalPosition: {x: 0.19, y: 0.16, z: 0.122}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5810400879522624263}
@@ -143,7 +143,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6884822457911818527}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.19, y: 0.3524, z: -0.5}
+  m_LocalPosition: {x: 0.19, y: 0.621, z: 0.122}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5810400879522624263}
@@ -173,7 +173,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7050627469988747135}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.165, y: 0.3524, z: -0.5}
+  m_LocalPosition: {x: -0.206, y: 0.621, z: 0.122}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5810400879522624263}
@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: 4660315542661625358}
   - component: {fileID: 2566288450198911100}
   - component: {fileID: 2579223541028703719}
+  - component: {fileID: 5464614015892462163}
   m_Layer: 0
   m_Name: UpgradeConsolePrefab
   m_TagString: Untagged
@@ -206,9 +207,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7646457112369920455}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.391, y: -1.8, z: -16.249}
-  m_LocalScale: {x: 0.4762598, y: 1, z: 0.36583406}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 580544824063012911}
   - {fileID: 2189944147739516504}
@@ -229,7 +230,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.9525196, y: 2, z: 0.7316682}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4660315542661625358
 MonoBehaviour:
@@ -245,10 +246,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modulesRoot: {fileID: 2731967439845388013}
   moduleModels:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 3621252509495967307}
+  - {fileID: 2421479999279354910}
+  - {fileID: 6884822457911818527}
+  - {fileID: 7050627469988747135}
   slots:
   - SealModule1
   - SealModule2
@@ -281,3 +282,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   classId: SealUpgradeConsole
   childObjectIdentifier: {fileID: 2566288450198911100}
+--- !u!114 &5464614015892462163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7646457112369920455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -988363446, guid: db380c3672ed49c4fbac490b18d75cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moduleSlots:
+  - {fileID: 2189944147739516504}
+  - {fileID: 6885254283507592067}
+  - {fileID: 4314066883192115162}
+  - {fileID: 8443163893715585132}
