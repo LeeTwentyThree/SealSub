@@ -56,4 +56,16 @@ internal class ConsoleCommands
         SealSubCommand(true);
         WarpForwardShortcut(50);
     }
+
+    [ConsoleCommand("SealUpgrades")]
+    public static void SealUpgradesCommand()
+    {
+        foreach (var pair in CraftData.equipmentTypes)
+        {
+            if (pair.Value == Plugin.SealModuleEquipmentType)
+            {
+                CraftData.AddToInventory(pair.Key);
+            }
+        }
+    }
 }
