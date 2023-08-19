@@ -1,5 +1,4 @@
-﻿using SealSubMod.Interfaces;
-using SealSubMod.MonoBehaviours.Abstract;
+﻿using SealSubMod.MonoBehaviours.Abstract;
 
 namespace SealSubMod.MonoBehaviours.Prefab;
 
@@ -20,6 +19,10 @@ internal class ChildObjectIdentifierFix : PrefabModifier
         if (childObjectIdentifier == null)
         {
             childObjectIdentifier = GetComponent<ChildObjectIdentifier>();
+        }
+        if (string.IsNullOrEmpty(classId))
+        {
+            classId = System.Guid.NewGuid().ToString();
         }
     }
 }
