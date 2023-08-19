@@ -17,6 +17,14 @@ internal static class ModAudio
         AddSubVoiceLine(bundle.LoadAsset<AudioClip>("SealSlowSpeed"), "SealSlowSpeed");
         AddSubVoiceLine(bundle.LoadAsset<AudioClip>("SealStandardSpeed"), "SealStandardSpeed");
         AddSubVoiceLine(bundle.LoadAsset<AudioClip>("SealFlankSpeed"), "SealFlankSpeed");
+        AddSubVoiceLine(bundle.LoadAsset<AudioClip>("SealHealthCritical"), "SealHealthCritical");
+        AddSubVoiceLine(bundle.LoadAsset<AudioClip>("SealHealthLow"), "SealHealthLow");
+        AddSubVoiceLine(bundle.LoadAsset<AudioClip>("SealCrushDepth"), "SealCrushDepth");
+        AddSubVoiceLine(bundle.LoadAsset<AudioClip>("SealDamageNotification"), "SealDamageNotification");
+        AddSubVoiceLine(bundle.LoadAsset<AudioClip>("SealCreatureAttack"), "SealCreatureAttack");
+        AddSubVoiceLine(bundle.LoadAsset<AudioClip>("SealSilentRunning"), "SealSilentRunning");
+        AddSubVoiceLine(bundle.LoadAsset<AudioClip>("SealWelcomeAboardNegative"), "SealWelcomeAboardNegative");
+        AddSubVoiceLine(bundle.LoadAsset<AudioClip>("SealNoPower"), "SealNoPower");
 
         AddWorldSoundEffect(bundle.LoadAsset<AudioClip>("SealSubHorn"), "SealSubHorn");
     }

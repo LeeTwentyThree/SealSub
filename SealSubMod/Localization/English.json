@@ -9,5 +9,13 @@
   "SealEngineOff": "SEAL: Engine Powering Down",
   "SealSlowSpeed": "SEAL: Ahead Slow",
   "SealStandardSpeed": "SEAL: Ahead Standard",
-  "SealFlankSpeed": "SEAL: Ahead Flank - Emergency speed!"
+  "SealFlankSpeed": "SEAL: Ahead Flank - Emergency speed!",
+  "SealHealthCritical": "SEAL: Warning: hull integrity critical!",
+  "SealHealthLow": "SEAL: Caution: hull integrity low.",
+  "SealCrushDepth": "SEAL: Warning: maximum depth reached! Hull damage imminent!",
+  "SealDamageNotification": "SEAL: Warning: external hull damage detected.",
+  "SealCreatureAttack": "SEAL: Warning: creature attack!",
+  "SealSilentRunning": "SEAL: Rig for silent running.",
+  "SealWelcomeAboardNegative": "SEAL: Welcome aboard Captain, some systems need attention.",
+  "SealNoPower": "SEAL: Warning: emergency power only. Oxygen production offline."
 }
