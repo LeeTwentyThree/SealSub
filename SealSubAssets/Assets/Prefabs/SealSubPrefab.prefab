@@ -12219,6 +12219,7 @@ MonoBehaviour:
   m_Script: {fileID: -505230716, guid: db380c3672ed49c4fbac490b18d75cc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pushVelocity: 2
 --- !u!1 &4089662849751530877
 GameObject:
   m_ObjectHideFlags: 0
@@ -14228,8 +14229,8 @@ MonoBehaviour:
   shieldPowerCost: 50
   sonarPowerCost: 10
   silentRunningPowerCost: 5
-  damageManager: {fileID: 0}
-  noiseManager: {fileID: 0}
+  damageManager: {fileID: 1853420823677216378}
+  noiseManager: {fileID: 4980271853391447857}
   shieldFX: {fileID: 0}
   upgradeConsole: {fileID: 0}
   powerRelay: {fileID: 4186614304085556204}
