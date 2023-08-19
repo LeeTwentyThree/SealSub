@@ -14052,6 +14052,7 @@ MonoBehaviour:
   isCyclops: 0
   targetingTechTypeExcludeList: 
   LOD: {fileID: 8151198628979426584}
+  _consoles: []
 --- !u!114 &3137969937843806533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20465,10 +20466,10 @@ GameObject:
   - component: {fileID: 6396204787919192216}
   - component: {fileID: 4546095607388858145}
   - component: {fileID: 6202256069317681579}
-  - component: {fileID: 2845438165112915881}
   - component: {fileID: 3859361175322764841}
   - component: {fileID: 4902453902488407230}
   - component: {fileID: 6155242433979124107}
+  - component: {fileID: 1285263371259131540}
   m_Layer: 0
   m_Name: SealSubHelmHUD
   m_TagString: Untagged
@@ -20550,20 +20551,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crushDamage: {fileID: 294947855427746578}
   depthText: {fileID: 1275284903664978265}
---- !u!114 &2845438165112915881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7113426014945855366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -197626920, guid: db380c3672ed49c4fbac490b18d75cc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  motorMode: {fileID: 8173038905411883980}
-  engineOffIndicator: {fileID: 8910603522407650561}
 --- !u!114 &3859361175322764841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20606,6 +20593,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subRoot: {fileID: 81039876403925029}
   powerText: {fileID: 7978027223527692105}
+--- !u!114 &1285263371259131540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7113426014945855366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1897349407, guid: db380c3672ed49c4fbac490b18d75cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  motorMode: {fileID: 8173038905411883980}
+  engineOffIndicator: {fileID: 8910603522407650561}
+  toggleSpeedSettingsAnimator: {fileID: 5041057030464991688}
 --- !u!1 &7116840894990279596
 GameObject:
   m_ObjectHideFlags: 0
