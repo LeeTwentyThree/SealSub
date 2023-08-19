@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 580544824063012911}
   - component: {fileID: 1500993979887738610}
+  - component: {fileID: 7624533606913740635}
   m_Layer: 0
   m_Name: Root
   m_TagString: Untagged
@@ -44,6 +45,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   classId: 
+--- !u!114 &7624533606913740635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2731967439845388013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1143266260, guid: db380c3672ed49c4fbac490b18d75cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  classId: SealUpgradeConsoleRoot
+  childObjectIdentifier: {fileID: 1500993979887738610}
 --- !u!1 &7646457112369920455
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,6 +71,7 @@ GameObject:
   - component: {fileID: 3779475140718840126}
   - component: {fileID: 4660315542661625358}
   - component: {fileID: 2566288450198911100}
+  - component: {fileID: 2579223541028703719}
   m_Layer: 0
   m_Name: UpgradeConsolePrefab
   m_TagString: Untagged
@@ -109,6 +125,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  slots: []
 --- !u!114 &2566288450198911100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,3 +139,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   classId: 
+--- !u!114 &2579223541028703719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7646457112369920455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1143266260, guid: db380c3672ed49c4fbac490b18d75cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  classId: SealUpgradeConsole
+  childObjectIdentifier: {fileID: 2566288450198911100}

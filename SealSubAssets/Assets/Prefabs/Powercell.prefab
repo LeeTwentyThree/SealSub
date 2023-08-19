@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1023918662856165875}
   - component: {fileID: 5408786603591234414}
+  - component: {fileID: 4572638985665862670}
   m_Layer: 0
   m_Name: PowerCellSlot
   m_TagString: Untagged
@@ -44,6 +45,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   classId: 
+--- !u!114 &4572638985665862670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19335509649111034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1143266260, guid: db380c3672ed49c4fbac490b18d75cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  classId: SealPowerCellSlot
+  childObjectIdentifier: {fileID: 5408786603591234414}
 --- !u!1 &4732605782628041994
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,6 +74,7 @@ GameObject:
   - component: {fileID: 6239050159518910624}
   - component: {fileID: 6708003829750580823}
   - component: {fileID: 1530922723032794704}
+  - component: {fileID: 578496286203461105}
   m_Layer: 0
   m_Name: Powercell
   m_TagString: Untagged
@@ -206,3 +222,17 @@ MonoBehaviour:
   localAngles: {x: 270, y: 180, z: 0}
   localScale: {x: 0.55, y: 0.55, z: 0.55}
   batterySource: {fileID: 3375308684282275064}
+--- !u!114 &578496286203461105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4732605782628041994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1143266260, guid: db380c3672ed49c4fbac490b18d75cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  classId: SealPowerCell
+  childObjectIdentifier: {fileID: 4640056350381598888}
