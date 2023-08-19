@@ -10,7 +10,7 @@ internal class BaseAddWaterParkPatches
     public static Int3 cell = new Int3(1, 0, 1);//todo
     public static Int3 size = new Int3(2, 1, 2);//fuck with these values and try find why they're so restricted
 
-    [HarmonyPatch(nameof(BaseAddWaterPark.UpdatePlacement))]
+    [HarmonyPatch(nameof(BaseAddWaterPark.UpdatePlacement))]//let the water park snap into place, but does *not* handle actual object placement
     public static bool Prefix(BaseAddWaterPark __instance, Transform camera, float placeMaxDistance, ref bool positionFound, ref bool geometryChanged, ConstructableBase ghostModelParentConstructableBase, ref bool __result)
     {
         if (Player.main.currentSub is not SealSubRoot seal) return true;

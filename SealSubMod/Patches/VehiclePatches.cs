@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using SealSubMod.MonoBehaviours;
 using System;
+using System.Reflection;
 using System.Reflection.Emit;
 using System.Security.Policy;
 
@@ -31,38 +32,24 @@ internal class VehiclePatches
     }
 
     [HarmonyPatch(nameof(Vehicle.EnterVehicle))]
-    public static bool Prefix(Vehicle __instance, Player player, bool teleport, bool playEnterAnimation = true)
+    public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, ILGenerator generator)
     {
-        if (player == null || player.currentSub is not SealSubRoot) return true;
+        var matcher = new CodeMatcher(instructions);
 
-        //this is the only line we don't want
-        //player.SetCurrentSub(null, false);
+        matcher.MatchForward(false, 
+            new CodeMatch(instruction => 
+                instruction.opcode == OpCodes.Callvirt && 
+                instruction.operand is MethodInfo methodInfo && 
+                methodInfo.Name == nameof(Player.SetCurrentSub)
+            ));
 
+        matcher.SetInstruction(new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(VehiclePatches), nameof(VehiclePatches.SetPlayerSub))));
 
-        player.playerController.UpdateController();
-        player.EnterLockedMode(__instance.playerPosition.transform, teleport);
-        player.sitting = __instance.playerSits;
-        player.currentMountedVehicle = __instance;
-        player.playerController.ForceControllerSize();
-        if (!string.IsNullOrEmpty(__instance.customGoalOnEnter))
-        {
-            GoalManager.main.OnCustomGoalEvent(__instance.customGoalOnEnter);
-        }
-        if (!__instance.energyInterface.hasCharge)
-        {
-            if (__instance.noPowerWelcomeNotification)
-            {
-                __instance.noPowerWelcomeNotification.Play();
-            }
-        }
-        else if (__instance.welcomeNotification)
-        {
-            __instance.welcomeNotification.Play();
-        }
-        __instance.pilotId = player.GetComponent<UniqueIdentifier>().Id;
-        __instance.mainAnimator.SetBool("enterAnimation", playEnterAnimation);
-
-        return false;
+        return matcher.InstructionEnumeration();
+    }
+    public static void SetPlayerSub(Player player, SubRoot sub, bool forced)
+    {
+        if (player.currentSub is not SealSubRoot) player.SetCurrentSub(sub, forced);
     }
 
     private static SubRoot bayLastVehicleIn;//here to store information between the start of the method and the end of it

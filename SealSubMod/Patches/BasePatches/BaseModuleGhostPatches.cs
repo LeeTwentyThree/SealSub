@@ -13,7 +13,7 @@ internal class BaseModuleGhostPatches
     public static Int3 size = new Int3(2, 1, 2);//fuck with these values and try find why they're so restricted
 
 
-    [HarmonyPatch(nameof(BaseAddModuleGhost.UpdatePlacement))]
+    [HarmonyPatch(nameof(BaseAddModuleGhost.UpdatePlacement))]//Let the base piece modules snap into place
     public static bool Prefix(BaseAddModuleGhost __instance, Transform camera, float placeMaxDistance, ref bool positionFound, ref bool geometryChanged, ConstructableBase ghostModelParentConstructableBase, ref bool __result)
     {
         if (Player.main.currentSub is not SealSubRoot seal) return true;
@@ -61,7 +61,7 @@ internal class BaseModuleGhostPatches
         return false;
     }
 
-    [HarmonyPatch(nameof(BaseAddModuleGhost.Finish))]
+    [HarmonyPatch(nameof(BaseAddModuleGhost.Finish))]//Let the base piece modules actually be placed
     public static bool Prefix(BaseAddModuleGhost __instance)
     {
         if (Player.main.currentSub is not SealSubRoot seal) return true;

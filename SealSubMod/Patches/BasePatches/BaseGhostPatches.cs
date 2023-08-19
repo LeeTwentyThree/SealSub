@@ -1,13 +1,14 @@
 ﻿using HarmonyLib;
 using SealSubMod.MonoBehaviours;
 using System;
+using UnityEngine;
 
 namespace SealSubMod.Patches.BasePatches;
 
 [HarmonyPatch(typeof(BaseGhost))]
 internal class BaseGhostPatches
 {
-    [HarmonyPatch(nameof(BaseGhost.Finish))]
+    [HarmonyPatch(nameof(BaseGhost.Finish))]//let the water park *actually* place
     public static bool Prefix(BaseGhost __instance)
     {
         if (Player.main.currentSub is not SealSubRoot seal) return true;
@@ -55,12 +56,55 @@ internal class BaseGhostPatches
         marker.PieceObject = mainObj.gameObject;
         marker.AttachedBasePiece = piece;
 
-
+        ModifyWaterPark(mainObj.gameObject, module.GetComponent<WaterPark>());
 
         return false;
     }
 
+    public static void ModifyWaterPark(GameObject waterParkModelRoot, WaterPark waterPark)
+    {
+        waterPark.height = 1;
 
+        ModifyWaterParkWalls(waterParkModelRoot, waterPark);
+    }
+
+    public static void ModifyWaterParkWalls(GameObject waterParkModelRoot, WaterPark waterPark)
+    {
+        var model = waterParkModelRoot.transform.Find("model");
+        model.GetComponentInChildren<Renderer>().material = MaterialUtils.AirWaterBarrierMaterial;//set material
+
+
+        var collisionObjects = new List<GameObject>();
+        var collision = waterParkModelRoot.transform.Find("collisions");
+        foreach (var collider in collision.GetComponentsInChildren<Collider>())//set default collisions to triggers
+        {
+            collider.isTrigger = true;
+            if (!collisionObjects.Contains(collider.gameObject))//add them to a list so we don't have to add the component for each collider (there's multiple on each object)
+                collisionObjects.Add(collider.gameObject);
+        }
+
+        foreach (var colliderObj in collisionObjects)//add interior player triggers
+        {
+            var enter = colliderObj.gameObject.EnsureComponent<WaterParkEnterTrigger>();
+            enter.waterPark = waterPark;
+            enter.setInside = true;
+        }
+
+        var exteriorTriggerCollision = GameObject.Instantiate(collision, collision.transform.position, collision.transform.rotation, collision.transform);//make exterior triggers
+        exteriorTriggerCollision.localScale = new Vector3(1.15f, 1, 1.15f);
+
+        foreach (var enter in exteriorTriggerCollision.GetComponentsInChildren<WaterParkEnterTrigger>())//add exterior player triggers
+        {
+            enter.setInside = false;//make them walk triggers, rather than swim triggers
+        }
+
+
+        foreach (var colliderObj in collisionObjects)//go through interior collision again and add "walls"
+        {
+            var forceTrigger = colliderObj.AddComponent<WaterParkCreatureWall>();
+            forceTrigger.center = waterPark.transform;
+        }
+    }
 
     [HarmonyPatch(nameof(BaseGhost.Place))]//set parent properly, so that the modules move with the sub
     public static void Postfix(BaseGhost __instance)
