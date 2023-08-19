@@ -17,5 +17,12 @@
   "SealCreatureAttack": "SEAL: Warning: creature attack!",
   "SealSilentRunning": "SEAL: Rig for silent running.",
   "SealWelcomeAboardNegative": "SEAL: Welcome aboard Captain, some systems need attention.",
-  "SealNoPower": "SEAL: Warning: emergency power only. Oxygen production offline."
+  "SealNoPower": "SEAL: Warning: emergency power only. Oxygen production offline.",
+
+  "SealHullModule1": "Seal depth module MK1",
+  "Tooltip_SealHullModule1": "Increases safe diving depth. Does not stack.",
+  "SealHullModule2": "Seal depth module MK2",
+  "Tooltip_SealHullModule2": "Increases safe diving depth considerably. Does not stack.",
+  "SealHullModule3": "Seal depth module MK3",
+  "Tooltip_SealHullModule3": "Increases safe diving depth to maximum. Does not stack."
 }
