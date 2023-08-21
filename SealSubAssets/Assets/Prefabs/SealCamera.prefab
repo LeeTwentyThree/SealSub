@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4048992892190527982}
   - component: {fileID: 2293492044087813412}
   - component: {fileID: 5255849712951124378}
+  - component: {fileID: 340776823907848455}
   m_Layer: 0
   m_Name: SealCamera
   m_TagString: Untagged
@@ -94,3 +95,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeedDamper: 3
+--- !u!114 &340776823907848455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348152303362393329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1617506591, guid: db380c3672ed49c4fbac490b18d75cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
