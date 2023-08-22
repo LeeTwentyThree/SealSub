@@ -22,7 +22,7 @@ internal class SpawnCyclopsDamagePoints : PrefabModifierAsync
             if (slot.damagePrefabIndex <= -1) slot.damagePrefabIndex = Random.Range(0, cyclopsManager.damagePoints.Length);
 
             var prefab = cyclopsManager.damagePoints[slot.damagePrefabIndex].gameObject;
-            var copy = Instantiate(prefab, transform.position, transform.rotation, transform);
+            var copy = Instantiate(prefab, slot.transform.position, slot.transform.rotation, slot.transform);
 
             points.Add(copy.GetComponent<CyclopsDamagePoint>());
         }
