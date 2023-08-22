@@ -105,7 +105,7 @@ internal class SealDockingBay : VehicleDockingBay
         var direction = dockPos - vehclPos;
         var distance = direction.magnitude;
 
-        var interp = distance / MaxDistance;
+        var interp = distance / MaxAllowedDistance;
         if (interpolationfractionnumbervalue != 1)//1 means it's fully docked, so if it's not fully docked it's still getting pulled in
             interp *= dockPullInForceMult;       //and it was way too fast at getting pulled in, so slow it down
 
