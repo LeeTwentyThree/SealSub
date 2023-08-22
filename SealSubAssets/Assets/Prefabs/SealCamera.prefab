@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2293492044087813412}
   - component: {fileID: 340776823907848455}
   - component: {fileID: 2233966496829891809}
+  - component: {fileID: 3548054017204938672}
   m_Layer: 0
   m_Name: SealCamera
   m_TagString: Untagged
@@ -108,6 +109,38 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.0051732394
   m_Center: {x: -9.313226e-10, y: 0, z: 0.0003}
+--- !u!114 &3548054017204938672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348152303362393329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1149748124, guid: db380c3672ed49c4fbac490b18d75cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderer: {fileID: 2293492044087813412}
+  materialIndices: 00000000
+  colorProperties: []
+  floatProperties:
+  - propertyName: _SpecInt
+    value: 0.5
+  - propertyName: _Shininess
+    value: 6
+  - propertyName: _Fresnel
+    value: 0.7
+  colorPropertyNames: []
+  colorPropertyValues: []
+  floatPropertyNames:
+  - _SpecInt
+  - _Shininess
+  - _Fresnel
+  floatPropertyValues:
+  - 0.5
+  - 6
+  - 0.7
 --- !u!1 &2195953877738140249
 GameObject:
   m_ObjectHideFlags: 0
