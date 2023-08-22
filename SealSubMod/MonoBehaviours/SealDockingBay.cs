@@ -9,19 +9,21 @@ internal class SealDockingBay : VehicleDockingBay
 
     [SerializeField] TextMeshProUGUI _text;
 
-    //Mostly a marker class, to distinguish between normal docking bays and the seal bay in patches
     public static float MaxDistance = 3;
+    public static float MaxPilotingDistance = 1;
     public static float MinForce = 0.001f;
     public static float MaxForce = 20;
     public static ForceMode ForceMode = ForceMode.VelocityChange;
 
-    public static float dockPushOutForce = 30;
+    public static float dockPushOutForce = 10;
     public static float dockPullInForceMult = 0.2f;
     public static float dotProductLimit = 0.9f;
 
 
-    public static bool debug = true;//useful
+    public static bool debug = false;//useful
     public static bool doubleDebug = false;//sometimes useful but very screen spammy
+
+    public float MaxAllowedDistance => Player.main?.GetPilotingChair() ? MaxPilotingDistance : MaxDistance;
 
     public void Awake()
     {
@@ -62,7 +64,7 @@ internal class SealDockingBay : VehicleDockingBay
         {
             if(debug) ErrorMessage.AddMessage("Trying to undock!!!!!!!!!!!!!!");
             OnUndockingComplete(Player.main);
-            //dockedVehicle.useRigidbody.AddForce(outDirection * dockPushOutForce, ForceMode);//doesn't seem to work? Idk.
+            dockedVehicle.useRigidbody.AddForce(outDirection * dockPushOutForce, ForceMode);
         }
     }
 

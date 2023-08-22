@@ -64,6 +64,8 @@ internal class BaseGhostPatches
     public static void ModifyWaterPark(GameObject waterParkModelRoot, WaterPark waterPark)
     {
         waterPark.height = 1;
+        waterPark.planter.SetMaxPlantsHeight(1.75f);//apparently the height of one basic one tall ACU
+        //5.25 is the height of two combined ACUs
 
         ModifyWaterParkWalls(waterParkModelRoot, waterPark);
     }
