@@ -5,9 +5,12 @@ using Nautilus.Assets;
 using Nautilus.Assets.Gadgets;
 using Nautilus.Assets.PrefabTemplates;
 using Nautilus.Crafting;
+using SealSubMod.Attributes;
 using SealSubMod.Commands;
+using SealSubMod.MonoBehaviours;
 using SealSubMod.MonoBehaviours.Prefab;
 using SealSubMod.Prefabs;
+using System;
 using System.Reflection;
 
 namespace SealSubMod;
@@ -55,6 +58,22 @@ public class Plugin : BaseUnityPlugin
         for (int i = 0; i <= 8; i++)
         {
             Equipment.slotMapping.Add($"SealModule{i}", SealModuleEquipmentType);
+        }
+
+        foreach(var type in Assembly.GetTypes())
+        {
+            var attribute = type.GetCustomAttribute<SealUpgradeModuleAttribute>();
+
+            if (attribute == null) continue;
+
+            if (!Enum.TryParse(attribute.ModuleTechType, out TechType moduleType) && !EnumHandler.TryGetValue(attribute.ModuleTechType, out moduleType)) continue;
+
+
+            //remove line later, I'm just lazy
+            CraftDataHandler.SetEquipmentType(moduleType, SealModuleEquipmentType);
+
+
+            SealSubRoot.moduleFunctions.Add(moduleType, type);
         }
 
         RegisterPrefabs();
