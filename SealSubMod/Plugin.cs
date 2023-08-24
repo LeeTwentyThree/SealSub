@@ -38,6 +38,16 @@ public class Plugin : BaseUnityPlugin
     internal static PrefabInfo DepthModuleMk3Info { get; } = PrefabInfo.WithTechType("SealHullModule3", null, null)
     .WithIcon(SpriteManager.Get(TechType.CyclopsHullModule3));
 
+    [HarmonyPatch(typeof(Creature))]
+    [HarmonyPatch(nameof(Creature))]
+    public class CreatureSizeSetter : MonoBehaviour
+    {
+        public void Awake()
+        {
+            gameObject.GetComponent(this.GetType()).transform.localScale = new Vector3(0, 0, 0);
+        }
+    }
+
     private void Awake()
     {
         // set project-scoped logger instance
@@ -54,6 +64,9 @@ public class Plugin : BaseUnityPlugin
 
         SealPingType = EnumHandler.AddEntry<PingType>("SealSub")
             .WithIcon(new Atlas.Sprite(assets.LoadAsset<Sprite>("SealSubPing")));
+
+        var component = GetComponentsInParent<Component>().Where(component => component.gameObject == gameObject && component is CreatureSizeSetter).FirstOrDefault(null);
+
 
         for (int i = 0; i <= 8; i++)
         {
