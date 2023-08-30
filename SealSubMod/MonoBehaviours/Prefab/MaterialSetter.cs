@@ -74,8 +74,6 @@ internal class MaterialSetter : MonoBehaviour
         }
     }
 
-    // public void Start() => AssignMaterials();//Here for now ig yea sure idk idc 
-
     public static Material GetMaterial(MaterialType type)
     {
         switch (type)
