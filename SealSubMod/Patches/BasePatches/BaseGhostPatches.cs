@@ -75,8 +75,10 @@ internal class BaseGhostPatches
         public IEnumerator Start()
         {
             yield return new WaitUntil(() => planter.initialized);
-            planter.SetMaxPlantsHeight(1.75f);//apparently the height of one basic one tall ACU
-                                              //5.25 is the height of two combined ACUs
+            planter.SetMaxPlantsHeight(1.60f);
+            //apparently 1.75 is the height of one basic one tall ACU
+            //we're a bit shorter than that though
+            //5.25 is the height of two combined ACUs
         }
     }
     public static void ModifyWaterParkWalls(GameObject waterParkModelRoot, WaterPark waterPark)
