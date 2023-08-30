@@ -1,6 +1,7 @@
 ﻿using Nautilus.Assets;
 using Nautilus.Assets.Gadgets;
 using SealSubMod.MonoBehaviours.Abstract;
+using SealSubMod.Utility;
 
 namespace SealSubMod.Prefabs;
 
@@ -49,6 +50,8 @@ internal class SealSubPrefab
         {
             lateOperation.OnLateMaterialOperation();//moved here because I thought having all the prefab modifying happening in the same place was a bit nicer
         }
+
+        if (System.DateTime.Now.Month == 6 || Gaytilities.GayModeActive) Gaytilities.EngaygeGayification(prefab);
 
         gameObject.Set(prefab);
     }

@@ -1,4 +1,5 @@
 ﻿using Nautilus.Commands;
+using SealSubMod.Utility;
 
 namespace SealSubMod.Commands; // I thought it looked nicer with a folder :)
 
@@ -50,12 +51,15 @@ internal class ConsoleCommands
     }
 
     [ConsoleCommand("Bitch")]
-    public static void BitchCommand(bool lights = false)
+    public static void BitchCommand()
     {
         WarpForwardShortcut(1000);
         SealSubCommand(true);
         WarpForwardShortcut(50);
     }
+
+    [ConsoleCommand("GayShit")]
+    public static void OnGayCommand() => Gaytilities.GayModeActive = true;
 
     [ConsoleCommand("SealUpgrades")]
     public static void SealUpgradesCommand()
