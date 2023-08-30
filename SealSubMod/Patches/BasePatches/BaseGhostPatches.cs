@@ -64,12 +64,21 @@ internal class BaseGhostPatches
     public static void ModifyWaterPark(GameObject waterParkModelRoot, WaterPark waterPark)
     {
         waterPark.height = 1;
-        waterPark.planter.SetMaxPlantsHeight(1.75f);//apparently the height of one basic one tall ACU
-        //5.25 is the height of two combined ACUs
+        waterPark.planter.gameObject.AddComponent<PlantHeightSetter>();
 
         ModifyWaterParkWalls(waterParkModelRoot, waterPark);
     }
-
+    public class PlantHeightSetter : MonoBehaviour
+    {
+        public Planter planter;
+        public void Awake() => planter = GetComponent<Planter>();
+        public IEnumerator Start()
+        {
+            yield return new WaitUntil(() => planter.initialized);
+            planter.SetMaxPlantsHeight(1.75f);//apparently the height of one basic one tall ACU
+                                              //5.25 is the height of two combined ACUs
+        }
+    }
     public static void ModifyWaterParkWalls(GameObject waterParkModelRoot, WaterPark waterPark)
     {
         var model = waterParkModelRoot.transform.Find("model");
