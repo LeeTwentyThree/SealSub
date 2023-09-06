@@ -12,7 +12,7 @@ internal class PrefabSlot : PrefabModifierAsync
     [SerializeField] string classId;
     [SerializeField] TechType techType;
 
-    public override IEnumerator SetupPrefabAsync(GameObject prefabRoot)
+    public override IEnumerator SetupPrefabAsync()
     {
         GameObject prefab;
         if (mode == Mode.ClassId)

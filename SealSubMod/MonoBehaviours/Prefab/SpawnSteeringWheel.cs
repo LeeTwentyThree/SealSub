@@ -6,7 +6,7 @@ namespace SealSubMod.MonoBehaviours.Prefab;
 
 internal class SpawnSteeringWheel : PrefabModifierAsync
 {
-    public override IEnumerator SetupPrefabAsync(GameObject prefabRoot)
+    public override IEnumerator SetupPrefabAsync()
     {
         if(!CyclopsReferenceManager.CyclopsReference)
             yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();

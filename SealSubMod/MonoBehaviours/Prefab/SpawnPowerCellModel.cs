@@ -22,7 +22,7 @@ internal class SpawnPowerCellModel : PrefabModifierAsync
     }
 
     // isn't this such a useful interface??!?!??!?!? ikr?!?
-    public override IEnumerator SetupPrefabAsync(GameObject prefabRoot)
+    public override IEnumerator SetupPrefabAsync()
     {
         if (_cachedModels == null) yield return LoadModels();
 

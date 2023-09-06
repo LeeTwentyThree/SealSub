@@ -11,7 +11,7 @@ internal class SpawnCyclopsDamagePoints : PrefabModifierAsync
 
     [SerializeField] CyclopsExternalDamageManager damageManager;
 
-    public override IEnumerator SetupPrefabAsync(GameObject prefabRoot)
+    public override IEnumerator SetupPrefabAsync()
     {
         if (!cyclopsManager) yield return LoadCyclopsManager();
 

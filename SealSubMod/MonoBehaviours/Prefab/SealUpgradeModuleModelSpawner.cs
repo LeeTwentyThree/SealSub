@@ -7,7 +7,7 @@ internal class SealUpgradeModuleModelSpawner : PrefabModifierAsync
 {
     [SerializeField] Transform[] moduleSlots;
 
-    public override IEnumerator SetupPrefabAsync(GameObject prefabRoot)
+    public override IEnumerator SetupPrefabAsync()
     {
         if (CyclopsReferenceManager.CyclopsReference == null) yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();
 

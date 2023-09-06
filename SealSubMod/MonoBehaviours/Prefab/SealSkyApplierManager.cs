@@ -47,7 +47,7 @@ internal class SealSkyApplierManager : PrefabModifierAsync
         windowSkyApplier.renderers = _windowRenderers.ToArray();
     }
 
-    public override IEnumerator SetupPrefabAsync(GameObject prefabRoot)
+    public override IEnumerator SetupPrefabAsync()
     {
         if(!CyclopsReferenceManager.CyclopsReference)
             yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();

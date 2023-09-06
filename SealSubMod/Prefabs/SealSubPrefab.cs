@@ -38,7 +38,7 @@ internal class SealSubPrefab
         var prefabModifiers = prefab.GetComponentsInChildren<PrefabModifier>(true);
         foreach (var modifier in prefabModifiers.Where(modifier => modifier is PrefabModifierAsync).Cast<PrefabModifierAsync>())
         {
-            yield return modifier.SetupPrefabAsync(prefab);
+            yield return modifier.SetupPrefabAsync();
         }
 
         foreach (var leeʼsUnnamedVariable in prefabModifiers)

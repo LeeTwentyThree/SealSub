@@ -8,7 +8,7 @@ internal class DamageManagerPrefabSetter : PrefabModifierAsync
 {
     [SerializeField] CyclopsExternalDamageManager manager;
 
-    public override IEnumerator SetupPrefabAsync(GameObject prefabRoot)
+    public override IEnumerator SetupPrefabAsync()
     {
         if(!CyclopsReferenceManager.CyclopsReference)
             yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();

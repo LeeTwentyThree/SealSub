@@ -2,5 +2,5 @@
 
 internal abstract class PrefabModifierAsync : PrefabModifier
 {
-    public virtual IEnumerator SetupPrefabAsync(GameObject prefabRoot) { yield break; }
+    public virtual IEnumerator SetupPrefabAsync() { yield break; }
 }
