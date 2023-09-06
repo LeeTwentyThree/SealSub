@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using BepInEx.Bootstrap;
 using BepInEx.Logging;
 using HarmonyLib;
 using Nautilus.Assets;
@@ -9,6 +10,7 @@ using SealSubMod.Attributes;
 using SealSubMod.Commands;
 using SealSubMod.MonoBehaviours;
 using SealSubMod.MonoBehaviours.Prefab;
+using SealSubMod.Patches.ModCompatPatches;
 using SealSubMod.Prefabs;
 using System;
 using System.Reflection;
@@ -54,7 +56,7 @@ public class Plugin : BaseUnityPlugin
         Logger = base.Logger;
 
         // register harmony patches, if there are any
-        Harmony.CreateAndPatchAll(Assembly, $"{PluginInfo.PLUGIN_GUID}");
+        var hamony = Harmony.CreateAndPatchAll(Assembly, $"{PluginInfo.PLUGIN_GUID}");
 
         ConsoleCommandsHandler.RegisterConsoleCommands(typeof(ConsoleCommands));
 
@@ -93,11 +95,21 @@ public class Plugin : BaseUnityPlugin
             SealSubRoot.moduleFunctions.Add(moduleType, type);
         }
 
+        CheckExternalModCompat(hamony);
+
         RegisterPrefabs();
 
         ModAudio.RegisterAudio(assets);
 
         Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
+    }
+
+    public void CheckExternalModCompat(Harmony harmony)
+    {
+        if (Chainloader.PluginInfos.ContainsKey("qqqbbb.subnautica.tweaksAndFixes"))
+        {
+            TweaksAndFixesPatches.Patch(harmony);
+        }
     }
 
     private void RegisterPrefabs()
