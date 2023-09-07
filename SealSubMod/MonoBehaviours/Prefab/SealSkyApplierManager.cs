@@ -5,7 +5,7 @@ using SealSubMod.Utility;
 
 namespace SealSubMod.MonoBehaviours.Prefab;
 
-internal class SealSkyApplierManager : PrefabModifierAsync
+internal class SealSkyApplierManager : PrefabModifier, ICyclopsReferencer
 {
     public SkyApplier exteriorSkyApplier;
     public SkyApplier interiorSkyApplier;
@@ -47,11 +47,8 @@ internal class SealSkyApplierManager : PrefabModifierAsync
         windowSkyApplier.renderers = _windowRenderers.ToArray();
     }
 
-    public override IEnumerator SetupPrefabAsync()
+    public void OnCyclopsReferenceFinished(GameObject cyclops)
     {
-        if(!CyclopsReferenceManager.CyclopsReference)
-            yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();
-        var cyclops = CyclopsReferenceManager.CyclopsReference;
         skyBaseGlass = Instantiate(cyclops.transform.Find("SkyBaseGlass"), transform).GetComponent<Sky>();
         skyBaseInterior = Instantiate(cyclops.transform.Find("SkyBaseInterior"), transform).GetComponent<Sky>();
         lightingController.skies[0].sky = skyBaseGlass;

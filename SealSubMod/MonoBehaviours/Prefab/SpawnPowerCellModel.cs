@@ -5,7 +5,7 @@ using SealSubMod.Utility;
 namespace SealSubMod.MonoBehaviours.Prefab;
 
 // the class that spawns the power cell model
-internal class SpawnPowerCellModel : PrefabModifierAsync
+internal class SpawnPowerCellModel : MonoBehaviour, ICyclopsReferencer
 {
     private static GameObject[] _cachedModels = null;
 
@@ -22,9 +22,9 @@ internal class SpawnPowerCellModel : PrefabModifierAsync
     }
 
     // isn't this such a useful interface??!?!??!?!? ikr?!?
-    public override IEnumerator SetupPrefabAsync()
+    public void OnCyclopsReferenceFinished(GameObject cyclops)
     {
-        if (_cachedModels == null) yield return LoadModels();
+        if (_cachedModels == null) LoadModels(cyclops);
 
         for(int i = 0; i < _cachedModels.Length; i++)
             batterySource.batteryModels[i].model = SpawnModel(_cachedModels[i]);
@@ -35,13 +35,10 @@ internal class SpawnPowerCellModel : PrefabModifierAsync
         //or if custom batteries is integrated into nautilus that would help with compat here
     }
 
-    public IEnumerator LoadModels()
+    public void LoadModels(GameObject cyclops)
     {
-        // if it doesn't exist then what's the point of using it
-        yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();
-
-        var powerCellModelReference = CyclopsReferenceManager.CyclopsReference.transform.Find("cyclopspower/generator/SubPowerSocket1/SubPowerCell1/model").gameObject;
-        var ionPowerCellModelReference = CyclopsReferenceManager.CyclopsReference.transform.Find("cyclopspower/generator/SubPowerSocket1/SubPowerCell1/engine_power_cell_ion").gameObject;
+        var powerCellModelReference = cyclops.transform.Find("cyclopspower/generator/SubPowerSocket1/SubPowerCell1/model").gameObject;
+        var ionPowerCellModelReference = cyclops.transform.Find("cyclopspower/generator/SubPowerSocket1/SubPowerCell1/engine_power_cell_ion").gameObject;
 
         _cachedModels = new[]
         {

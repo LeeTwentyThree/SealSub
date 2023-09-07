@@ -4,14 +4,12 @@ using SealSubMod.Utility;
 
 namespace SealSubMod.MonoBehaviours.Prefab;
 
-internal class DamageManagerPrefabSetter : PrefabModifierAsync
+internal class DamageManagerPrefabSetter : MonoBehaviour, ICyclopsReferencer
 {
     [SerializeField] CyclopsExternalDamageManager manager;
 
-    public override IEnumerator SetupPrefabAsync()
+    public void OnCyclopsReferenceFinished(GameObject cyclops)
     {
-        if(!CyclopsReferenceManager.CyclopsReference)
-            yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();
-        manager.fxPrefabs = CyclopsReferenceManager.CyclopsReference.GetComponentInChildren<CyclopsExternalDamageManager>(true).fxPrefabs;
+        manager.fxPrefabs = cyclops.GetComponentInChildren<CyclopsExternalDamageManager>(true).fxPrefabs;
     }
 }

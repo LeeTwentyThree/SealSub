@@ -1,17 +1,15 @@
-﻿using SealSubMod.MonoBehaviours.Abstract;
+﻿using SealSubMod.Interfaces;
 using SealSubMod.MonoBehaviours.Prefab.Tags;
 using SealSubMod.Utility;
 
 namespace SealSubMod.MonoBehaviours.Prefab;
 
-internal class FloodlightCreator : PrefabModifierAsync
+internal class FloodlightCreator : MonoBehaviour, ICyclopsReferencer
 {
-    public override IEnumerator SetupPrefabAsync()
+    public void OnCyclopsReferenceFinished(GameObject cyclops)
     {
-        if (!CyclopsReferenceManager.CyclopsReference) yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();
-
-        var cyclopsLightParent = CyclopsReferenceManager.CyclopsReference.transform.Find("Floodlights");
-        if (!cyclopsLightParent) { Plugin.Logger.LogError("Cyclops floodlights null! Can't create seal floodlights"); yield break; }
+        var cyclopsLightParent = cyclops.transform.Find("Floodlights");
+        if (!cyclopsLightParent) { Plugin.Logger.LogError("Cyclops floodlights null! Can't create seal floodlights"); return; }
 
         foreach (var lightChild in GetComponentsInChildren<FloodlightMarker>(true))
         {

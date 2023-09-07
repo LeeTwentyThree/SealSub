@@ -5,15 +5,15 @@ using SealSubMod.Utility;
 
 namespace SealSubMod.MonoBehaviours.Prefab;
 
-internal class SpawnCyclopsDamagePoints : PrefabModifierAsync
+internal class SpawnCyclopsDamagePoints : MonoBehaviour, ICyclopsReferencer
 {
     private static CyclopsExternalDamageManager cyclopsManager;
 
     [SerializeField] CyclopsExternalDamageManager damageManager;
 
-    public override IEnumerator SetupPrefabAsync()
+    public void OnCyclopsReferenceFinished(GameObject cyclops)
     {
-        if (!cyclopsManager) yield return LoadCyclopsManager();
+        cyclopsManager = cyclops.GetComponentInChildren<CyclopsExternalDamageManager>();
 
         var points = new List<CyclopsDamagePoint>();
 
@@ -28,12 +28,5 @@ internal class SpawnCyclopsDamagePoints : PrefabModifierAsync
         }
 
         damageManager.damagePoints = points.ToArray();
-    }
-
-    public static IEnumerator LoadCyclopsManager()
-    {
-        yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();
-
-        cyclopsManager = CyclopsReferenceManager.CyclopsReference.GetComponentInChildren<CyclopsExternalDamageManager>();
     }
 }

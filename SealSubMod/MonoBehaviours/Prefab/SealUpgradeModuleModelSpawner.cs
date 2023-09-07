@@ -1,17 +1,16 @@
-﻿using SealSubMod.MonoBehaviours.Abstract;
+﻿using SealSubMod.Interfaces;
+using SealSubMod.MonoBehaviours.Abstract;
 using SealSubMod.Utility;
 
 namespace SealSubMod.MonoBehaviours.Prefab;
 
-internal class SealUpgradeModuleModelSpawner : PrefabModifierAsync
+internal class SealUpgradeModuleModelSpawner : MonoBehaviour, ICyclopsReferencer
 {
     [SerializeField] Transform[] moduleSlots;
 
-    public override IEnumerator SetupPrefabAsync()
+    public void OnCyclopsReferenceFinished(GameObject cyclops)
     {
-        if (CyclopsReferenceManager.CyclopsReference == null) yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();
-
-        var upgradeModuleModel = CyclopsReferenceManager.CyclopsReference.transform
+        var upgradeModuleModel = cyclops.transform
             .Find("CyclopsMeshStatic/undamaged/cyclops_LOD0/cyclops_engine_room/cyclops_engine_console/" +
             "Submarine_engine_GEO/submarine_engine_console_01_wide/engine_console_key_01_01")
             .gameObject;

@@ -1,5 +1,6 @@
 ﻿using Nautilus.Assets;
 using Nautilus.Assets.Gadgets;
+using SealSubMod.Interfaces;
 using SealSubMod.MonoBehaviours.Abstract;
 using SealSubMod.Utility;
 
@@ -35,21 +36,26 @@ internal class SealSubPrefab
         model.SetActive(false);
         var prefab = Object.Instantiate(model);
 
+
+        yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();
+
+        var cyclopsReferencers = prefab.GetComponentsInChildren<ICyclopsReferencer>();
+        foreach(var referencer in cyclopsReferencers)
+            referencer.OnCyclopsReferenceFinished(CyclopsReferenceManager.CyclopsReference);
+
+
         var prefabModifiers = prefab.GetComponentsInChildren<PrefabModifier>(true);
         foreach (var modifier in prefabModifiers.Where(modifier => modifier is PrefabModifierAsync).Cast<PrefabModifierAsync>())
-        {
             yield return modifier.SetupPrefabAsync();
-        }
 
-        foreach (var leeʼsUnnamedVariable in prefabModifiers)
-        {//hate you lee
+
+        foreach (var leeʼsUnnamedVariable in prefabModifiers)//hate you lee
             leeʼsUnnamedVariable.OnAsyncPrefabTasksCompleted();
-        }
+
 
         foreach (var lateOperation in prefabModifiers)
-        {
-            lateOperation.OnLateMaterialOperation();//moved here because I thought having all the prefab modifying happening in the same place was a bit nicer
-        }
+            lateOperation.OnLateMaterialOperation();
+
 
         if (System.DateTime.Now.Month == 6 || Gaytilities.GayModeActive) Gaytilities.EngaygeGayification(prefab);
 

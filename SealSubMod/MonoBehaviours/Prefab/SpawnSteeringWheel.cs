@@ -4,13 +4,11 @@ using SealSubMod.Utility;
 
 namespace SealSubMod.MonoBehaviours.Prefab;
 
-internal class SpawnSteeringWheel : PrefabModifierAsync
+internal class SpawnSteeringWheel : MonoBehaviour, ICyclopsReferencer
 {
-    public override IEnumerator SetupPrefabAsync()
+    public void OnCyclopsReferenceFinished(GameObject cyclops)
     {
-        if(!CyclopsReferenceManager.CyclopsReference)
-            yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();
-        var model = CyclopsReferenceManager.CyclopsReference.transform.Find("CyclopsMeshAnimated/Submarine_Steering_Console").gameObject;
+        var model = cyclops.transform.Find("CyclopsMeshAnimated/Submarine_Steering_Console").gameObject;
         var spawned = Instantiate(model, transform);
         spawned.transform.localPosition = Vector3.zero;
         spawned.transform.localEulerAngles = new Vector3(-90, 0, 0);

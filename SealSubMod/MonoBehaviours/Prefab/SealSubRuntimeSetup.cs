@@ -5,22 +5,19 @@ using SealSubMod.Utility;
 namespace SealSubMod.MonoBehaviours.Prefab;
 
 // Class for assigning component fields at runtime
-internal class SealSubRuntimeSetup : PrefabModifierAsync
+internal class SealSubRuntimeSetup : MonoBehaviour, ICyclopsReferencer
 {
     [SerializeField] float waterLevelYOffset = 3;
 
-    // Serialized fields can be set in SetupPrefabAsync
-    public override IEnumerator SetupPrefabAsync()
+    public void OnCyclopsReferenceFinished(GameObject cyclops)
     {
-        if(!CyclopsReferenceManager.CyclopsReference)
-            yield return CyclopsReferenceManager.EnsureCyclopsReferenceExists();
-        var cyclops = CyclopsReferenceManager.CyclopsReference.gameObject.GetComponent<VFXConstructing>();
+        var cyclopsConstructing = cyclops.gameObject.GetComponent<VFXConstructing>();
         var vfxConstructing = GetComponent<VFXConstructing>();
-        vfxConstructing.ghostMaterial = cyclops.ghostMaterial;
-        vfxConstructing.alphaTexture = cyclops.alphaTexture;
-        vfxConstructing.alphaDetailTexture = cyclops.alphaDetailTexture;
-        vfxConstructing.transparentShaders = cyclops.transparentShaders;
-        vfxConstructing.surfaceSplashFX = cyclops.surfaceSplashFX;
+        vfxConstructing.ghostMaterial = cyclopsConstructing.ghostMaterial;
+        vfxConstructing.alphaTexture = cyclopsConstructing.alphaTexture;
+        vfxConstructing.alphaDetailTexture = cyclopsConstructing.alphaDetailTexture;
+        vfxConstructing.transparentShaders = cyclopsConstructing.transparentShaders;
+        vfxConstructing.surfaceSplashFX = cyclopsConstructing.surfaceSplashFX;
         GetComponent<PingInstance>().SetType(Plugin.SealPingType);
     }
 
