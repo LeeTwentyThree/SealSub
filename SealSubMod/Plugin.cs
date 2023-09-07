@@ -40,6 +40,9 @@ public class Plugin : BaseUnityPlugin
     internal static PrefabInfo DepthModuleMk3Info { get; } = PrefabInfo.WithTechType("SealHullModule3", null, null)
     .WithIcon(SpriteManager.Get(TechType.CyclopsHullModule3));
 
+    internal static PrefabInfo SolarChargeModuleInfo { get; } = PrefabInfo.WithTechType("SealSolarChargeModule", null, null)
+    .WithIcon(SpriteManager.Get(TechType.SeamothSolarCharge));
+
     [HarmonyPatch(typeof(Creature))]
     [HarmonyPatch(nameof(Creature))]
     public class CreatureSizeSetter : MonoBehaviour
@@ -119,6 +122,7 @@ public class Plugin : BaseUnityPlugin
         RegisterUpgradeModulePrefab(DepthModuleMk1Info, new RecipeData(new CraftData.Ingredient(TechType.Titanium, 2)));
         RegisterUpgradeModulePrefab(DepthModuleMk2Info, new RecipeData(new CraftData.Ingredient(TechType.Titanium, 2)));
         RegisterUpgradeModulePrefab(DepthModuleMk3Info, new RecipeData(new CraftData.Ingredient(TechType.Titanium, 2)));
+        RegisterUpgradeModulePrefab(SolarChargeModuleInfo, new RecipeData(new CraftData.Ingredient(TechType.Titanium, 2)));
     }
 
     private static void RegisterUpgradeModulePrefab(PrefabInfo info, RecipeData recipe)

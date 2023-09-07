@@ -2,7 +2,7 @@
 
 namespace SealSubMod.MonoBehaviours.UpgradeModules;
 
-[SealUpgradeModule("AcidMushroom")]
+[SealUpgradeModule("SealSolarChargeModule")]
 internal class SolarModule : MonoBehaviour
 {
     private SolarChargerFunction chargerFunction;
