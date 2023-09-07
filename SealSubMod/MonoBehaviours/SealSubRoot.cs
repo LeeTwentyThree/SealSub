@@ -59,6 +59,7 @@ internal class SealSubRoot : SubRoot
     {
         foreach(var onChange in moduleFunctionsRoot.GetComponents<IOnModuleChange>())
         {
+            if (!(onChange as MonoBehaviour).enabled) continue;
             onChange.OnChange(type, added);
         }
     }

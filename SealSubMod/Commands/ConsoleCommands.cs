@@ -51,11 +51,12 @@ internal class ConsoleCommands
     }
 
     [ConsoleCommand("Bitch")]
-    public static void BitchCommand()
+    public static void BitchCommand(bool upgrades = true)
     {
         WarpForwardShortcut(1000);
         SealSubCommand(true);
         WarpForwardShortcut(50);
+        if(upgrades) SealUpgradesCommand();
     }
 
     [ConsoleCommand("GayShit")]
@@ -64,6 +65,7 @@ internal class ConsoleCommands
     [ConsoleCommand("SealUpgrades")]
     public static void SealUpgradesCommand()
     {
+        CraftData.GetEquipmentType(Plugin.DepthModuleMk1Info.TechType);//just a dummy call to kick nautilus into gear and make it patch the dictionary as it should
         foreach (var pair in CraftData.equipmentTypes)
         {
             if (pair.Value == Plugin.SealModuleEquipmentType)

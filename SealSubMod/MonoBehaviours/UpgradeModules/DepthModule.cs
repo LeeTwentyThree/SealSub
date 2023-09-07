@@ -1,26 +1,29 @@
 ﻿using SealSubMod.Attributes;
+using SealSubMod.Interfaces;
 
 namespace SealSubMod.MonoBehaviours.UpgradeModules;
 
 
-internal abstract class DepthModule : MonoBehaviour
+internal abstract class DepthModule : MonoBehaviour, IOnModuleChange
 {
     public abstract float Depth { get; }
-
+    private CrushDamage damage;
     public void Awake()
     {
         ErrorMessage.AddMessage($"Depth module awake {Depth}");
-        GetComponentInParent<CrushDamage>().SetExtraCrushDepth(Depth);
-        GetComponentInParent<SealSubRoot>().AddIsAllowedToAddListener(IsAllowed);
+        damage = GetComponentInParent<CrushDamage>();
     }
 
-    public bool IsAllowed(Pickupable pickup, bool verbose) => !SealSubRoot.moduleFunctions.TryGetValue(pickup.GetTechType(), out var type) || !type.IsSubclassOf(typeof(DepthModule));
+    public void OnChange(TechType techType, bool added)
+    {
+        var depth = Mathf.Max(Depth, damage.extraCrushDepth);
+        damage.SetExtraCrushDepth(depth);
+    }
 
-    public void OnDestroy()
+    public void OnDisable()
     {
         ErrorMessage.AddMessage($"Depth module destroy {Depth}");
         GetComponentInParent<CrushDamage>().SetExtraCrushDepth(0);
-        GetComponentInParent<SealSubRoot>().RemoveIsAllowedToAddListener(IsAllowed);
     }
 }
 
