@@ -24,5 +24,7 @@
   "SealHullModule2": "Seal depth module MK2",
   "Tooltip_SealHullModule2": "Increases safe diving depth considerably. Does not stack.",
   "SealHullModule3": "Seal depth module MK3",
-  "Tooltip_SealHullModule3": "Increases safe diving depth to maximum. Does not stack."
+  "Tooltip_SealHullModule3": "Increases safe diving depth to maximum. Does not stack.",
+  "SealSolarChargeModule": "Seal solar charge module",
+  "Tooltip_SealSolarChargeModule": "Recharges the Seal's power supply while in sunlight."
 }
