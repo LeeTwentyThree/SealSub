@@ -26,5 +26,10 @@
   "SealHullModule3": "Seal depth module MK3",
   "Tooltip_SealHullModule3": "Increases safe diving depth to maximum. Does not stack.",
   "SealSolarChargeModule": "Seal solar charge module",
-  "Tooltip_SealSolarChargeModule": "Recharges the Seal's power supply while in sunlight."
+  "Tooltip_SealSolarChargeModule": "Recharges the Seal's power supply while in sunlight.",
+
+  "SealExternalCam1": "Camera 1 - Keel (Front)",
+  "SealExternalCam2": "Camera 2 - Keel (Back)",
+  "SealExternalCam3": "Camera 3 - Hatch",
+  "SealExternalCam4": "Camera 4 - Docking Bay"
 }
