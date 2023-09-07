@@ -4,9 +4,11 @@ internal class SubEnterHandTarget : HandTarget, IHandTarget
 {
     [SerializeField] SubRoot sub;
     [SerializeField] Transform targetPosition;
+    [SerializeField] FMODAsset sound;
 
     public void OnHandClick(GUIHand hand)
     {
+        Utils.PlayFMODAsset(sound, targetPosition.position);
         Player.main.SetPosition(targetPosition.position, targetPosition.rotation);
         Player.main.SetCurrentSub(sub, true);
     }
