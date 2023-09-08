@@ -1,8 +1,6 @@
 ﻿using HarmonyLib;
 using SealSubMod.MonoBehaviours;
 using System;
-using Unity.Mathematics;
-using static SubFire;
 
 namespace SealSubMod.Patches.BasePatches;
 
@@ -123,42 +121,3 @@ internal class BaseModuleGhostPatches
     };
 }
 
-public class BasePieceLocationMarker : MonoBehaviour
-{
-    public float builtPercent => !PieceObject ? 0 : PieceObject.GetComponent<Constructable>().constructedAmount;
-    private Base.Piece _attachedBasePiece = Base.Piece.Invalid;//use for serialization too
-    public Base.Piece AttachedBasePiece
-    {
-        get
-        {
-            if (!PieceObject)//If the piece was removed
-                _attachedBasePiece = Base.Piece.Invalid;//should update this value propery, but I'm lazy and this works well enough
-            return _attachedBasePiece;
-        }
-        set => _attachedBasePiece = value;
-    }
-
-    public GameObject PieceObject = null;
-
-    public Vector3 pos => transform.position;
-    public quaternion rot => transform.rotation;
-
-    public static BasePieceLocationMarker GetNearest(Vector3 position, Vector3 lineDir, bool mustBeFree, params BasePieceLocationMarker[] markers)
-    {
-        BasePieceLocationMarker shortestMarker = null;
-        var shortestDiff = float.MinValue;
-        foreach(var marker in markers)
-        {
-            if (mustBeFree && marker.AttachedBasePiece != Base.Piece.Invalid) continue;
-
-            var diff = Vector3.Dot(lineDir, marker.pos - position);
-
-            if(diff > shortestDiff)
-            {
-                shortestDiff = diff;
-                shortestMarker = marker;
-            }
-        }
-        return shortestMarker;
-    }
-}

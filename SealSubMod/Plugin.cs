@@ -27,6 +27,8 @@ public class Plugin : BaseUnityPlugin
 
     internal static readonly AssetBundle assets = AssetBundleLoadingUtils.LoadFromAssetsFolder(Assembly, "sealsubassets");
 
+    internal static SaveCache SaveCache { get; } = SaveDataHandler.RegisterSaveDataCache<SaveCache>();
+
     internal static EquipmentType SealModuleEquipmentType { get; } = EnumHandler.AddEntry<EquipmentType>("SealModule");
 
     internal static PingType SealPingType { get; private set; }

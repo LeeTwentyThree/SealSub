@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using SealSubMod.MonoBehaviours;
-using static ClipMapManager;
 
 namespace SealSubMod.Patches.BasePatches;
 
