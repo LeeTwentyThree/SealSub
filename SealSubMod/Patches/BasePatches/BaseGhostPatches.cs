@@ -2,6 +2,7 @@
 using SealSubMod.MonoBehaviours;
 using System;
 using UnityEngine;
+using static Base;
 
 namespace SealSubMod.Patches.BasePatches;
 
@@ -130,10 +131,27 @@ internal class BaseGhostPatches
         if (!comp) return;//doesn't exist on the non-ghost objects (and also a basic safety check)
 
 
+        Piece piece;
+        if(__instance is BaseAddWaterPark)
+        {
+            piece = Piece.RoomWaterParkFloorBottom;
+        }
+        else if(__instance is not BaseAddModuleGhost module || !BaseModuleGhostPatches.faceToPiece.TryGetValue(module.faceType, out piece))
+        {
+            ErrorMessage.AddMessage($"Sorry! Piece type {__instance} is not supported in this vehicle!!!");
+            return;
+        }
+
+
         var cam = MainCamera.camera;
         var marker = BasePieceLocationMarker.GetNearest(cam.transform.position, cam.transform.forward, true, root.GetComponentsInChildren<BasePieceLocationMarker>(true));
         if (!marker) throw new InvalidOperationException("Shis fucked.");
 
         comp.transform.parent = marker.transform;
+
+
+
+        marker.PieceObject = __instance.gameObject;
+        marker.AttachedBasePiece = piece;
     }
 }

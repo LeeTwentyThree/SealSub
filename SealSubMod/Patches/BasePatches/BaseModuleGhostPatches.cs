@@ -125,6 +125,7 @@ internal class BaseModuleGhostPatches
 
 public class BasePieceLocationMarker : MonoBehaviour
 {
+    public float builtPercent => !PieceObject ? 0 : PieceObject.GetComponent<Constructable>().constructedAmount;
     private Base.Piece _attachedBasePiece = Base.Piece.Invalid;//use for serialization too
     public Base.Piece AttachedBasePiece
     {
