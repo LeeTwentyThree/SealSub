@@ -31,18 +31,6 @@ public class Plugin : BaseUnityPlugin
 
     internal static PingType SealPingType { get; private set; }
 
-    internal static PrefabInfo DepthModuleMk1Info { get; } = PrefabInfo.WithTechType("SealHullModule1", null, null)
-        .WithIcon(SpriteManager.Get(TechType.CyclopsHullModule1));
-
-    internal static PrefabInfo DepthModuleMk2Info { get; } = PrefabInfo.WithTechType("SealHullModule2", null, null)
-    .WithIcon(SpriteManager.Get(TechType.CyclopsHullModule2));
-
-    internal static PrefabInfo DepthModuleMk3Info { get; } = PrefabInfo.WithTechType("SealHullModule3", null, null)
-    .WithIcon(SpriteManager.Get(TechType.CyclopsHullModule3));
-
-    internal static PrefabInfo SolarChargeModuleInfo { get; } = PrefabInfo.WithTechType("SealSolarChargeModule", null, null)
-    .WithIcon(SpriteManager.Get(TechType.SeamothSolarCharge));
-
     [HarmonyPatch(typeof(Creature))]
     [HarmonyPatch(nameof(Creature))]
     public class CreatureSizeSetter : MonoBehaviour
@@ -118,6 +106,20 @@ public class Plugin : BaseUnityPlugin
     private void RegisterPrefabs()
     {
         SealSubPrefab.Register();
+
+
+        PrefabInfo DepthModuleMk1Info = PrefabInfo.WithTechType("SealHullModule1", null, null)
+            .WithIcon(SpriteManager.Get(TechType.CyclopsHullModule1));
+
+        PrefabInfo DepthModuleMk2Info = PrefabInfo.WithTechType("SealHullModule2", null, null)
+        .WithIcon(SpriteManager.Get(TechType.CyclopsHullModule2));
+
+        PrefabInfo DepthModuleMk3Info = PrefabInfo.WithTechType("SealHullModule3", null, null)
+        .WithIcon(SpriteManager.Get(TechType.CyclopsHullModule3));
+
+        PrefabInfo SolarChargeModuleInfo = PrefabInfo.WithTechType("SealSolarChargeModule", null, null)
+        .WithIcon(SpriteManager.Get(TechType.SeamothSolarCharge));
+
 
         RegisterUpgradeModulePrefab(DepthModuleMk1Info, new RecipeData(new CraftData.Ingredient(TechType.Titanium, 2)));
         RegisterUpgradeModulePrefab(DepthModuleMk2Info, new RecipeData(new CraftData.Ingredient(TechType.Titanium, 2)));
