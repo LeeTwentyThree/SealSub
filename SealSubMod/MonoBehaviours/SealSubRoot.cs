@@ -7,6 +7,11 @@ internal class SealSubRoot : SubRoot
 {
     public static Dictionary<TechType, Type> moduleFunctions = new();
 
+
+    private SaveData _saveData;
+    public SaveData SaveData { get => _saveData; }
+
+
     [SerializeField] GameObject moduleFunctionsRoot;
 
     [SerializeField] SealUpgradeConsole[] _consoles;
@@ -19,6 +24,16 @@ internal class SealSubRoot : SubRoot
     }
 
     public static void RegisterModuleFunction<T>(TechType techType) where T : MonoBehaviour => RegisterModuleFunction(techType, typeof(T));
+
+    public override void Awake()
+    {
+        base.Awake();
+        if (Plugin.SaveCache.saves.TryGetValue(GetComponent<PrefabIdentifier>().Id, out _saveData)) return;//load existing save data
+
+        _saveData = new SaveData();//add a new entry for the sub
+        Plugin.SaveCache.saves.Add(GetComponent<PrefabIdentifier>().Id, SaveData);
+    }
+
 
     public void AddIsAllowedToAddListener(IsAllowedToAdd @delegate)
     {

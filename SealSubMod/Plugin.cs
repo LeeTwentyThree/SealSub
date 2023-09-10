@@ -72,12 +72,16 @@ public class Plugin : BaseUnityPlugin
             Equipment.slotMapping.Add($"SealModule{i}", SealModuleEquipmentType);
         }
 
-        foreach(var type in Assembly.GetTypes())
+        CheckExternalModCompat(hamony);
+
+        RegisterPrefabs();
+
+        foreach (var type in Assembly.GetTypes())
         {
             var attribute = type.GetCustomAttribute<SealUpgradeModuleAttribute>();
-
+            
             if (attribute == null) continue;
-
+            
             if (!Enum.TryParse(attribute.ModuleTechType, out TechType moduleType) && !EnumHandler.TryGetValue(attribute.ModuleTechType, out moduleType)) continue;
 
 
@@ -87,10 +91,6 @@ public class Plugin : BaseUnityPlugin
 
             SealSubRoot.moduleFunctions.Add(moduleType, type);
         }
-
-        CheckExternalModCompat(hamony);
-
-        RegisterPrefabs();
 
         ModAudio.RegisterAudio(assets);
 
@@ -105,13 +105,13 @@ public class Plugin : BaseUnityPlugin
         }
     }
 
+    internal static PrefabInfo DepthModuleMk1Info = PrefabInfo.WithTechType("SealHullModule1", null, null)
+            .WithIcon(SpriteManager.Get(TechType.CyclopsHullModule1));//I don't like it but it's here just for the console command thing
+
     private void RegisterPrefabs()
     {
         SealSubPrefab.Register();
 
-
-        PrefabInfo DepthModuleMk1Info = PrefabInfo.WithTechType("SealHullModule1", null, null)
-            .WithIcon(SpriteManager.Get(TechType.CyclopsHullModule1));
 
         PrefabInfo DepthModuleMk2Info = PrefabInfo.WithTechType("SealHullModule2", null, null)
         .WithIcon(SpriteManager.Get(TechType.CyclopsHullModule2));
@@ -121,12 +121,16 @@ public class Plugin : BaseUnityPlugin
 
         PrefabInfo SolarChargeModuleInfo = PrefabInfo.WithTechType("SealSolarChargeModule", null, null)
         .WithIcon(SpriteManager.Get(TechType.SeamothSolarCharge));
+        
+        PrefabInfo ThermalChargeModuleInfo = PrefabInfo.WithTechType("SealThermalChargeModule", null, null)
+        .WithIcon(SpriteManager.Get(TechType.CyclopsThermalReactorModule));
 
 
         RegisterUpgradeModulePrefab(DepthModuleMk1Info, new RecipeData(new CraftData.Ingredient(TechType.Titanium, 2)));
         RegisterUpgradeModulePrefab(DepthModuleMk2Info, new RecipeData(new CraftData.Ingredient(TechType.Titanium, 2)));
         RegisterUpgradeModulePrefab(DepthModuleMk3Info, new RecipeData(new CraftData.Ingredient(TechType.Titanium, 2)));
         RegisterUpgradeModulePrefab(SolarChargeModuleInfo, new RecipeData(new CraftData.Ingredient(TechType.Titanium, 2)));
+        RegisterUpgradeModulePrefab(ThermalChargeModuleInfo, new RecipeData(new CraftData.Ingredient(TechType.Titanium, 2)));
     }
 
     private static void RegisterUpgradeModulePrefab(PrefabInfo info, RecipeData recipe)

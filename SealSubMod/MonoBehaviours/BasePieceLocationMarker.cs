@@ -1,4 +1,9 @@
-﻿using Unity.Mathematics;
+﻿using Nautilus.Json;
+using SealSubMod.Patches.BasePatches;
+using Unity.Mathematics;
+using UnityEngine.Timeline;
+using static ClipMapManager;
+using static VFXParticlesPool;
 
 namespace SealSubMod.MonoBehaviours;
 
@@ -42,13 +47,82 @@ public class BasePieceLocationMarker : MonoBehaviour
         return shortestMarker;
     }
 
-    public void Awake()
+    public Dictionary<Base.Piece, TechType> pieceTypes = new()
     {
-        if (!Plugin.SaveCache.saves.TryGetValue(GetComponentInParent<PrefabIdentifier>().Id, out var saveData)) return;
+        { Base.Piece.RoomWaterParkBottom, TechType.BaseWaterPark },
+        { Base.Piece.RoomBioReactor, TechType.BaseBioReactor },
+        { Base.Piece.RoomNuclearReactor, TechType.BaseNuclearReactor },
+        { Base.Piece.RoomFiltrationMachine, TechType.BaseFiltrationMachine },
+    };
 
-        if (!saveData.basePieces.TryGetValue(name, out var basePieces)) return;
+    public IEnumerator Start()
+    {
+        var saveData = GetComponentInParent<SealSubRoot>().SaveData;
+        if (!saveData.basePieces.TryGetValue(name, out var basePieces)) yield break;
+        if (basePieces.pieceType == Base.Piece.Invalid) yield break;
 
-        //do shit here (lazy);
-        //Will do tomorrow;
+        ErrorMessage.AddMessage($"1");
+        var task = CraftData.GetPrefabForTechTypeAsync(pieceTypes[basePieces.pieceType]);
+        yield return task;
+        var prefab = task.GetResult();
+        ErrorMessage.AddMessage($"17: {prefab}, {pieceTypes[basePieces.pieceType]}");
+        var constructableBase = Instantiate(prefab).GetComponent<ConstructableBase>();
+        ErrorMessage.AddMessage($"2: {constructableBase}, {(constructableBase ? constructableBase.model : null)}");
+        var ghost = constructableBase.model.GetComponent<BaseGhost>();
+        ghost.SetupGhost();
+        ErrorMessage.AddMessage($"3");
+
+
+        constructableBase.tr.position = transform.position;
+        //constructableBase.tr.localPosition += -new Vector3(5, 0, 5);//offset to account for the base offset that's applied for some reason (yes I'm still copy pasting these comments)
+
+
+        ghost.Place();
+
+        PieceObject = ghost.gameObject;
+        AttachedBasePiece = basePieces.pieceType;
+
+        if(ghost is BaseAddModuleGhost moduleGhost)
+        {
+            var direction = basePieces.direction;
+            var face = new Base.Face(BaseModuleGhostPatches.cell, direction);
+            moduleGhost.anchoredFace = face;
+        }
+
+
+        constructableBase.SetState(false, true);
+        ErrorMessage.AddMessage($"4");
+
+        constructableBase.constructedAmount = basePieces.constructedAmount;
+        constructableBase.UpdateMaterial();
+        if (constructableBase.constructedAmount >= 1) constructableBase.SetState(true, true);
+        ErrorMessage.AddMessage($"5");
     }
+
+    public static Base.Piece pieceTest = Base.Piece.RoomNuclearReactor;
+    public static float constructedTest = 1;
+    public static Base.Direction directionTest = Base.Direction.North;
+    public void Test()
+    {
+        var saveData = GetComponentInParent<SealSubRoot>().SaveData;
+        saveData.basePieces[name] = new (pieceTest, constructedTest, directionTest);
+        UWE.CoroutineHost.StartCoroutine(Start());
+    }
+
+    private void OnEnable()
+    {
+        Plugin.SaveCache.OnStartedSaving += OnBeforeSave;
+    }
+    private void OnDisable()
+    {
+        Plugin.SaveCache.OnStartedSaving -= OnBeforeSave;
+    }
+
+    public void OnBeforeSave(object sender, JsonFileEventArgs args)
+    {
+        var saveData = GetComponentInParent<SealSubRoot>().SaveData;
+        saveData.basePieces[name] = new(AttachedBasePiece, PieceObject ? PieceObject.GetComponent<Constructable>().constructedAmount : 0, GetDirection());
+    }
+
+    public Base.Direction GetDirection() => Base.Direction.North;
 }

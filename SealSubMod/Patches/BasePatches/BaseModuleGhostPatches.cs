@@ -64,8 +64,7 @@ internal class BaseModuleGhostPatches
     {
         if (Player.main.currentSub is not SealSubRoot seal) return true;
 
-        var cam = MainCamera.camera;
-        //var marker = BasePieceLocationMarker.GetNearest(cam.transform.position, cam.transform.forward, true, seal.GetComponentsInChildren<BasePieceLocationMarker>(true));
+
         var marker = __instance.GetComponentInParent<BasePieceLocationMarker>();
         if (!marker) throw new InvalidOperationException("Shis fucked.");
 

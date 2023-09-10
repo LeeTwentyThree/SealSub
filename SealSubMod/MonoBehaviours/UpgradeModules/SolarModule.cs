@@ -3,43 +3,24 @@
 namespace SealSubMod.MonoBehaviours.UpgradeModules;
 
 [SealUpgradeModule("SealSolarChargeModule")]
-internal class SolarModule : MonoBehaviour
+internal class SolarModule : BaseChargerModule<SolarChargerFunction> { }
+
+internal class SolarChargerFunction : BaseChargerFunction
 {
-    private SolarChargerFunction chargerFunction;
-    public void Awake()
-    {
-        chargerFunction = gameObject.EnsureComponent<SolarChargerFunction>();
-        chargerFunction.modulesInstalled++;
-    }
-    public void OnDestroy()
-    {
-        chargerFunction.modulesInstalled--;
-    }
-}
+    public override float updateCooldown => 1;
 
-internal class SolarChargerFunction : MonoBehaviour
-{
-    internal int modulesInstalled = 0;
-    private PowerRelay relay;
-
-    public void Awake()
+    public override float GetCharge()
     {
-        relay = GetComponentInParent<PowerRelay>();
-        InvokeRepeating("UpdateRecharge", 1f, 1f);
-    }
-    public void UpdateRecharge()
-    {
-        if(modulesInstalled <= 0) return;
-        ErrorMessage.AddMessage($"Charger update modules: {modulesInstalled}");
-
         DayNightCycle main = DayNightCycle.main;
         if (main == null)
         {
-            return;
+            return 0;
         }
+
         float num = Mathf.Clamp01((200f + transform.position.y) / 200f);
         float localLightScalar = main.GetLocalLightScalar();
-        float amount = 1f * localLightScalar * num * modulesInstalled;
-        relay.AddEnergy(amount, out _);
+        float amount = 1f * localLightScalar * num;
+
+        return amount;
     }
 }

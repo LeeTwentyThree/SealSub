@@ -133,7 +133,7 @@ internal class BaseGhostPatches
         Piece piece;
         if(__instance is BaseAddWaterPark)
         {
-            piece = Piece.RoomWaterParkFloorBottom;
+            piece = Piece.RoomWaterParkBottom;
         }
         else if(__instance is not BaseAddModuleGhost module || !BaseModuleGhostPatches.faceToPiece.TryGetValue(module.faceType, out piece))
         {
