@@ -1,15 +1,28 @@
 ﻿using Nautilus.Json;
+using SealSubMod.Interfaces;
 using SealSubMod.Patches.BasePatches;
 using Unity.Mathematics;
 using UnityEngine.Timeline;
+using UWE;
 using static ClipMapManager;
+using static SealSubMod.SaveData;
 using static VFXParticlesPool;
 
 namespace SealSubMod.MonoBehaviours;
 
 
-public class BasePieceLocationMarker : MonoBehaviour
+public class BasePieceLocationMarker : MonoBehaviour, IOnSaveDataLoaded
 {
+    public static Dictionary<Base.Piece, TechType> pieceTypes = new()
+    {
+        { Base.Piece.RoomWaterParkBottom, TechType.BaseWaterPark },
+        { Base.Piece.RoomBioReactor, TechType.BaseBioReactor },
+        { Base.Piece.RoomNuclearReactor, TechType.BaseNuclearReactor },
+        { Base.Piece.RoomFiltrationMachine, TechType.BaseFiltrationMachine },
+    };
+
+
+
     public float builtPercent => !PieceObject ? 0 : PieceObject.GetComponent<Constructable>().constructedAmount;
     private Base.Piece _attachedBasePiece = Base.Piece.Invalid;//use for serialization too
     public Base.Piece AttachedBasePiece
@@ -25,8 +38,6 @@ public class BasePieceLocationMarker : MonoBehaviour
 
     public GameObject PieceObject = null;
 
-    public Vector3 pos => transform.position;
-    public quaternion rot => transform.rotation;
 
     public static BasePieceLocationMarker GetNearest(Vector3 position, Vector3 lineDir, bool mustBeFree, params BasePieceLocationMarker[] markers)
     {
@@ -36,7 +47,7 @@ public class BasePieceLocationMarker : MonoBehaviour
         {
             if (mustBeFree && marker.AttachedBasePiece != Base.Piece.Invalid) continue;
 
-            var diff = Vector3.Dot(lineDir, marker.pos - position);
+            var diff = Vector3.Dot(lineDir, marker.transform.position - position);
 
             if (diff > shortestDiff)
             {
@@ -47,25 +58,22 @@ public class BasePieceLocationMarker : MonoBehaviour
         return shortestMarker;
     }
 
-    public Dictionary<Base.Piece, TechType> pieceTypes = new()
+    void IOnSaveDataLoaded.OnSaveDataLoaded(SaveData saveData)
     {
-        { Base.Piece.RoomWaterParkBottom, TechType.BaseWaterPark },
-        { Base.Piece.RoomBioReactor, TechType.BaseBioReactor },
-        { Base.Piece.RoomNuclearReactor, TechType.BaseNuclearReactor },
-        { Base.Piece.RoomFiltrationMachine, TechType.BaseFiltrationMachine },
-    };
+        Plugin.Logger.LogMessage($"smth, {saveData.basePieces.Count}");
+        if (saveData.basePieces.TryGetValue(name, out var basePieces))
+            CoroutineHost.StartCoroutine(LoadPiece(basePieces));
+    }
 
-    public IEnumerator Start()
+    public IEnumerator LoadPiece(BasePieceSaveData data)
     {
-        var saveData = GetComponentInParent<SealSubRoot>().SaveData;
-        if (!saveData.basePieces.TryGetValue(name, out var basePieces)) yield break;
-        if (basePieces.pieceType == Base.Piece.Invalid) yield break;
+        if (data.pieceType == Base.Piece.Invalid) yield break;
 
         ErrorMessage.AddMessage($"1");
-        var task = CraftData.GetPrefabForTechTypeAsync(pieceTypes[basePieces.pieceType]);
+        var task = CraftData.GetPrefabForTechTypeAsync(pieceTypes[data.pieceType]);
         yield return task;
         var prefab = task.GetResult();
-        ErrorMessage.AddMessage($"17: {prefab}, {pieceTypes[basePieces.pieceType]}");
+        ErrorMessage.AddMessage($"17: {prefab}, {pieceTypes[data.pieceType]}");
         var constructableBase = Instantiate(prefab).GetComponent<ConstructableBase>();
         ErrorMessage.AddMessage($"2: {constructableBase}, {(constructableBase ? constructableBase.model : null)}");
         var ghost = constructableBase.model.GetComponent<BaseGhost>();
@@ -74,17 +82,16 @@ public class BasePieceLocationMarker : MonoBehaviour
 
 
         constructableBase.tr.position = transform.position;
-        //constructableBase.tr.localPosition += -new Vector3(5, 0, 5);//offset to account for the base offset that's applied for some reason (yes I'm still copy pasting these comments)
 
-
+        yield return new WaitUntil(() => LargeWorld.main.streamer.globalRoot);//this seems to be null when done too early for some reason?
         ghost.Place();
 
         PieceObject = ghost.gameObject;
-        AttachedBasePiece = basePieces.pieceType;
+        AttachedBasePiece = data.pieceType;
 
         if(ghost is BaseAddModuleGhost moduleGhost)
         {
-            var direction = basePieces.direction;
+            var direction = data.direction;
             var face = new Base.Face(BaseModuleGhostPatches.cell, direction);
             moduleGhost.anchoredFace = face;
         }
@@ -93,21 +100,20 @@ public class BasePieceLocationMarker : MonoBehaviour
         constructableBase.SetState(false, true);
         ErrorMessage.AddMessage($"4");
 
-        constructableBase.constructedAmount = basePieces.constructedAmount;
+        constructableBase.constructedAmount = data.constructedAmount;
         constructableBase.UpdateMaterial();
-        if (constructableBase.constructedAmount >= 1) constructableBase.SetState(true, true);
+        if (constructableBase.constructedAmount >= 1)
+        {
+            constructableBase.SetState(true, true);
+            constructableBase.tr.localPosition += -new Vector3(5, 0, 5);
+        }
         ErrorMessage.AddMessage($"5");
     }
-
-    public static Base.Piece pieceTest = Base.Piece.RoomNuclearReactor;
-    public static float constructedTest = 1;
     public static Base.Direction directionTest = Base.Direction.North;
-    public void Test()
-    {
-        var saveData = GetComponentInParent<SealSubRoot>().SaveData;
-        saveData.basePieces[name] = new (pieceTest, constructedTest, directionTest);
-        UWE.CoroutineHost.StartCoroutine(Start());
-    }
+    public Base.Direction GetDirection() => directionTest;
+
+
+
 
     private void OnEnable()
     {
@@ -124,5 +130,5 @@ public class BasePieceLocationMarker : MonoBehaviour
         saveData.basePieces[name] = new(AttachedBasePiece, PieceObject ? PieceObject.GetComponent<Constructable>().constructedAmount : 0, GetDirection());
     }
 
-    public Base.Direction GetDirection() => Base.Direction.North;
+
 }

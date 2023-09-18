@@ -21,7 +21,7 @@ internal class BaseAddWaterParkPatches
 
         if (!marker) return true;
 
-        if (Vector3.Distance(transCam.position, marker.pos) > placeMaxDistance) return true;
+        if (Vector3.Distance(transCam.position, marker.transform.position) > placeMaxDistance) return true;
 
 
 
@@ -58,9 +58,9 @@ internal class BaseAddWaterParkPatches
         }
 
 
-        ghostModelParentConstructableBase.transform.position = marker.pos;
+        ghostModelParentConstructableBase.transform.position = marker.transform.position;
         ghostModelParentConstructableBase.tr.localPosition += -new Vector3(5, 0, 5);//offset to account for the base offset that's applied for some reason
-        ghostModelParentConstructableBase.transform.rotation = marker.rot;
+        ghostModelParentConstructableBase.transform.rotation = marker.transform.rotation;
         ghostModelParentConstructableBase.transform.parent = marker.transform;
         positionFound = true;
         geometryChanged = true;

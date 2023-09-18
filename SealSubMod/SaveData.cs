@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace SealSubMod
 {
-    internal class SaveData
+    public class SaveData
     {
         public Dictionary<string, BasePieceSaveData> basePieces = new();
 
-        internal class BasePieceSaveData
+        public class BasePieceSaveData
         {
             public BasePieceSaveData(Base.Piece pieceType = Base.Piece.Invalid, float constructedAmount = 0, Base.Direction direction = Base.Direction.North)
             {

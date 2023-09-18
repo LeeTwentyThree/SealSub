@@ -23,7 +23,7 @@ internal class BaseModuleGhostPatches
 
         if(!marker) return true;
 
-        if (Vector3.Distance(transCam.position, marker.pos) > placeMaxDistance) return true;
+        if (Vector3.Distance(transCam.position, marker.transform.position) > placeMaxDistance) return true;
 
         Builder.UpdateRotation(Base.HorizontalDirections.Length);
 
@@ -48,9 +48,9 @@ internal class BaseModuleGhostPatches
         }
 
 
-        ghostModelParentConstructableBase.tr.position = marker.pos;
+        ghostModelParentConstructableBase.tr.position = marker.transform.position;
         ghostModelParentConstructableBase.tr.localPosition += -new Vector3(5, 0, 5);//offset to account for the base offset that's applied for some reason
-        ghostModelParentConstructableBase.tr.rotation = marker.rot;
+        ghostModelParentConstructableBase.tr.rotation = marker.transform.rotation;
         ghostModelParentConstructableBase.tr.parent = marker.transform;
         positionFound = true;
         geometryChanged = true;

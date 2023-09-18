@@ -3,7 +3,7 @@ using System;
 
 namespace SealSubMod.MonoBehaviours;
 
-internal class SealSubRoot : SubRoot
+internal class SealSubRoot : SubRoot, IProtoEventListener
 {
     public static Dictionary<TechType, Type> moduleFunctions = new();
 
@@ -25,14 +25,6 @@ internal class SealSubRoot : SubRoot
 
     public static void RegisterModuleFunction<T>(TechType techType) where T : MonoBehaviour => RegisterModuleFunction(techType, typeof(T));
 
-    public override void Awake()
-    {
-        base.Awake();
-        if (Plugin.SaveCache.saves.TryGetValue(GetComponent<PrefabIdentifier>().Id, out _saveData)) return;//load existing save data
-
-        _saveData = new SaveData();//add a new entry for the sub
-        Plugin.SaveCache.saves.Add(GetComponent<PrefabIdentifier>().Id, SaveData);
-    }
 
 
     public void AddIsAllowedToAddListener(IsAllowedToAdd @delegate)
@@ -46,12 +38,37 @@ internal class SealSubRoot : SubRoot
 
     public override void Start()
     {
-        foreach(var console in Consoles)
+        foreach (var console in Consoles)
         {
             console.modules.onEquip += OnEquip;
             console.modules.onUnequip += OnUnequip;
         }
         base.Start();
+    }
+
+    public override void Awake()
+    {
+        base.Awake();
+        _saveData = new SaveData();//make a new entry for the sub
+    }
+
+    public void OnDisable()
+    {
+        Plugin.SaveCache.saves[GetComponent<PrefabIdentifier>().Id] = SaveData;
+    }
+
+    internal void LoadSaveData(string id)
+    {
+        if (!Plugin.SaveCache.saves.TryGetValue(id, out var data))
+        {
+            Plugin.Logger.LogError($"Seal {id} load save data but no save data found! Object was loaded from existing save, but corresponding save data for unique identifier id was not found. This could mean there's a mismatch in the ids, and possibly a race condition");
+            return;
+        }
+        _saveData = data;
+
+        foreach (var saveListener in GetComponentsInChildren<IOnSaveDataLoaded>(true)) saveListener.OnSaveDataLoaded(SaveData);
+        //its an interface because we can't guarantee that this method runs before all others that need the save data, so better to just let them do their thing once its loaded
+        //avoids race conditions
     }
 
     private void OnUnequip(string slot, InventoryItem item)
