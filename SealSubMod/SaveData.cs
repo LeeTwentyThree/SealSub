@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 
 namespace SealSubMod
 {
+    [Serializable]
     public class SaveData
     {
         public Dictionary<string, BasePieceSaveData> basePieces = new();
 
+        [Serializable]
         public class BasePieceSaveData
         {
             public BasePieceSaveData(Base.Piece pieceType = Base.Piece.Invalid, float constructedAmount = 0, Base.Direction direction = Base.Direction.North)
@@ -29,6 +31,10 @@ namespace SealSubMod
     [FileName("SealSubSaveData")]
     internal class SaveCache : SaveDataCache
     {
+        public SaveCache()
+        {
+            OnFinishedLoading += (object _, JsonFileEventArgs _) => saves.ForEach((entry) => Plugin.Logger.LogMessage($"key {entry.Key}, value {entry.Value}, base pieces {entry.Value?.basePieces}, count {entry.Value?.basePieces?.Count}"));
+        }
         public Dictionary<string, SaveData> saves = new();
     }
 }
