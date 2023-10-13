@@ -105,7 +105,7 @@ public class BasePieceLocationMarker : MonoBehaviour, IOnSaveDataLoaded
         if (constructableBase.constructedAmount >= 1)
         {
             constructableBase.SetState(true, true);
-            constructableBase.tr.localPosition += -new Vector3(5, 0, 5);
+            //PieceObject is set in the BaseModuleGhost.Finish patch, and is set to the "geometry" object
             //aka the model
             //The constructable base is I *think* destroyed?
             //Been a while don't quite remember what happens to it anymore
