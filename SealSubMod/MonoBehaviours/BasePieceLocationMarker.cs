@@ -106,6 +106,10 @@ public class BasePieceLocationMarker : MonoBehaviour, IOnSaveDataLoaded
         {
             constructableBase.SetState(true, true);
             constructableBase.tr.localPosition += -new Vector3(5, 0, 5);
+            //aka the model
+            //The constructable base is I *think* destroyed?
+            //Been a while don't quite remember what happens to it anymore
+            PieceObject.transform.localPosition -= new Vector3(5, 0, 5);
         }
         ErrorMessage.AddMessage($"5");
     }
