@@ -1,4 +1,5 @@
-﻿using SealSubMod.Interfaces;
+﻿using Nautilus.Json;
+using SealSubMod.Interfaces;
 using System;
 
 namespace SealSubMod.MonoBehaviours;
@@ -51,8 +52,12 @@ internal class SealSubRoot : SubRoot, IProtoEventListener
         base.Awake();
         _saveData = new SaveData();//make a new entry for the sub
     }
+    
 
-    public void OnDisable()
+    public void OnEnable() => Plugin.SaveCache.OnStartedSaving += OnBeforeSave;
+    public void OnDisable() => Plugin.SaveCache.OnStartedSaving -= OnBeforeSave;
+
+    public void OnBeforeSave(object _, JsonFileEventArgs __)
     {
         Plugin.SaveCache.saves[GetComponent<PrefabIdentifier>().Id] = SaveData;
     }
