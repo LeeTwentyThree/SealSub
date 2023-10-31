@@ -85,10 +85,6 @@ public class Plugin : BaseUnityPlugin
             if (!Enum.TryParse(attribute.ModuleTechType, out TechType moduleType) && !EnumHandler.TryGetValue(attribute.ModuleTechType, out moduleType)) continue;
 
 
-            //remove line later, I'm just lazy
-            CraftDataHandler.SetEquipmentType(moduleType, SealModuleEquipmentType);
-
-
             SealSubRoot.moduleFunctions.Add(moduleType, type);
         }
 
@@ -121,8 +117,11 @@ public class Plugin : BaseUnityPlugin
 
         PrefabInfo SolarChargeModuleInfo = PrefabInfo.WithTechType("SealSolarChargeModule", null, null)
         .WithIcon(SpriteManager.Get(TechType.SeamothSolarCharge));
-        
+
         PrefabInfo ThermalChargeModuleInfo = PrefabInfo.WithTechType("SealThermalChargeModule", null, null)
+        .WithIcon(SpriteManager.Get(TechType.CyclopsThermalReactorModule));
+
+        PrefabInfo SpeedModuleInfo = PrefabInfo.WithTechType("SealSpeedModule", null, null)
         .WithIcon(SpriteManager.Get(TechType.CyclopsThermalReactorModule));
 
 
@@ -131,6 +130,7 @@ public class Plugin : BaseUnityPlugin
         RegisterUpgradeModulePrefab(DepthModuleMk3Info, new RecipeData(new CraftData.Ingredient(TechType.Titanium, 2)));
         RegisterUpgradeModulePrefab(SolarChargeModuleInfo, new RecipeData(new CraftData.Ingredient(TechType.Titanium, 2)));
         RegisterUpgradeModulePrefab(ThermalChargeModuleInfo, new RecipeData(new CraftData.Ingredient(TechType.Titanium, 2)));
+        RegisterUpgradeModulePrefab(SpeedModuleInfo, new RecipeData(new CraftData.Ingredient(TechType.Titanium, 2)));
     }
 
     private static void RegisterUpgradeModulePrefab(PrefabInfo info, RecipeData recipe)
