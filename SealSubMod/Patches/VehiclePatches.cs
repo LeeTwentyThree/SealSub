@@ -15,7 +15,7 @@ internal class VehiclePatches
     {
         if (!docked || !__instance) return;
 
-        if (!__instance.GetComponentInParent<SealSubRoot>()) return;
+        if (!__instance.GetComponentInParent<SealSubRoot>(true)) return;
 
         //it's set inactive when docking, but we want it active at all times for the seal dock
         __instance.disableDockedColliders.ForEach(col => col.enabled = true);
