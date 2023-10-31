@@ -30,6 +30,7 @@ public class Plugin : BaseUnityPlugin
     internal static SaveCache SaveCache { get; } = SaveDataHandler.RegisterSaveDataCache<SaveCache>();
 
     internal static EquipmentType SealModuleEquipmentType { get; } = EnumHandler.AddEntry<EquipmentType>("SealModule");
+    internal static CraftTree.Type SealFabricatorTree { get; } = EnumHandler.AddEntry<CraftTree.Type>("SealFabricator").CreateCraftTreeRoot(out _);
 
     internal static PingType SealPingType { get; private set; }
 
@@ -132,13 +133,12 @@ public class Plugin : BaseUnityPlugin
         RegisterUpgradeModulePrefab(ThermalChargeModuleInfo, new RecipeData(new CraftData.Ingredient(TechType.Titanium, 2)));
         RegisterUpgradeModulePrefab(SpeedModuleInfo, new RecipeData(new CraftData.Ingredient(TechType.Titanium, 2)));
     }
-
     private static void RegisterUpgradeModulePrefab(PrefabInfo info, RecipeData recipe)
     {
         var prefab = new CustomPrefab(info);
         prefab.SetGameObject(new CloneTemplate(info, TechType.CyclopsHullModule1));
         prefab.SetPdaGroupCategory(TechGroup.VehicleUpgrades, TechCategory.VehicleUpgrades);
-        prefab.SetRecipe(recipe);
+        prefab.SetRecipe(recipe).WithFabricatorType(SealFabricatorTree);
         prefab.SetEquipment(SealModuleEquipmentType);
         prefab.Register();
     }
