@@ -3,6 +3,7 @@
 internal class AlarmManager : MonoBehaviour
 {
     private AnimateAlarm[] alarms;
+    public bool AlarmsEnabled { get; private set; }
 
     private void Awake()
     {
@@ -12,5 +13,7 @@ internal class AlarmManager : MonoBehaviour
     public void SetAlarmsEnabled(bool enabled)
     {
         alarms.ForEach((a) => a.SetAlarmEnabled(enabled));
+        AlarmsEnabled = enabled;
     }
+    public void ToggleAlarms() => SetAlarmsEnabled(!AlarmsEnabled);
 }

@@ -1,4 +1,5 @@
 ﻿using Nautilus.Commands;
+using SealSubMod.MonoBehaviours;
 using SealSubMod.Utility;
 
 namespace SealSubMod.Commands; // I thought it looked nicer with a folder :)
@@ -72,6 +73,23 @@ internal class ConsoleCommands
             {
                 CraftData.AddToInventory(pair.Key);
             }
+        }
+    }
+    [ConsoleCommand("ToggleAlarms")]
+    public static void ToggleAlarmsCommand(float delay) => UWE.CoroutineHost.StartCoroutine(ToggleAlarmsCommandDelayed(delay));
+    public static IEnumerator ToggleAlarmsCommandDelayed(float delay, bool? enabled = null)
+    {
+        yield return new WaitForSeconds(delay);
+
+        foreach (var seal in GameObject.FindObjectsOfType<SealSubRoot>())
+        {
+            var alarms = seal.GetComponentInChildren<AlarmManager>(true);
+            if (enabled != null)
+                alarms.SetAlarmsEnabled((bool)enabled);
+            else
+                alarms.ToggleAlarms();
+
+            seal.subLightsOn = enabled != null ? (bool)enabled : !seal.subLightsOn;
         }
     }
 }
