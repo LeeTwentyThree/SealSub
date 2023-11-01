@@ -138,6 +138,7 @@ public class Plugin : BaseUnityPlugin
         var prefab = new CustomPrefab(info);
         prefab.SetGameObject(new CloneTemplate(info, TechType.CyclopsHullModule1));
         prefab.SetPdaGroupCategory(TechGroup.VehicleUpgrades, TechCategory.VehicleUpgrades);
+        prefab.SetUnlock(SealSubPrefab.SealType);
         prefab.SetRecipe(recipe).WithFabricatorType(SealFabricatorTree);
         prefab.SetEquipment(SealModuleEquipmentType);
         prefab.Register();

@@ -23,7 +23,7 @@ internal class SealDockingBay : VehicleDockingBay
     public static bool debug = false;//useful
     public static bool doubleDebug = false;//sometimes useful but very screen spammy
 
-    public float MaxAllowedDistance => Player.main?.GetPilotingChair() ? MaxPilotingDistance : MaxDistance;
+    public static float MaxAllowedDistance => Player.main?.GetPilotingChair() ? MaxPilotingDistance : MaxDistance;
 
     public void Awake()
     {
@@ -114,5 +114,7 @@ internal class SealDockingBay : VehicleDockingBay
         vehcl.useRigidbody.AddForce(force * Time.deltaTime, ForceMode);
 
         vehcl.useRigidbody.velocity *= Mathf.Pow(0.1f, Time.deltaTime);
+
+        vehcl.UpdateCollidersForDocking(true);//This method is patched, so it'll enable colliders if the player isn't piloting, and disable them if they are
     }
 }

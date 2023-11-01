@@ -15,6 +15,8 @@ internal class VehiclePatches
     {
         if (!docked || !__instance) return;
 
+        if (Player.main?.GetPilotingChair()) return;//despite my best efforts, simply disabling collision while player is driving the seal *is* the best option
+
         if (!__instance.GetComponentInParent<SealSubRoot>(true)) return;
 
         //it's set inactive when docking, but we want it active at all times for the seal dock

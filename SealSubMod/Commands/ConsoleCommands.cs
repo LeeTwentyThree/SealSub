@@ -92,4 +92,17 @@ internal class ConsoleCommands
             seal.subLightsOn = enabled != null ? (bool)enabled : !seal.subLightsOn;
         }
     }
+    [ConsoleCommand("UnstuckSeal")]
+    public static string UnstuckCommand()
+    {
+        var sub = Player.main.currentSub;
+        if (sub is not SealSubRoot) return "Must be in a seal to use this command";
+
+        var pos = new Vector3(400, -20, 400);
+
+        sub.transform.position = pos;
+        Player.main.SetPosition(pos);
+
+        return "You've been unstuck! Please mention this to the devs, so we can learn the most prevalent location issues with the sub";
+    }
 }

@@ -27,6 +27,7 @@ internal class SealSubPrefab
             .WithFabricatorType(CraftTree.Type.Constructor)
             .WithStepsToFabricatorTab("Vehicles");
         prefab.SetPdaGroupCategory(TechGroup.Constructor, TechCategory.Constructor);
+        prefab.SetUnlock(TechType.Constructor);//temporary, until we add something like a wreck or fragments
         prefab.Register();
     }
 
