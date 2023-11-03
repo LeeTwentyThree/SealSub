@@ -8118,7 +8118,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5832262115561992281
+--- !u!114 &5609444838010264345
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8131,11 +8131,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderer: {fileID: 1271365163119989797}
-  materialIndices: 01000000
-  colorProperties: []
+  materialIndices: 00000000
+  colorProperties:
+  - propertyName: _Color
+    color: {r: 2, g: 2, b: 2, a: 1}
+  - propertyName: _SpecColor
+    color: {r: 2.5, g: 2.5, b: 2.5, a: 1}
   floatProperties: []
-  colorPropertyNames: []
-  colorPropertyValues: []
+  colorPropertyNames:
+  - _Color
+  - _SpecColor
+  colorPropertyValues:
+  - {r: 2, g: 2, b: 2, a: 1}
+  - {r: 2.5, g: 2.5, b: 2.5, a: 1}
   floatPropertyNames: []
   floatPropertyValues: []
 --- !u!1 &2438646426517751890
@@ -11756,11 +11764,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderer: {fileID: 1221935023012126002}
-  materialIndices: 01000000
-  colorProperties: []
+  materialIndices: 00000000
+  colorProperties:
+  - propertyName: _Color
+    color: {r: 2, g: 2, b: 2, a: 1}
+  - propertyName: _SpecColor
+    color: {r: 2.5, g: 2.5, b: 2.5, a: 1}
   floatProperties: []
-  colorPropertyNames: []
-  colorPropertyValues: []
+  colorPropertyNames:
+  - _Color
+  - _SpecColor
+  colorPropertyValues:
+  - {r: 2, g: 2, b: 2, a: 1}
+  - {r: 2.5, g: 2.5, b: 2.5, a: 1}
   floatPropertyNames: []
   floatPropertyValues: []
 --- !u!114 &993893846294347448
