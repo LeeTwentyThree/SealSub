@@ -7,7 +7,8 @@ public abstract class ApplyForceTrigger : MonoBehaviour
     protected static List<Type> types = new List<Type>()
     {
         typeof(Creature),
-        //others?
+        typeof(Vehicle),
+        typeof(SubRoot),
     };
 
     public float pushVelocity = 2f;

@@ -29,8 +29,8 @@ public class Plugin : BaseUnityPlugin
 
     internal static SaveCache SaveCache { get; } = SaveDataHandler.RegisterSaveDataCache<SaveCache>();
 
-    internal static EquipmentType SealModuleEquipmentType { get; } = EnumHandler.AddEntry<EquipmentType>("SealModule");
-    internal static CraftTree.Type SealFabricatorTree { get; } = EnumHandler.AddEntry<CraftTree.Type>("SealFabricator").CreateCraftTreeRoot(out _);
+    public static EquipmentType SealModuleEquipmentType { get; } = EnumHandler.AddEntry<EquipmentType>("SealModule");
+    public static CraftTree.Type SealFabricatorTree { get; } = EnumHandler.AddEntry<CraftTree.Type>("SealFabricator").CreateCraftTreeRoot(out _);
 
     internal static PingType SealPingType { get; private set; }
 

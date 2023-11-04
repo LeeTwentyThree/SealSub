@@ -18,7 +18,7 @@ public class SubEnterTrigger : MonoBehaviour
             player = root.GetComponentInChildren<Player>();
         }
         
-        if (!player) return;
+        if (!player || player.currChair != null) return;
 
         if(!subRoot) // if subroot isn't set, assume this is debug mode and just use precursor out of water
         {
