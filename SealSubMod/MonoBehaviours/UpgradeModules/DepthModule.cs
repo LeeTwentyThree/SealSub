@@ -7,16 +7,21 @@ namespace SealSubMod.MonoBehaviours.UpgradeModules;
 public abstract class DepthModule : MonoBehaviour, IOnModuleChange
 {
     public abstract float Depth { get; }
-    private CrushDamage damage;
-    public void Awake()
-    {
-        damage = GetComponentInParent<CrushDamage>();
+    protected CrushDamage Damage 
+    { 
+        get 
+        { 
+            if(!_damage) _damage = gameObject.GetComponentInParent<CrushDamage>(true);
+            return _damage;
+        } 
     }
+
+    private CrushDamage _damage;
 
     public void OnChange(TechType techType, bool added)
     {
-        var depth = Mathf.Max(Depth, damage.extraCrushDepth);
-        damage.SetExtraCrushDepth(depth);
+        var depth = Mathf.Max(Depth, Damage.extraCrushDepth);
+        Damage.SetExtraCrushDepth(depth);
     }
 
     public void OnDisable()

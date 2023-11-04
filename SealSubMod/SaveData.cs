@@ -13,6 +13,9 @@ namespace SealSubMod
     {
         public Dictionary<string, BasePieceSaveData> basePieces = new();
 
+        //first key is console gameobject name, second key is slot
+        public Dictionary<string, Dictionary<string, TechType>> modules = new();
+
         [Serializable]
         public class BasePieceSaveData
         {
