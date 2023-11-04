@@ -4,7 +4,7 @@ using SealSubMod.Interfaces;
 
 namespace SealSubMod.MonoBehaviours;
 
-internal class SealHelmHUDManager : MonoBehaviour
+public class SealHelmHUDManager : MonoBehaviour
 {
     [SerializeField] SubRoot subRoot;
     [SerializeField] LiveMixin subLiveMixin;

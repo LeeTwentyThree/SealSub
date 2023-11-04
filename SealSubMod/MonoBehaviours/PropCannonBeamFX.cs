@@ -2,7 +2,7 @@
 
 namespace SealSubMod.MonoBehaviours;
 
-internal class PropCannonBeamFX : MonoBehaviour, IOnDockChange
+public class PropCannonBeamFX : MonoBehaviour, IOnDockChange
 {
     public static float VectorRandomRange = 0.35f;
     public static float centerOffset = 0.85f;

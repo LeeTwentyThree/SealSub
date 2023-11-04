@@ -4,9 +4,9 @@ using System;
 
 namespace SealSubMod.MonoBehaviours;
 
-internal class SealSubRoot : SubRoot, IProtoEventListener
+public class SealSubRoot : SubRoot, IProtoEventListener
 {
-    public static Dictionary<TechType, Type> moduleFunctions = new();
+    internal static Dictionary<TechType, Type> moduleFunctions = new();
 
 
     private SaveData _saveData;
@@ -54,10 +54,10 @@ internal class SealSubRoot : SubRoot, IProtoEventListener
     }
     
 
-    public void OnEnable() => Plugin.SaveCache.OnStartedSaving += OnBeforeSave;
-    public void OnDisable() => Plugin.SaveCache.OnStartedSaving -= OnBeforeSave;
+    private void OnEnable() => Plugin.SaveCache.OnStartedSaving += OnBeforeSave;
+    private void OnDisable() => Plugin.SaveCache.OnStartedSaving -= OnBeforeSave;
 
-    public void OnBeforeSave(object _, JsonFileEventArgs __)
+    private void OnBeforeSave(object _, JsonFileEventArgs __)
     {
         Plugin.SaveCache.saves[GetComponent<PrefabIdentifier>().Id] = SaveData;
     }
@@ -92,7 +92,7 @@ internal class SealSubRoot : SubRoot, IProtoEventListener
         NotifyOnChange(item.item.GetTechType(), true);
     }
 
-    public void NotifyOnChange(TechType type, bool added)
+    private void NotifyOnChange(TechType type, bool added)
     {
         foreach(var onChange in moduleFunctionsRoot.GetComponents<IOnModuleChange>())
         {

@@ -4,7 +4,7 @@ using System;
 
 namespace SealSubMod.Utility;
 
-internal static class ReflectionUtils
+public static class ReflectionUtils
 {
     public static Assembly FindAssembly(string assemblyName)
     {

@@ -1,6 +1,6 @@
 ﻿namespace SealSubMod.Interfaces;
 
-internal interface IOnModuleChange
+public interface IOnModuleChange
 {
     /// <summary>
     /// Called when any module is added or removed. Called after it is added, and before it is destroyed

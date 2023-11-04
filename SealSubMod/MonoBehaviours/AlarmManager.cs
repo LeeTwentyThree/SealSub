@@ -1,6 +1,6 @@
 ﻿namespace SealSubMod.MonoBehaviours;
 
-internal class AlarmManager : MonoBehaviour
+public class AlarmManager : MonoBehaviour
 {
     private AnimateAlarm[] alarms;
     public bool AlarmsEnabled { get; private set; }

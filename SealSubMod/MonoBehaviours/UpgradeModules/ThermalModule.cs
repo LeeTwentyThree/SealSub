@@ -4,9 +4,9 @@ namespace SealSubMod.MonoBehaviours.UpgradeModules;
 
 [SealUpgradeModule("SealThermalChargeModule")]
 
-internal class ThermalModule : BaseChargerModule<ThermalChargerFunction> { }
+public class ThermalModule : BaseChargerModule<ThermalChargerFunction> { }
 
-internal class ThermalChargerFunction : BaseChargerFunction
+public class ThermalChargerFunction : BaseChargerFunction
 {
     private AnimationCurve thermalCharge;
     

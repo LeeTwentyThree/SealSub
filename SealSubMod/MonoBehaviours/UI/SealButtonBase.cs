@@ -1,6 +1,6 @@
 ﻿namespace SealSubMod.MonoBehaviours.UI;
 
-internal class SealButtonBase : MonoBehaviour
+public class SealButtonBase : MonoBehaviour
 {
     [HideInInspector] public bool invalidButton;
 

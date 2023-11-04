@@ -1,6 +1,6 @@
 ﻿namespace SealSubMod.MonoBehaviours;
 
-internal class PropellerManager : MonoBehaviour
+public class PropellerManager : MonoBehaviour
 {
     [SerializeField] SubControl control;
     [SerializeField] float minVelocity;

@@ -2,7 +2,7 @@
 
 // This class is based on the base-game UpgradeConsole class
 // The seal should have TWO of these!
-internal class SealUpgradeConsole : HandTarget, IHandTarget
+public class SealUpgradeConsole : HandTarget, IHandTarget
 {
     public Equipment modules { get; private set; }
 
@@ -41,7 +41,7 @@ internal class SealUpgradeConsole : HandTarget, IHandTarget
         UpdateVisuals();
     }
 
-    private void UpdateVisuals()
+    public void UpdateVisuals()
     {
         for (int i = 0; i < moduleModels.Length; i++)
         {

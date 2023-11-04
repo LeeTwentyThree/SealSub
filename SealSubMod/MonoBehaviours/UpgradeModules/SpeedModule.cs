@@ -3,7 +3,7 @@
 namespace SealSubMod.MonoBehaviours.UpgradeModules;
 
 [SealUpgradeModule("SealSpeedModule")]
-internal class SpeedModule : MonoBehaviour
+public class SpeedModule : MonoBehaviour
 {
     private SubControl control;
     public void Awake()

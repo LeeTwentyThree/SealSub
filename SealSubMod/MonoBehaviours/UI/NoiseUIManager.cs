@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace SealSubMod.MonoBehaviours.UI;
 
-internal class NoiseUIManager : MonoBehaviour, IUIElement
+public class NoiseUIManager : MonoBehaviour, IUIElement
 {
     [SerializeField] CyclopsNoiseManager noiseManager;
     [SerializeField] Image noiseBar;

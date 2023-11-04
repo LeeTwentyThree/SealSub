@@ -1,6 +1,6 @@
 ﻿namespace SealSubMod.MonoBehaviours;
 
-internal class SubEnterTrigger : MonoBehaviour
+public class SubEnterTrigger : MonoBehaviour
 {
     public bool setWalk;
     public SubRoot subRoot;

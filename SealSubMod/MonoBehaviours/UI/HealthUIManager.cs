@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace SealSubMod.MonoBehaviours.UI;
 
-internal class HealthUIManager : MonoBehaviour, IUIElement
+public class HealthUIManager : MonoBehaviour, IUIElement
 {
     [SerializeField] LiveMixin subLiveMixin;
     [SerializeField] Image hpBar;

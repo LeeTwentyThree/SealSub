@@ -3,7 +3,7 @@ using TMPro;
 
 namespace SealSubMod.MonoBehaviours;
 
-internal class SealDockingBay : VehicleDockingBay
+public class SealDockingBay : VehicleDockingBay
 {
     [SerializeField] FMOD_CustomLoopingEmitter _emitter;
 
@@ -25,7 +25,7 @@ internal class SealDockingBay : VehicleDockingBay
 
     public static float MaxAllowedDistance => Player.main?.GetPilotingChair() ? MaxPilotingDistance : MaxDistance;
 
-    public void Awake()
+    private void Awake()
     {
         onDockedChanged += OnDockChange;
         OnDockChange();
@@ -48,7 +48,7 @@ internal class SealDockingBay : VehicleDockingBay
         UWE.Utils.GetEntityRoot(gameObject).GetComponentsInChildren<IOnDockChange>().ForEach((dockChange) => dockChange.OnDockChange(dockedVehicle));
     }
 
-    public void FixedUpdate()
+    private void FixedUpdate()
     {
         if (!dockedVehicle) return;
         if(!dockedVehicle.CanPilot() || !dockedVehicle.GetPilotingMode()) return;

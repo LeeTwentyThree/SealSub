@@ -1,10 +1,13 @@
 ﻿namespace SealSubMod.MonoBehaviours.UpgradeModules;
 
-internal abstract class BaseChargerFunction : MonoBehaviour
+public abstract class BaseChargerFunction : MonoBehaviour
 {
-    internal int modulesInstalled = 0;
+    public int modulesInstalled = 0;
     protected PowerRelay relay;
 
+    /// <summary>
+    /// If greater than 0, calls InvokeRepeating on Awake based on this delay. Otherwise, if 0 or less, UpdateCharge is called every frame on Update.
+    /// </summary>
     public virtual float updateCooldown => -1;
 
     public virtual void Awake()
@@ -23,7 +26,6 @@ internal abstract class BaseChargerFunction : MonoBehaviour
 
     public void UpdateCharge()
     {
-        ErrorMessage.AddMessage($"{GetType()}: {modulesInstalled}");
         if(modulesInstalled <= 0) return;
 
         relay.AddEnergy(GetCharge() * modulesInstalled, out _);

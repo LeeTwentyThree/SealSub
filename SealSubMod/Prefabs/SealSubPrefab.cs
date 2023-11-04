@@ -6,12 +6,12 @@ using SealSubMod.Utility;
 
 namespace SealSubMod.Prefabs;
 
-internal class SealSubPrefab
+public class SealSubPrefab
 {
     public static PrefabInfo Info { get; } = PrefabInfo.WithTechType("SealSub", null, null);
     public static TechType SealType { get; } = Info.TechType;
 
-    public static void Register()
+    internal static void Register()
     {
         CustomPrefab prefab = new CustomPrefab(Info);
         prefab.SetGameObject(GetGameObject);

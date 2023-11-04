@@ -4,13 +4,12 @@ using SealSubMod.Interfaces;
 namespace SealSubMod.MonoBehaviours.UpgradeModules;
 
 
-internal abstract class DepthModule : MonoBehaviour, IOnModuleChange
+public abstract class DepthModule : MonoBehaviour, IOnModuleChange
 {
     public abstract float Depth { get; }
     private CrushDamage damage;
     public void Awake()
     {
-        ErrorMessage.AddMessage($"Depth module awake {Depth}");
         damage = GetComponentInParent<CrushDamage>();
     }
 
@@ -22,7 +21,6 @@ internal abstract class DepthModule : MonoBehaviour, IOnModuleChange
 
     public void OnDisable()
     {
-        ErrorMessage.AddMessage($"Depth module destroy {Depth}");
         GetComponentInParent<CrushDamage>().SetExtraCrushDepth(0);
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SealSubMod.MonoBehaviours;
 
-internal class BlockType : ApplyForceTrigger
+public class BlockType : ApplyForceTrigger
 {
     internal override Vector3 GetPushDirection(Rigidbody rigidbody)
     {

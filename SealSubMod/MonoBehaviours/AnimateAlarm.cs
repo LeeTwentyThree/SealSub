@@ -1,6 +1,6 @@
 ﻿namespace SealSubMod.MonoBehaviours;
 
-internal class AnimateAlarm : MonoBehaviour
+public class AnimateAlarm : MonoBehaviour
 {
     [SerializeField] Transform lightsParent;
     [SerializeField] Vector3 rotationAxis;

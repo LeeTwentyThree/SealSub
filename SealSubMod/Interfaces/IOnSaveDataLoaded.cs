@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SealSubMod.Interfaces
+namespace SealSubMod.Interfaces;
+
+public interface IOnSaveDataLoaded
 {
-    internal interface IOnSaveDataLoaded
-    {
-        public void OnSaveDataLoaded(SaveData saveData);
-    }
+    public void OnSaveDataLoaded(SaveData saveData);
 }

@@ -1,6 +1,6 @@
 ﻿namespace SealSubMod.MonoBehaviours;
 
-internal class SealDamageManager : MonoBehaviour, IOnTakeDamage
+public class SealDamageManager : MonoBehaviour, IOnTakeDamage
 {
     public void OnTakeDamage(DamageInfo damageInfo)
     {

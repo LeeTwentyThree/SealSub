@@ -1,6 +1,6 @@
 ﻿namespace SealSubMod.MonoBehaviours;
 
-internal class WaterParkEnterTrigger : MonoBehaviour
+public class WaterParkEnterTrigger : MonoBehaviour
 {
     public bool setInside;
     public WaterPark waterPark;

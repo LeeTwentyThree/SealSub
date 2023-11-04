@@ -1,6 +1,6 @@
 ﻿namespace SealSubMod.MonoBehaviours;
 
-internal class SubEnterHandTarget : HandTarget, IHandTarget
+public class SubEnterHandTarget : HandTarget, IHandTarget
 {
     [SerializeField] SubRoot sub;
     [SerializeField] Transform targetPosition;

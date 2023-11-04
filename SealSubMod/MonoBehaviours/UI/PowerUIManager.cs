@@ -3,7 +3,7 @@ using TMPro;
 
 namespace SealSubMod.MonoBehaviours.UI;
 
-internal class PowerUIManager : MonoBehaviour, IUIElement
+public class PowerUIManager : MonoBehaviour, IUIElement
 {
     [SerializeField] SubRoot subRoot;
     [SerializeField] TextMeshProUGUI powerText;

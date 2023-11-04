@@ -1,6 +1,6 @@
 ﻿namespace SealSubMod.Interfaces;
 
-internal interface IOnTakeCreatureDamage
+public interface IOnTakeCreatureDamage
 {
     void OnTakeCreatureDamage(DamageInfo info);
 }

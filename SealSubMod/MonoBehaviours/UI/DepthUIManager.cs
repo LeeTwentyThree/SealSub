@@ -3,7 +3,7 @@ using TMPro;
 
 namespace SealSubMod.MonoBehaviours.UI;
 
-internal class DepthUIManager : MonoBehaviour, IUIElement
+public class DepthUIManager : MonoBehaviour, IUIElement
 {
     [SerializeField] CrushDamage crushDamage;
     [SerializeField] TextMeshProUGUI depthText;

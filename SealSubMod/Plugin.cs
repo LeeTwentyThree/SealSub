@@ -76,25 +76,14 @@ public class Plugin : BaseUnityPlugin
         CheckExternalModCompat(hamony);
 
         RegisterPrefabs();
-
-        foreach (var type in Assembly.GetTypes())
-        {
-            var attribute = type.GetCustomAttribute<SealUpgradeModuleAttribute>();
-            
-            if (attribute == null) continue;
-            
-            if (!Enum.TryParse(attribute.ModuleTechType, out TechType moduleType) && !EnumHandler.TryGetValue(attribute.ModuleTechType, out moduleType)) continue;
-
-
-            SealSubRoot.moduleFunctions.Add(moduleType, type);
-        }
+        RegisterUpgradeModuleFunctionalities(Assembly.GetExecutingAssembly());
 
         ModAudio.RegisterAudio(assets);
 
         Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
     }
 
-    public void CheckExternalModCompat(Harmony harmony)
+    private void CheckExternalModCompat(Harmony harmony)
     {
         if (Chainloader.PluginInfos.ContainsKey("qqqbbb.subnautica.tweaksAndFixes"))
         {
@@ -133,7 +122,7 @@ public class Plugin : BaseUnityPlugin
         RegisterUpgradeModulePrefab(ThermalChargeModuleInfo, new RecipeData(new CraftData.Ingredient(TechType.Titanium, 2)));
         RegisterUpgradeModulePrefab(SpeedModuleInfo, new RecipeData(new CraftData.Ingredient(TechType.Titanium, 2)));
     }
-    private static void RegisterUpgradeModulePrefab(PrefabInfo info, RecipeData recipe)
+    public static void RegisterUpgradeModulePrefab(PrefabInfo info, RecipeData recipe)
     {
         var prefab = new CustomPrefab(info);
         prefab.SetGameObject(new CloneTemplate(info, TechType.CyclopsHullModule1));
@@ -142,5 +131,19 @@ public class Plugin : BaseUnityPlugin
         prefab.SetRecipe(recipe).WithFabricatorType(SealFabricatorTree);
         prefab.SetEquipment(SealModuleEquipmentType);
         prefab.Register();
+    }
+    public static void RegisterUpgradeModuleFunctionalities(Assembly assembly)
+    {
+        foreach (var type in assembly.GetTypes())
+        {
+            var attribute = type.GetCustomAttribute<SealUpgradeModuleAttribute>();
+
+            if (attribute == null || !type.IsClass || type.IsAbstract) continue;
+
+            if (!Enum.TryParse(attribute.ModuleTechType, out TechType moduleType) && !EnumHandler.TryGetValue(attribute.ModuleTechType, out moduleType)) continue;
+
+
+            SealSubRoot.moduleFunctions.Add(moduleType, type);
+        }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace SealSubMod.MonoBehaviours.Abstract;
 
-internal abstract class ApplyForceTrigger : MonoBehaviour
+public abstract class ApplyForceTrigger : MonoBehaviour
 {
     protected static List<Type> types = new List<Type>()
     {

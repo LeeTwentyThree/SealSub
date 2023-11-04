@@ -2,7 +2,7 @@
 
 namespace SealSubMod.MonoBehaviours;
 
-internal class WaterParkCreatureWall : ApplyForceTrigger
+public class WaterParkCreatureWall : ApplyForceTrigger
 {
     public Transform center;
     internal override Vector3 GetPushDirection(Rigidbody rigidbody)

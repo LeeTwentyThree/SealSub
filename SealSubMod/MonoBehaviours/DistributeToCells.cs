@@ -1,6 +1,6 @@
 ﻿namespace SealSubMod.MonoBehaviours;
 
-internal class PowerSourcePrioritizer : MonoBehaviour
+public class PowerSourcePrioritizer : MonoBehaviour
 {
     [SerializeField] PowerRelay powerRelay;
     [SerializeField] BatterySource[] targetPowerSources;

@@ -1,6 +1,6 @@
 ﻿namespace SealSubMod.Utility;
 
-internal static class CyclopsReferenceManager
+public static class CyclopsReferenceManager
 {
     public static GameObject CyclopsReference { get; private set; }
 

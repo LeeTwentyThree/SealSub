@@ -5,7 +5,7 @@ namespace SealSubMod.MonoBehaviours.UpgradeModules;
 [SealUpgradeModule("SealSolarChargeModule")]
 internal class SolarModule : BaseChargerModule<SolarChargerFunction> { }
 
-internal class SolarChargerFunction : BaseChargerFunction
+public class SolarChargerFunction : BaseChargerFunction
 {
     public override float updateCooldown => 1;
 

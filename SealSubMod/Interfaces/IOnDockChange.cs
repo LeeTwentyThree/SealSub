@@ -1,6 +1,6 @@
 ﻿namespace SealSubMod.Interfaces;
 
-internal interface IOnDockChange
+public interface IOnDockChange
 {
     public void OnDockChange(Vehicle vehicle);
 }

@@ -1,8 +1,8 @@
 ﻿namespace SealSubMod.MonoBehaviours.UpgradeModules;
 
-internal abstract class BaseChargerModule<T> : MonoBehaviour where T : BaseChargerFunction
+public abstract class BaseChargerModule<T> : MonoBehaviour where T : BaseChargerFunction
 {
-    private T chargerFunction;
+    protected T chargerFunction;
     public virtual void Awake()
     {
         chargerFunction = gameObject.EnsureComponent<T>();

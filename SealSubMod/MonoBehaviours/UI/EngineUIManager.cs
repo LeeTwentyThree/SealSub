@@ -2,7 +2,7 @@
 
 namespace SealSubMod.MonoBehaviours.UI;
 
-internal class EngineUIManager : MonoBehaviour, IUIElement
+public class EngineUIManager : MonoBehaviour, IUIElement
 {
     [SerializeField] CyclopsMotorMode motorMode;
     [SerializeField] GameObject engineOffIndicator;

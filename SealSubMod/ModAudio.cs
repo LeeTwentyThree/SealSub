@@ -2,13 +2,13 @@
 
 namespace SealSubMod;
 
-internal static class ModAudio
+public static class ModAudio
 {
     public const MODE k3DSoundModes = MODE.DEFAULT | MODE._3D | MODE.ACCURATETIME | MODE._3D_LINEARSQUAREROLLOFF;
     public const MODE k2DSoundModes = MODE.DEFAULT | MODE._2D | MODE.ACCURATETIME;
     public const MODE kStreamSoundModes = k2DSoundModes | MODE.CREATESTREAM;
 
-    public static void RegisterAudio(AssetBundle bundle)
+    internal static void RegisterAudio(AssetBundle bundle)
     {
         AddSubVoiceLine(bundle.LoadAsset<AudioClip>("SealWelcomeAboard"), "SealWelcomeAboard");
         AddSubVoiceLine(bundle.LoadAsset<AudioClip>("SealEngineOn"), "SealEngineOn");
@@ -29,13 +29,13 @@ internal static class ModAudio
         AddWorldSoundEffect(bundle.LoadAsset<AudioClip>("SealSubHorn"), "SealSubHorn");
     }
 
-    private static void AddSubVoiceLine(AudioClip clip, string soundPath)
+    public static void AddSubVoiceLine(AudioClip clip, string soundPath)
     {
         var sound = AudioUtils.CreateSound(clip, kStreamSoundModes);
         CustomSoundHandler.RegisterCustomSound(soundPath, sound, AudioUtils.BusPaths.VoiceOvers);
     }
 
-    private static void AddWorldSoundEffect(AudioClip clip, string soundPath, float minDistance = 1f, float maxDistance = 100f, string overrideBus = null)
+    public static void AddWorldSoundEffect(AudioClip clip, string soundPath, float minDistance = 1f, float maxDistance = 100f, string overrideBus = null)
     {
         var sound = AudioUtils.CreateSound(clip, k3DSoundModes);
         if (maxDistance > 0f)
@@ -45,7 +45,7 @@ internal static class ModAudio
         CustomSoundHandler.RegisterCustomSound(soundPath, sound, string.IsNullOrEmpty(overrideBus) ? AudioUtils.BusPaths.PlayerSFXs : overrideBus);
     }
 
-    private static void AddInterfaceSoundEffect(AudioClip clip, string soundPath)
+    public static void AddInterfaceSoundEffect(AudioClip clip, string soundPath)
     {
         var sound = AudioUtils.CreateSound(clip, k2DSoundModes);
         CustomSoundHandler.RegisterCustomSound(soundPath, sound, AudioUtils.BusPaths.PlayerSFXs);
