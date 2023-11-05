@@ -61,6 +61,7 @@ public class Plugin : BaseUnityPlugin
         SealPingType = EnumHandler.AddEntry<PingType>("SealSub")
             .WithIcon(new Atlas.Sprite(assets.LoadAsset<Sprite>("SealSubPing")));
 
+
         try
         {
             var component = GetComponentsInParent<Component>().Where(component => component.gameObject == gameObject && component is CreatureSizeSetter).FirstOrDefault(null);
