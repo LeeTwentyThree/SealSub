@@ -8,6 +8,13 @@ namespace SealSubMod.MonoBehaviours;
 // The seal should have TWO of these!
 public class SealUpgradeConsole : HandTarget, IHandTarget, IOnSaveDataLoaded
 {
+    public IEnumerable<TechType> EquippedModules
+    {
+        get
+        {
+            return modules.equipment.Values.Select(item => item != null ? item.item.GetTechType() : TechType.None);
+        }
+    }
     public Equipment modules { get; private set; }
 
     [SerializeField] private GameObject modulesRoot;

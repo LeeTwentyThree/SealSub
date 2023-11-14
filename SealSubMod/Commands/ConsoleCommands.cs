@@ -52,12 +52,13 @@ internal class ConsoleCommands
     }
 
     [ConsoleCommand("Bitch")]
-    public static void BitchCommand(bool upgrades = true)
+    public static void BitchCommand(bool upgrades = true, bool unlock = true)
     {
         WarpForwardShortcut(1000);
         SealSubCommand(true);
         WarpForwardShortcut(50);
         if(upgrades) SealUpgradesCommand();
+        if (unlock) KnownTech.Add(TechType.Constructor);
     }
 
     [ConsoleCommand("GayShit")]

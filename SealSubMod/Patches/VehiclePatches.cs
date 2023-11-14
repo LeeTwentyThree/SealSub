@@ -79,6 +79,6 @@ internal class VehiclePatches
 
     public static Vector3 GetForceDirection(Vehicle vehcle)
     {
-        return bayLastVehicleIn is SubRoot seal ? seal.GetComponentInChildren<SealDockingBay>().GetOutDirection() * 3 : Vector3.down;
+        return bayLastVehicleIn is SealSubRoot seal ? seal.GetComponentInChildren<SealDockingBay>().GetOutDirection() * 3 : Vector3.down;
     }
 }

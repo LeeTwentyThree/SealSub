@@ -6,6 +6,7 @@ using Nautilus.Assets;
 using Nautilus.Assets.Gadgets;
 using Nautilus.Assets.PrefabTemplates;
 using Nautilus.Crafting;
+using Nautilus.Handlers;
 using SealSubMod.Attributes;
 using SealSubMod.Commands;
 using SealSubMod.MonoBehaviours;
@@ -31,6 +32,10 @@ public class Plugin : BaseUnityPlugin
 
     public static EquipmentType SealModuleEquipmentType { get; } = EnumHandler.AddEntry<EquipmentType>("SealModule");
     public static CraftTree.Type SealFabricatorTree { get; } = EnumHandler.AddEntry<CraftTree.Type>("SealFabricator").CreateCraftTreeRoot(out _);
+
+    public static TechGroup SealGroup { get; } = EnumHandler.AddEntry<TechGroup>("Seal").WithPdaInfo("Seal");
+    public static TechCategory SealCategory { get; } = EnumHandler.AddEntry<TechCategory>("Seal").RegisterToTechGroup(SealGroup).WithPdaInfo("Seal");
+    public static TechCategory SealModuleCategory { get; } = EnumHandler.AddEntry<TechCategory>("SealModules").RegisterToTechGroup(SealGroup).WithPdaInfo("SealModules");
 
     internal static PingType SealPingType { get; private set; }
 
@@ -97,9 +102,6 @@ public class Plugin : BaseUnityPlugin
 
     private void RegisterPrefabs()
     {
-        SealSubPrefab.Register();
-
-
         PrefabInfo DepthModuleMk2Info = PrefabInfo.WithTechType("SealHullModule2", null, null)
         .WithIcon(SpriteManager.Get(TechType.CyclopsHullModule2));
 
@@ -116,20 +118,26 @@ public class Plugin : BaseUnityPlugin
         .WithIcon(SpriteManager.Get(TechType.CyclopsThermalReactorModule));
 
 
-        RegisterUpgradeModulePrefab(DepthModuleMk1Info, new RecipeData(new CraftData.Ingredient(TechType.Titanium, 2)));
-        RegisterUpgradeModulePrefab(DepthModuleMk2Info, new RecipeData(new CraftData.Ingredient(TechType.Titanium, 2)));
-        RegisterUpgradeModulePrefab(DepthModuleMk3Info, new RecipeData(new CraftData.Ingredient(TechType.Titanium, 2)));
-        RegisterUpgradeModulePrefab(SolarChargeModuleInfo, new RecipeData(new CraftData.Ingredient(TechType.Titanium, 2)));
-        RegisterUpgradeModulePrefab(ThermalChargeModuleInfo, new RecipeData(new CraftData.Ingredient(TechType.Titanium, 2)));
-        RegisterUpgradeModulePrefab(SpeedModuleInfo, new RecipeData(new CraftData.Ingredient(TechType.Titanium, 2)));
+        RegisterUpgradeModulePrefab(DepthModuleMk1Info);
+        RegisterUpgradeModulePrefab(DepthModuleMk2Info);
+        RegisterUpgradeModulePrefab(DepthModuleMk3Info);
+        RegisterUpgradeModulePrefab(SolarChargeModuleInfo);
+        RegisterUpgradeModulePrefab(ThermalChargeModuleInfo);
+        RegisterUpgradeModulePrefab(SpeedModuleInfo);
+
+
+        SealSubPrefab.Register();
     }
-    public static void RegisterUpgradeModulePrefab(PrefabInfo info, RecipeData recipe)
+    public static void RegisterUpgradeModulePrefab(PrefabInfo info, RecipeData recipe = null)
     {
         var prefab = new CustomPrefab(info);
         prefab.SetGameObject(new CloneTemplate(info, TechType.CyclopsHullModule1));
-        prefab.SetPdaGroupCategory(TechGroup.VehicleUpgrades, TechCategory.VehicleUpgrades);
+        prefab.SetPdaGroupCategory(SealGroup, SealModuleCategory);
         prefab.SetUnlock(SealSubPrefab.SealType);
+
+        if (recipe == null) recipe = JsonUtils.GetRecipeFromJson(info.TechType);
         prefab.SetRecipe(recipe).WithFabricatorType(SealFabricatorTree);
+
         prefab.SetEquipment(SealModuleEquipmentType);
         prefab.Register();
     }

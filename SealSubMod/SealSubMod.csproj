@@ -57,6 +57,7 @@
 		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(PluginsDir)\$(TargetName)" />
 		<MakeDir Directories="$(PluginsDir)\$(TargetName)\Localization" />
 		<Copy SourceFiles="@(LocalizationFiles)" DestinationFolder="$(PluginsDir)\$(TargetName)\Localization" />
+		<Copy SourceFiles="Recipes.json" DestinationFolder="$(PluginsDir)\$(TargetName)" />
 	</Target>
 	<Target Name="CopyToThunderKitFolder" AfterTargets="Build">
 		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(SolutionDir)..\$(SubPakDir)" />

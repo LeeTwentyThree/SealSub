@@ -2,6 +2,10 @@
   "SealSub": "Seal Submarine",
   "Tooltip_SealSub": "Believably Incredible Thermonucleic Compartmentalized Hull",
 
+  "GroupSeal": "Seal Submarine Group",
+  "TechCategorySeal": "Seal Submarine",
+  "TechCategorySealModules": "Seal Modules",
+
   "EnterSealSub": "Board Seal",
   "SealWelcomeAboard": "SEAL: Welcome aboard captain. All systems online.",
   "SealSubEasterEgg": "SEAL: Crazy? I was crazy once. They locked me in a room. A rubber room. A rubber room with rats. Rats make me crazy.",

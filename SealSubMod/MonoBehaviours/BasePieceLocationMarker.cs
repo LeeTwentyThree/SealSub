@@ -82,6 +82,7 @@ public class BasePieceLocationMarker : MonoBehaviour, IOnSaveDataLoaded
 
 
         constructableBase.tr.position = transform.position;
+        constructableBase.tr.parent = transform;
 
         yield return new WaitUntil(() => LargeWorld.main.streamer.globalRoot);//this seems to be null when done too early for some reason?
         ghost.Place();
