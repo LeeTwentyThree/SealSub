@@ -65,7 +65,7 @@ internal class BaseModuleGhostPatches
         if (Player.main.currentSub is not SealSubRoot seal) return true;
 
 
-        var marker = __instance.GetComponentInParent<BasePieceLocationMarker>();
+        var marker = __instance.GetComponentInParent<BasePieceLocationMarker>(true);
         if (!marker) throw new InvalidOperationException("Shis fucked.");
 
 
@@ -74,7 +74,7 @@ internal class BaseModuleGhostPatches
             ErrorMessage.AddMessage($"Sorry! Piece type {__instance.faceType} is not supported in this vehicle!!!");
             return false;
         }
-        var model = __instance.GetComponentInParent<ConstructableBase>().model;
+        var model = __instance.GetComponentInParent<ConstructableBase>(true).model;
         var position = model.transform.position;
         var rotation = Quaternion.Euler(Base.DirectionNormals[(int)__instance.anchoredFace.Value.direction]);
 

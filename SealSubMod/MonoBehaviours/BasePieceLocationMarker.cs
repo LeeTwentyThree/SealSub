@@ -5,6 +5,7 @@ using Unity.Mathematics;
 using UnityEngine.Timeline;
 using UWE;
 using static ClipMapManager;
+using static SealSubMod.Patches.BasePatches.BaseGhostPatches;
 using static SealSubMod.SaveData;
 using static VFXParticlesPool;
 
@@ -84,7 +85,10 @@ public class BasePieceLocationMarker : MonoBehaviour, IOnSaveDataLoaded
         constructableBase.tr.position = transform.position;
         constructableBase.tr.parent = transform;
 
-        yield return new WaitUntil(() => LargeWorld.main.streamer.globalRoot);//this seems to be null when done too early for some reason?
+
+        ErrorMessage.AddMessage($"{LargeWorld.main != null}, {LargeWorld.main?.streamer?.cellManager != null}");
+        constructableBase.gameObject.SetActive(true);
+        ErrorMessage.AddMessage($"{ghost.ghostBase != null}, {ghost.GetComponentInParent<ConstructableBase>() != null}, {ghost.GetComponentInParent<ConstructableBase>(true) != null}, {ghost.targetBase == null}");
         ghost.Place();
 
         PieceObject = ghost.gameObject;

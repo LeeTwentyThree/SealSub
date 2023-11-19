@@ -1,7 +1,10 @@
 ﻿using HarmonyLib;
 using SealSubMod.MonoBehaviours;
 using System;
+using System.Reflection;
+using System.Reflection.Emit;
 using static Base;
+using static SealSubMod.MonoBehaviours.BasePieceLocationMarker;
 
 namespace SealSubMod.Patches.BasePatches;
 
@@ -17,13 +20,13 @@ internal class BaseGhostPatches
 
 
 
-        var marker = __instance.GetComponentInParent<BasePieceLocationMarker>();
+        var marker = __instance.GetComponentInParent<BasePieceLocationMarker>(true);
         if (!marker) throw new InvalidOperationException("Shis fucked.");
 
         var piece = Base.Piece.RoomWaterParkBottom;
 
 
-        var model = __instance.GetComponentInParent<ConstructableBase>().model;
+        var model = __instance.GetComponentInParent<ConstructableBase>(true).model;
         var position = model.transform.position;
 
 
@@ -117,11 +120,39 @@ internal class BaseGhostPatches
         }
     }
 
+
+
+    [HarmonyPatch(nameof(BaseGhost.Place))]
+    [HarmonyTranspiler]
+    public static IEnumerable<CodeInstruction> PlaceTranspiler(IEnumerable<CodeInstruction> instructions)
+    {
+        var matcher = new CodeMatcher(instructions);
+
+        var originalOverload = AccessTools.Method(typeof(Component), nameof(Component.GetComponentInParent), Array.Empty<Type>(), new Type[1] { typeof(ConstructableBase) });
+        matcher.MatchForward(false, new CodeMatch(OpCodes.Call, originalOverload));
+
+        matcher.InsertAndAdvance(new CodeInstruction(OpCodes.Ldc_I4_1));
+        var newOverload = AccessTools.Method(typeof(GetComponentExtensions), nameof(GetComponentExtensions.GetComponentInParent), new[] {typeof(Component), typeof(bool)}, new[] {typeof(ConstructableBase)});
+        matcher.SetOperandAndAdvance(newOverload);//Adds a "true" argument to the "GetComponentInParent" call, so that it gets the inactive parent as well
+
+        var mainField = AccessTools.Field(typeof(LargeWorld), nameof(LargeWorld.main));
+        matcher.MatchForward(true, new CodeMatch((inst) => inst.operand is FieldInfo info && info == mainField));
+
+        matcher.SetAndAdvance(OpCodes.Ldarg_0, null);
+        matcher.Set(OpCodes.Call, AccessTools.Method(typeof(BaseGhostPatches), nameof(ShouldSetLargeWorldThing)));
+
+        return matcher.InstructionEnumeration();
+    }
+
+    private static bool ShouldSetLargeWorldThing(BaseGhost ghost)
+    {
+        return LargeWorld.main && !ghost.GetComponentInParent<BasePieceLocationMarker>(true);
+    }
+
     [HarmonyPatch(nameof(BaseGhost.Place))]//set parent properly, so that the modules move with the sub
     public static void Postfix(BaseGhost __instance)
     {
-        if (Player.main.currentSub is not SealSubRoot root) return;
-
+        if (Player.main.currentSub is not SealSubRoot) return;
 
         var comp = __instance.GetComponentInParent<ConstructableBase>();//The root ghost object that needs to be parented
 
@@ -138,7 +169,6 @@ internal class BaseGhostPatches
             ErrorMessage.AddMessage($"Sorry! Piece type {__instance} is not supported in this vehicle!!!");
             return;
         }
-
 
         var marker = __instance.GetComponentInParent<BasePieceLocationMarker>();
         if (!marker) throw new InvalidOperationException("Shis fucked.");
