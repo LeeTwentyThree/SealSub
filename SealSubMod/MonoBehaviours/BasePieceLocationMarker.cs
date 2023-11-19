@@ -70,25 +70,21 @@ public class BasePieceLocationMarker : MonoBehaviour, IOnSaveDataLoaded
     {
         if (data.pieceType == Base.Piece.Invalid) yield break;
 
-        ErrorMessage.AddMessage($"1");
+
         var task = CraftData.GetPrefabForTechTypeAsync(pieceTypes[data.pieceType]);
         yield return task;
         var prefab = task.GetResult();
-        ErrorMessage.AddMessage($"17: {prefab}, {pieceTypes[data.pieceType]}");
+
         var constructableBase = Instantiate(prefab).GetComponent<ConstructableBase>();
-        ErrorMessage.AddMessage($"2: {constructableBase}, {(constructableBase ? constructableBase.model : null)}");
         var ghost = constructableBase.model.GetComponent<BaseGhost>();
         ghost.SetupGhost();
-        ErrorMessage.AddMessage($"3");
 
 
         constructableBase.tr.position = transform.position;
         constructableBase.tr.parent = transform;
 
 
-        ErrorMessage.AddMessage($"{LargeWorld.main != null}, {LargeWorld.main?.streamer?.cellManager != null}");
         constructableBase.gameObject.SetActive(true);
-        ErrorMessage.AddMessage($"{ghost.ghostBase != null}, {ghost.GetComponentInParent<ConstructableBase>() != null}, {ghost.GetComponentInParent<ConstructableBase>(true) != null}, {ghost.targetBase == null}");
         ghost.Place();
 
         PieceObject = ghost.gameObject;
@@ -103,7 +99,6 @@ public class BasePieceLocationMarker : MonoBehaviour, IOnSaveDataLoaded
 
 
         constructableBase.SetState(false, true);
-        ErrorMessage.AddMessage($"4");
 
         constructableBase.constructedAmount = data.constructedAmount;
         constructableBase.UpdateMaterial();
@@ -116,7 +111,6 @@ public class BasePieceLocationMarker : MonoBehaviour, IOnSaveDataLoaded
             //Been a while don't quite remember what happens to it anymore
             PieceObject.transform.localPosition -= new Vector3(5, 0, 5);
         }
-        ErrorMessage.AddMessage($"5");
     }
     public static Base.Direction directionTest = Base.Direction.North;
     public Base.Direction GetDirection() => directionTest;
