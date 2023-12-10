@@ -39,7 +39,7 @@ public class MapRoomMapMover : MonoBehaviour, IInputHandler
 
         miniWorld.offset += direction * MoveSpeed;
 
-        if (GameInput.GetButtonDown(GameInput.Button.Exit)) Disable();
+        if (GameInput.GetButtonDown(GameInput.Button.Exit) || GameInput.GetButtonDown(GameInput.Button.UICancel)) Disable();
 
         return Active;
     }
