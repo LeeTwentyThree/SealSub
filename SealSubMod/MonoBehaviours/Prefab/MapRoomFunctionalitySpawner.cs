@@ -8,6 +8,8 @@ internal class MapRoomFunctionalitySpawner : MonoBehaviour
 
     private IEnumerator Start()
     {
+        yield break;//Temporary fix until we can work with the model again
+
         if (!Base.mapRoomFunctionalityPrefab)
         {
             Base.Initialize();
