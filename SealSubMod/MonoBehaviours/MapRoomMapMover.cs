@@ -56,7 +56,7 @@ public class MapRoomMapMover : HandTarget, IHandTarget, IInputHandler
 
     public void OnHandHover(GUIHand hand)
     {
-        HandReticle.main.SetText(HandReticle.TextType.Use, "UseMapMover", true, GameInput.Button.LeftHand);
+        HandReticle.main.SetText(HandReticle.TextType.Hand, "UseMapMover", true, GameInput.Button.LeftHand);
     }
 
     public void OnHandClick(GUIHand hand)
