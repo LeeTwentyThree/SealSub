@@ -39,5 +39,7 @@
   "SealExternalCam1": "Camera 1 - Keel (Front)",
   "SealExternalCam2": "Camera 2 - Keel (Back)",
   "SealExternalCam3": "Camera 3 - Hatch",
-  "SealExternalCam4": "Camera 4 - Docking Bay"
+  "SealExternalCam4": "Camera 4 - Docking Bay",
+
+    "UseMapMover": "Move Map",
 }

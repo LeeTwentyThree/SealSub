@@ -2,7 +2,7 @@
 
 namespace SealSubMod.MonoBehaviours;
 
-public class MapRoomMapMover : MonoBehaviour, IInputHandler
+public class MapRoomMapMover : HandTarget, IHandTarget, IInputHandler
 {
     public static float MoveSpeed = 0.02f;
     public bool Active { get; private set; }
@@ -52,5 +52,15 @@ public class MapRoomMapMover : MonoBehaviour, IInputHandler
     void IInputHandler.OnFocusChanged(InputFocusMode mode)
     {
 
+    }
+
+    public void OnHandHover(GUIHand hand)
+    {
+        HandReticle.main.SetText(HandReticle.TextType.Use, "UseMapMover", true, GameInput.Button.LeftHand);
+    }
+
+    public void OnHandClick(GUIHand hand)
+    {
+        Enable();
     }
 }
