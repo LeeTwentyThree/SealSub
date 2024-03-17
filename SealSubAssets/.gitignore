@@ -12,6 +12,8 @@
 /[Pp]ackages/
 /[Aa]ssets/[Tt]hunder[Kk]it[Ss]ettings/
 /ThunderKit/AssetBundleStaging/
+/Assets/ThunderKitAssets/PluginPath.asset
+/Assets/[Pp]ackages/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
