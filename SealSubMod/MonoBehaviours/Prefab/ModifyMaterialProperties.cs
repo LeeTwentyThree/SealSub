@@ -11,8 +11,8 @@ internal class ModifyMaterialProperties : PrefabModifier
 
     // These are for the editor only, they do NOT serialize and will be NULL!
 
-    [SerializeField] ColorProperty[] colorProperties = new ColorProperty[0];
-    [SerializeField] FloatProperty[] floatProperties = new FloatProperty[0];
+    public ColorProperty[] colorProperties = new ColorProperty[0];
+    public FloatProperty[] floatProperties = new FloatProperty[0];
 
     // The actual values should be accessed through these fields
 
@@ -51,13 +51,9 @@ internal class ModifyMaterialProperties : PrefabModifier
     {
         if (!renderer) throw new Exception($"Renderer is null on material setter {name}");
 
-        var mats = renderer.materials; // just setting index doesn't work because you get a different array than the actual one. It's basically passed by value rather than reference)
+        var mats = renderer.materials; // just setting index doesn't work because you get a different array than the actual one. It's basically passed by value rather than reference
         foreach (var index in materialIndices)
         {
-            if(index >= mats.Length)
-            {
-                throw new Exception($"Material index too high on material property modifier {name}");
-            }
             for (int i = 0; i < colorPropertyNames.Length; i++)
             {
                 mats[index].SetColor(colorPropertyNames[i], colorPropertyValues[i]);
