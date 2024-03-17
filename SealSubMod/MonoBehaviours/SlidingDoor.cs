@@ -1,12 +1,10 @@
-﻿using System;
-
-namespace SealSubMod.MonoBehaviours;
+﻿namespace SealSubMod.MonoBehaviours;
 
 internal class SlidingDoor : MonoBehaviour
 {
     [SerializeField] Vector3 openPos;
     private Vector3 defaultLocalPos;
-    private float speed = 5;
+    private float speed = 1;
     private float state = 0;
     private float target = 0;
     public void SetOpen(bool open)
@@ -25,7 +23,7 @@ internal class SlidingDoor : MonoBehaviour
 
     private void Update()
     {
-        var direction = Math.Sign(target - state);
+        var direction = Mathf.Sign(target - state);
         if (direction == 0) return;
 
         state += speed * direction * Time.deltaTime;
