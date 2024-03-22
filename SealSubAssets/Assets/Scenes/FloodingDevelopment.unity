@@ -331,12 +331,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e4c0622ac86b7d24c96922db75e9f7ea,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e4c0622ac86b7d24c96922db75e9f7ea,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e4c0622ac86b7d24c96922db75e9f7ea,
         type: 3}
@@ -416,7 +416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounds:
-    m_Center: {x: 0, y: 2, z: 4.3}
+    m_Center: {x: 0, y: 0, z: -0.7}
     m_Extent: {x: 20, y: 10, z: 30}
   distanceField: {fileID: 11400000, guid: 240ea1a1a4273e74bbfdaea1884d15da, type: 2}
   pixelsPerUnit: 3
