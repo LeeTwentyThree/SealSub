@@ -135,7 +135,7 @@ public class GenerateSealDistanceField : MonoBehaviour
         return axis switch
         {
             Axis.Right => new Vector3Int(depth, length, width),
-            Axis.Up => new Vector3Int(length, depth, width),
+            Axis.Up => new Vector3Int(width, depth, length),
             Axis.Forward => new Vector3Int(length, width, depth),
             _ => new Vector3Int()
         };

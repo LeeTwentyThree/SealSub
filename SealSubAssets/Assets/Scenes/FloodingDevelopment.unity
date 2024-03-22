@@ -422,7 +422,7 @@ MonoBehaviour:
   pixelsPerUnit: 3
   generateTexture: 0
   visualizeInEditor: 1
-  crossSectionVisualizationDepth: 0.437
+  crossSectionVisualizationDepth: 0.5
   crossSectionAxis: 1
 --- !u!64 &1516237991
 MeshCollider:
