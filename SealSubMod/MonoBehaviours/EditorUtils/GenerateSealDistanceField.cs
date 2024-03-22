@@ -17,6 +17,8 @@ public class GenerateSealDistanceField : MonoBehaviour
     [Range(0f, 1f)] public float crossSectionVisualizationDepth;
     [Tooltip("The cross section will be perpendicular to this axis.")]
     public Axis crossSectionAxis;
+    [Tooltip("If false (default value), the interior pixels will be rendered. If true, exterior pixels are rendered.")]
+    public bool inverseVisualization;
 
     private Vector3 Resolution => bounds.size * pixelsPerUnit;
     private Texture3D Texture3D => distanceField.texture;
@@ -73,7 +75,7 @@ public class GenerateSealDistanceField : MonoBehaviour
                 {
                     for (int x = 0; x < Resolution.x; x++)
                     {
-                        Texture3D.SetPixel(x, y, z, Color.clear);
+                        Texture3D.SetPixel(x, y, z, Color.white);
                     }
                 }
                 else
@@ -81,7 +83,7 @@ public class GenerateSealDistanceField : MonoBehaviour
                     for (int x = 0; x < Resolution.x; x++)
                     {
                         Texture3D.SetPixel(x, y, z,
-                            x >= interiorStartPixel && x < interiorEndPixel ? Color.white : Color.clear);
+                            x >= interiorStartPixel && x < interiorEndPixel ? Color.clear : Color.white);
                     }
                 }
             }
@@ -121,7 +123,7 @@ public class GenerateSealDistanceField : MonoBehaviour
             for (int w = 0; w < Resolution[((int)crossSectionAxis + 2) % 3]; w++)
             {
                 var location = GetCrossSectionLocation(l, w, d, crossSectionAxis);
-                var transparent = Mathf.Approximately(Texture3D.GetPixel(location.x, location.y, location.z).a, 1f);
+                var transparent = Mathf.Approximately(Texture3D.GetPixel(location.x, location.y, location.z).a, inverseVisualization ? 1f : 0f);
                 if (transparent)
                 {
                     Gizmos.DrawCube(PixelToWorldCoordinate(location), Vector3.Scale(bounds.size, VectorReciprocal(Resolution)));

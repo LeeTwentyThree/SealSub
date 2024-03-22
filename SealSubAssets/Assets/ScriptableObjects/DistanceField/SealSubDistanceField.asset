@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SealSubDistanceField
   m_EditorClassIdentifier: 
   texture: {fileID: 11700000, guid: a34853377b585aa448685baefb30d87d, type: 2}
-  min: {x: 0, y: 0, z: 0}
-  max: {x: 0, y: 0, z: 0}
-  meshBoundsSize: {x: 0, y: 0, z: 0}
+  min: {x: -20, y: -8, z: -25.3}
+  max: {x: 20, y: 12, z: 34.7}
+  meshBoundsSize: {x: 40, y: 20, z: 60}
