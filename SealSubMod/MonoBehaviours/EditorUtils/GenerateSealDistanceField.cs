@@ -1,6 +1,4 @@
-﻿using UnityEngine.Serialization;
-
-namespace SealSubMod.MonoBehaviours.EditorUtils;
+﻿namespace SealSubMod.MonoBehaviours.EditorUtils;
 
 // This file helps with baking a texture3d for the seal's distance field, which is ESSENTIAL for flooding!
 // DO NOT USE THIS AT RUNTIME!
