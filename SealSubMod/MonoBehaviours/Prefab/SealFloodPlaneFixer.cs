@@ -23,6 +23,7 @@ public class SealFloodPlaneFixer : PrefabModifierAsync
         planeMesh.transform.localPosition = Vector3.zero;
         var fogMesh = Instantiate(referenceWaterPlane.transform.Find("x_BaseWaterFog_BaseRoom").gameObject,
             waterPlane.transform);
+        fogMesh.SetActive(false);
         fogMesh.transform.localPosition = Vector3.zero;
         waterPlane.waterPlane = planeMesh.transform;
         waterPlane.waterRender = planeMesh.GetComponent<Renderer>();
