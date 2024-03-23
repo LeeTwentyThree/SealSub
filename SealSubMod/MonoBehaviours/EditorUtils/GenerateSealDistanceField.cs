@@ -45,7 +45,10 @@ public class GenerateSealDistanceField : MonoBehaviour
             distanceField.texture.height != (int) Resolution.y || distanceField.texture.depth != (int) Resolution.z)
         {
             distanceField.texture = new Texture3D((int) Resolution.x, (int) Resolution.y, (int) Resolution.z,
-                TextureFormat.Alpha8, 1);
+                TextureFormat.Alpha8, 1)
+            {
+                wrapMode = TextureWrapMode.Clamp
+            };
         }
 
         var checkBoxExtents = Vector3.Scale(bounds.extents, VectorReciprocal(Resolution));
