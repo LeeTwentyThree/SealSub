@@ -365,18 +365,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7876115264307746792, guid: c5e79e43230c8e64d9e59549d657d7d2,
         type: 3}
-      propertyPath: crossSectionAxis
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7876115264307746792, guid: c5e79e43230c8e64d9e59549d657d7d2,
-        type: 3}
       propertyPath: visualizeInEditor
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7876115264307746792, guid: c5e79e43230c8e64d9e59549d657d7d2,
-        type: 3}
-      propertyPath: crossSectionVisualizationDepth
-      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5e79e43230c8e64d9e59549d657d7d2, type: 3}

@@ -1,6 +1,4 @@
-﻿using UnityEngine.Serialization;
-
-namespace SealSubMod.MonoBehaviours.EditorUtils;
+﻿namespace SealSubMod.MonoBehaviours.EditorUtils;
 
 // This file helps with baking a texture3d for the seal's distance field, which is ESSENTIAL for flooding!
 // DO NOT USE THIS AT RUNTIME!
@@ -45,7 +43,10 @@ public class GenerateSealDistanceField : MonoBehaviour
             distanceField.texture.height != (int) Resolution.y || distanceField.texture.depth != (int) Resolution.z)
         {
             distanceField.texture = new Texture3D((int) Resolution.x, (int) Resolution.y, (int) Resolution.z,
-                TextureFormat.Alpha8, 1);
+                TextureFormat.Alpha8, 1)
+            {
+                wrapMode = TextureWrapMode.Clamp
+            };
         }
 
         var checkBoxExtents = Vector3.Scale(bounds.extents, VectorReciprocal(Resolution));

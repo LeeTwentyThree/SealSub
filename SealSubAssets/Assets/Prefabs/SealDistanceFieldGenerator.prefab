@@ -295,14 +295,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounds:
-    m_Center: {x: 0, y: 2, z: 4.7}
+    m_Center: {x: 0, y: 2, z: 4}
     m_Extent: {x: 20, y: 10, z: 30}
   distanceField: {fileID: 11400000, guid: 240ea1a1a4273e74bbfdaea1884d15da, type: 2}
-  pixelsPerUnit: 3
+  pixelsPerUnit: 4
   generateTexture: 0
-  visualizeInEditor: 1
+  visualizeInEditor: 0
   crossSectionVisualizationDepth: 0.5
-  crossSectionAxis: 1
+  crossSectionAxis: 2
+  inverseVisualization: 0
 --- !u!114 &3758746727834613290
 MonoBehaviour:
   m_ObjectHideFlags: 0
