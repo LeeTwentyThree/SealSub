@@ -1,4 +1,4 @@
-﻿namespace SealSubMod.MonoBehaviours;
+﻿namespace SealSubMod.MonoBehaviours.VisualFX.Alarms;
 
 public class AlarmManager : MonoBehaviour
 {
