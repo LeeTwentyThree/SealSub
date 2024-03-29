@@ -32,12 +32,13 @@ public class MapRoomMapMover : HandTarget, IHandTarget, IInputHandler
     public bool HandleInput()
     {
         var moveDirection = GameInput.GetMoveDirection();
-        var direction = MainCamera.camera.transform.rotation * moveDirection;
-        direction.y = 0;
+        var direction = MainCamera.camera.transform.rotation * moveDirection.WithY(0);//Remove Y for rotation, only rotate the X and Z values
+        direction.y = 0;//Remove the Y again
         direction.Normalize();
-        direction.y = moveDirection.y;
-
-        miniWorld.offset += direction * MoveSpeed;
+        direction.y = moveDirection.y;//Re add the Y from the move direction
+        //We avoid the Y value because otherwise you'll move it up/down if you're looking at any non-level angle
+        //We want to only move up or down from space/C keys by default
+        miniWorld.Offset += direction * MoveSpeed;
 
         if (GameInput.GetButtonDown(GameInput.Button.Exit) || GameInput.GetButtonDown(GameInput.Button.UICancel)) Disable();
 

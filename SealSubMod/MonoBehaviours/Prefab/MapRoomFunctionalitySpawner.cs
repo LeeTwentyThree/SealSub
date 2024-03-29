@@ -6,6 +6,7 @@ public class MapRoomFunctionalitySpawner : MonoBehaviour
 {
     [SerializeField] Transform fabricatorPosition;
     [SerializeField] Transform mapPosition;
+    [SerializeField] MapRoomMapMover mapMover;
 
     private IEnumerator Start()
     {
@@ -25,7 +26,7 @@ public class MapRoomFunctionalitySpawner : MonoBehaviour
         mini.hologramRadius = 1.75f;
         mini.miniWorld.updatePosition = true;
 
-        mini.miniWorld.gameObject.AddComponent<MiniWorldPosition>();
+        mapMover.miniWorld = mini.miniWorld.gameObject.AddComponent<MiniWorldPosition>();
         mini.miniWorld.transform.position = mapPosition.position;
         mini.miniWorld.transform.parent = mapPosition;
 
@@ -48,18 +49,34 @@ public class MapRoomFunctionalitySpawner : MonoBehaviour
 
     public class MiniWorldPosition : MonoBehaviour
     {
-        public bool invert = false;
+        private float multOne = 1f;
         public float multTwo = -1;
-        public Vector3 offset;
+        public Vector3 Offset
+        {
+            get
+            {
+                return _offset;
+            }
+            set
+            {
+                _offset = Vector3.ClampMagnitude(value, 1);
+            }
+        }
+        private Vector3 _offset;
         private Transform map;
-        private void Awake() => gameObject.GetComponentInParent<MapRoomMapMover>(true).miniWorld = this;
+        private Transform maproomBlip;
         private void Start() 
         { 
             map = transform.GetChild(0).GetChild(0).GetChild(1);
+            maproomBlip = transform.GetChild(0).GetChild(0).GetChild(0);
 
 
             Destroy(transform.Find("worlddisplay/MapRoomFX/x_MapRoom_HoloTableGlow_Top"));
         }
-        private void Update() => map.transform.localPosition = invert ? -offset : offset;
+        private void Update()
+        {
+            map.transform.localPosition = _offset * multOne;
+            maproomBlip.transform.localPosition = _offset * multOne;
+        }
     }
 }

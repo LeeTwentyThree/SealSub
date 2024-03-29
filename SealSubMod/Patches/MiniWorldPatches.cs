@@ -16,13 +16,12 @@ internal class MiniWorldPatches
         var transformProperty = AccessTools.PropertyGetter(typeof(Component), nameof(Component.transform));
         var positionProperty = AccessTools.PropertyGetter(typeof(Transform), nameof(Transform.position));
 
-        Func<MiniWorld, Vector3> del = (mini) => mini.TryGetComponent<MiniWorldPosition>(out var pos) ? (mini.transform.position + (pos.offset * pos.multTwo)) : mini.transform.position;
+        Func<MiniWorld, Vector3> del = (mini) => mini.TryGetComponent<MiniWorldPosition>(out var pos) ? (mini.transform.position + (pos.Offset * pos.multTwo)) : mini.transform.position;
 
-        matcher.MatchForward(false, new CodeMatch(OpCodes.Call, transformProperty), new CodeMatch(OpCodes.Callvirt, positionProperty));
-        matcher.RemoveInstruction();
-        matcher.SetInstruction(Transpilers.EmitDelegate(del));
+        matcher.MatchForward(true, new CodeMatch(OpCodes.Call, transformProperty), new CodeMatch(OpCodes.Callvirt, positionProperty));
+        matcher.Advance(1);
         
-        matcher.MatchForward(false, new CodeMatch(OpCodes.Call, transformProperty), new CodeMatch(OpCodes.Callvirt, positionProperty));//There's two of them we need to replace
+        matcher.MatchForward(false, new CodeMatch(OpCodes.Call, transformProperty), new CodeMatch(OpCodes.Callvirt, positionProperty));//There's two of them, we only need to replace the second one
         matcher.RemoveInstruction();
         matcher.SetInstruction(Transpilers.EmitDelegate(del));
 
