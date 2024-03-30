@@ -71,7 +71,7 @@ public class MapRoomFunctionalitySpawner : MonoBehaviour
             maproomBlip = transform.GetChild(0).GetChild(0).GetChild(0);
 
 
-            Destroy(transform.Find("worlddisplay/MapRoomFX/x_MapRoom_HoloTableGlow_Top"));
+            Destroy(transform.Find("worlddisplay/MapRoomFX/x_MapRoom_HoloTableGlow_Top").gameObject);
         }
         private void Update()
         {
