@@ -1,6 +1,6 @@
 ﻿using SealSubMod.Interfaces;
 
-namespace SealSubMod.MonoBehaviours;
+namespace SealSubMod.MonoBehaviours.VisualFX.GravBeams;
 
 public class PropCannonBeamFX : MonoBehaviour, IOnDockChange
 {
@@ -33,7 +33,7 @@ public class PropCannonBeamFX : MonoBehaviour, IOnDockChange
 
         _beamFX.SetActive(_target);
 
-        if(!_target) return;
+        if (!_target) return;
 
         var origin = GetOriginPosition();
         var originVector = GetOriginVector();
@@ -44,14 +44,14 @@ public class PropCannonBeamFX : MonoBehaviour, IOnDockChange
             beam.origin = origin;
 
             //Make the beams come from just slightly different angles
-            
+
             beam.originVector = originVector + _noise;
         }
     }
 
     public Vector3 GetTargetPosition()
     {
-        return _target.position - (GetOriginVector() * centerOffset);
+        return _target.position - GetOriginVector() * centerOffset;
     }
 
     public Vector3 GetOriginVector()
@@ -68,19 +68,19 @@ public class PropCannonBeamFX : MonoBehaviour, IOnDockChange
 
     public Vector3 GetOriginPosition()
     {
-        return NearestPointOnLine(transform.position + (transform.right * leftRightOffset), transform.right, _target.transform.position);
+        return NearestPointOnLine(transform.position + transform.right * leftRightOffset, transform.right, _target.transform.position);
     }
 
     public IEnumerator Start()
     {
-        if(_beamFXPrefab)
+        if (_beamFXPrefab)
         {
             _beamFX = Instantiate(_beamFXPrefab, transform.position, transform.rotation, transform);
             yield break;
         }
 
-        while(_coroutineRunning) yield return null;
-        if(_beamFXPrefab)
+        while (_coroutineRunning) yield return null;
+        if (_beamFXPrefab)
         {
             _beamFX = Instantiate(_beamFXPrefab, transform.position, transform.rotation, transform);
             yield break;

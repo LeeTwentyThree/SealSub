@@ -47,7 +47,6 @@
 		<LocalizationFiles Include="Localization/*.json" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="MonoBehaviours\VisualFX\GravBeams\" />
 	  <Folder Include="MonoBehaviours\VisualFX\Propellors\" />
 	</ItemGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
