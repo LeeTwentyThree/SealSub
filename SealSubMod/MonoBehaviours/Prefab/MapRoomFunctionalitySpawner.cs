@@ -1,4 +1,5 @@
 ﻿using SealSubMod.MonoBehaviours.Abstract;
+using SealSubMod.MonoBehaviours.VisualFX;
 
 namespace SealSubMod.MonoBehaviours.Prefab;
 

@@ -1,6 +1,6 @@
 ﻿using static SealSubMod.MonoBehaviours.Prefab.MapRoomFunctionalitySpawner;
 
-namespace SealSubMod.MonoBehaviours;
+namespace SealSubMod.MonoBehaviours.VisualFX;
 
 public class MapRoomMapMover : HandTarget, IHandTarget, IInputHandler
 {

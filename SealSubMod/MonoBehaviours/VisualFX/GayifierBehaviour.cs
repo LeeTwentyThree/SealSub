@@ -1,4 +1,4 @@
-﻿namespace SealSubMod.MonoBehaviours;
+﻿namespace SealSubMod.MonoBehaviours.VisualFX;
 
 internal class GayifierBehaviour : MonoBehaviour
 {
@@ -40,7 +40,7 @@ internal class GayifierBehaviour : MonoBehaviour
 
         var current = 0f;
 
-        foreach(var gayColor in gayColors)
+        foreach (var gayColor in gayColors)
         {
             keys.Add(new GradientColorKey(gayColor, current));
             current += timeStep;
@@ -57,9 +57,9 @@ internal class GayifierBehaviour : MonoBehaviour
 
         var color = gradient.Evaluate(TimeLastLoop);
 
-        foreach(Renderer renderer in renderers)
+        foreach (Renderer renderer in renderers)
         {
-            foreach(var mat in renderer.materials)
+            foreach (var mat in renderer.materials)
             {
                 mat.color = color;
             }
