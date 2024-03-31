@@ -1,4 +1,4 @@
-﻿namespace SealSubMod.MonoBehaviours;
+﻿namespace SealSubMod.MonoBehaviours.VisualFX.Propellors;
 
 public class PropellerManager : MonoBehaviour
 {
