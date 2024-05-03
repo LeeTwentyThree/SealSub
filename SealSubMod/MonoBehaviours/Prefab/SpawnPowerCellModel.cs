@@ -7,8 +7,6 @@ namespace SealSubMod.MonoBehaviours.Prefab;
 // the class that spawns the power cell model
 internal class SpawnPowerCellModel : MonoBehaviour, ICyclopsReferencer
 {
-    private static GameObject[] _cachedModels = null;
-
     // serialize field is my favorite access modifier (I love serialize field <3)
     [SerializeField] Transform parent;
     [SerializeField] Vector3 localPos;
@@ -24,10 +22,10 @@ internal class SpawnPowerCellModel : MonoBehaviour, ICyclopsReferencer
     // isn't this such a useful interface??!?!??!?!? ikr?!?
     public void OnCyclopsReferenceFinished(GameObject cyclops)
     {
-        if (_cachedModels == null) LoadModels(cyclops);
+        var models = LoadModels(cyclops);
 
-        for(int i = 0; i < _cachedModels.Length; i++)
-            batterySource.batteryModels[i].model = SpawnModel(_cachedModels[i]);
+        for(int i = 0; i < models.Length; i++)
+            batterySource.batteryModels[i].model = SpawnModel(models[i]);
 
         // um what do we do for custom batteries...? eldritch, any ideas? is that even a concern?
 
@@ -35,12 +33,12 @@ internal class SpawnPowerCellModel : MonoBehaviour, ICyclopsReferencer
         //or if custom batteries is integrated into nautilus that would help with compat here
     }
 
-    public void LoadModels(GameObject cyclops)
+    public GameObject[] LoadModels(GameObject cyclops)
     {
         var powerCellModelReference = cyclops.transform.Find("cyclopspower/generator/SubPowerSocket1/SubPowerCell1/model").gameObject;
         var ionPowerCellModelReference = cyclops.transform.Find("cyclopspower/generator/SubPowerSocket1/SubPowerCell1/engine_power_cell_ion").gameObject;
 
-        _cachedModels = new[]
+        return new[]
         {
             powerCellModelReference, 
             ionPowerCellModelReference,

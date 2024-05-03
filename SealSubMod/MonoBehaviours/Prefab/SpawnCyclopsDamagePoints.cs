@@ -7,13 +7,11 @@ namespace SealSubMod.MonoBehaviours.Prefab;
 
 internal class SpawnCyclopsDamagePoints : MonoBehaviour, ICyclopsReferencer
 {
-    private static CyclopsExternalDamageManager cyclopsManager;
-
     [SerializeField] CyclopsExternalDamageManager damageManager;
 
     public void OnCyclopsReferenceFinished(GameObject cyclops)
     {
-        cyclopsManager = cyclops.GetComponentInChildren<CyclopsExternalDamageManager>();
+        var cyclopsManager = cyclops.GetComponentInChildren<CyclopsExternalDamageManager>();
 
         var points = new List<CyclopsDamagePoint>();
 
