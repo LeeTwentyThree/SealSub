@@ -16,7 +16,7 @@ internal class MiniWorldPatches
         var transformProperty = AccessTools.PropertyGetter(typeof(Component), nameof(Component.transform));
         var positionProperty = AccessTools.PropertyGetter(typeof(Transform), nameof(Transform.position));
 
-        Func<MiniWorld, Vector3> del = (mini) => mini.TryGetComponent<MiniWorldPosition>(out var pos) ? (mini.transform.position + (pos.Offset * pos.multTwo)) : mini.transform.position;
+        Func<MiniWorld, Vector3> del = (mini) => mini.TryGetComponent<MiniWorldPosition>(out var pos) ? (mini.transform.position + (pos.Offset * -1)) : mini.transform.position;
 
         matcher.MatchForward(true, new CodeMatch(OpCodes.Call, transformProperty), new CodeMatch(OpCodes.Callvirt, positionProperty));
         matcher.Advance(1);

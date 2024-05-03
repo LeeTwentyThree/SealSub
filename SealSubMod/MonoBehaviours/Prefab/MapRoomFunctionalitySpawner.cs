@@ -50,8 +50,6 @@ public class MapRoomFunctionalitySpawner : MonoBehaviour
 
     public class MiniWorldPosition : MonoBehaviour
     {
-        private float multOne = 1f;
-        public float multTwo = -1;
         public Vector3 Offset
         {
             get
@@ -60,24 +58,26 @@ public class MapRoomFunctionalitySpawner : MonoBehaviour
             }
             set
             {
-                _offset = Vector3.ClampMagnitude(value, 1);
+                _offset = Vector3.ClampMagnitude(value, maxOffset);
             }
         }
+        internal float maxOffset;
         private Vector3 _offset;
-        private Transform map;
-        private Transform maproomBlip;
+        private Transform mapRoot;
         private void Start() 
-        { 
-            map = transform.GetChild(0).GetChild(0).GetChild(1);
-            maproomBlip = transform.GetChild(0).GetChild(0).GetChild(0);
+        {
+            mapRoot = transform.GetChild(0).GetChild(0);
 
 
             Destroy(transform.Find("worlddisplay/MapRoomFX/x_MapRoom_HoloTableGlow_Top").gameObject);
         }
         private void Update()
         {
-            map.transform.localPosition = _offset * multOne;
-            maproomBlip.transform.localPosition = _offset * multOne;
+            for(int  i = 0; i < mapRoot.childCount; i++)
+            {
+                var child = mapRoot.GetChild(i);
+                child.transform.localPosition = _offset;
+            }
         }
     }
 }
