@@ -37,14 +37,18 @@ public class MapRoomFunctionalitySpawner : MonoBehaviour
             var fabSpawn = func.GetComponentInChildren<PrefabSpawn>(true);
             if (!fabSpawn) yield break;
             var upgrades = func.GetComponentInChildren<StorageContainer>(true);
-            var upgradesOffset = upgrades.transform.position - fabSpawn.transform.position;
+
             fabSpawn.transform.parent = fabricatorPosition;
             fabSpawn.transform.position = fabricatorPosition.position;
             fabSpawn.transform.rotation = fabricatorPosition.rotation;
 
             upgrades.transform.parent = fabricatorPosition;
-            upgrades.transform.position = fabricatorPosition.position + upgradesOffset;
-            upgrades.transform.parent.rotation = fabricatorPosition.rotation;
+            upgrades.transform.localPosition = new Vector3(0.5f, 0, -3.3f);//For some reason *some* things have offsets while others don't. Yes I hate this.
+            upgrades.transform.rotation = fabricatorPosition.rotation;
+
+            var slots = func.transform.Find("UpgradeSlots");
+            slots.transform.position = fabricatorPosition.position;
+            slots.transform.rotation = fabricatorPosition.rotation;
         }
     }
 
