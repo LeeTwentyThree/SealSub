@@ -1,0 +1,18 @@
+Voice: EMMA (https://ttsmp3.com/)
+Editing software: Audacity
+
+1) Import voice line
+2) Duplicate first track
+3) Offset second track by 20ms
+4) Pitch shift ALL tracks to -8.00%
+
+5) Apply "Reverb" effect with settings:
+50%
+0
+30
+10
+100
+100
+0
+0
+100
