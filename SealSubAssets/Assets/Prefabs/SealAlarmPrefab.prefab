@@ -147,7 +147,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2516268367729631961}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 592395550, guid: db380c3672ed49c4fbac490b18d75cc5, type: 3}
+  m_Script: {fileID: -1618630598, guid: db380c3672ed49c4fbac490b18d75cc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lightsParent: {fileID: 343893611223544081}

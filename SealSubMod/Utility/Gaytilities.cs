@@ -1,4 +1,5 @@
 ﻿using SealSubMod.MonoBehaviours;
+using SealSubMod.MonoBehaviours.VisualFX;
 
 namespace SealSubMod.Utility;
 

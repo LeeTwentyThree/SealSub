@@ -1,5 +1,6 @@
 ﻿using Nautilus.Commands;
 using SealSubMod.MonoBehaviours;
+using SealSubMod.MonoBehaviours.VisualFX.Alarms;
 using SealSubMod.Utility;
 
 namespace SealSubMod.Commands; // I thought it looked nicer with a folder :)
