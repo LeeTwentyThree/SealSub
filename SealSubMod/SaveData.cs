@@ -16,6 +16,8 @@ namespace SealSubMod
         //first key is console gameobject name, second key is slot
         public Dictionary<string, Dictionary<string, TechType>> modules = new();
 
+        public List<TechType> scannerModules = new();
+
         [Serializable]
         public class BasePieceSaveData
         {

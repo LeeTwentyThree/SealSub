@@ -52,7 +52,7 @@ public class SealSubPrefab
             lateOperation.OnLateMaterialOperation();
 
 
-        if (System.DateTime.Now.Month == 6 || Gaytilities.GayModeActive) Gaytilities.EngaygeGayification(prefab);
+        if ((Random.Range(0, 1000) == 1 && System.DateTime.Now.Month == 6) || Gaytilities.GayModeActive) Gaytilities.EngaygeGayification(prefab);
 
         gameObject.Set(prefab);
     }

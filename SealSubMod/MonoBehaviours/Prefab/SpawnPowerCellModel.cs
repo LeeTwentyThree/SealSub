@@ -19,7 +19,7 @@ internal class SpawnPowerCellModel : MonoBehaviour, ICyclopsReferencer
         batterySource = GetComponent<BatterySource>();
     }
 
-    // isn't this such a useful interface??!?!??!?!? ikr?!?
+    // isn't this such a useful interface??!?!??!?!? ikr?!?!
     public void OnCyclopsReferenceFinished(GameObject cyclops)
     {
         var models = LoadModels(cyclops);

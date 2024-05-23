@@ -1,13 +1,55 @@
-﻿using SealSubMod.MonoBehaviours.Abstract;
+﻿using Nautilus.Json;
+using SealSubMod.Interfaces;
+using SealSubMod.MonoBehaviours.Abstract;
 using SealSubMod.MonoBehaviours.VisualFX;
+using static FlexibleGridLayout;
 
 namespace SealSubMod.MonoBehaviours.Prefab;
 
-public class MapRoomFunctionalitySpawner : MonoBehaviour
+public class MapRoomFunctionalitySpawner : MonoBehaviour, IOnSaveDataLoaded
 {
     [SerializeField] Transform fabricatorPosition;
     [SerializeField] Transform mapPosition;
     [SerializeField] MapRoomMapMover mapMover;
+    private void OnEnable()
+    {
+        Plugin.SaveCache.OnStartedSaving += OnBeforeSave;
+    }
+    private void OnDisable()
+    {
+        Plugin.SaveCache.OnStartedSaving -= OnBeforeSave;
+    }
+    public void OnBeforeSave(object sender, JsonFileEventArgs args)
+    {
+        var saveData = GetComponentInParent<SealSubRoot>().SaveData;
+        saveData.scannerModules = new List<TechType>(GetComponentInChildren<StorageContainer>(true).container._items.Keys);
+    }
+    public void OnSaveDataLoaded(SaveData saveData)
+    {
+        UWE.CoroutineHost.StartCoroutine(LoadModules(saveData));
+    }
+    public IEnumerator LoadModules(SaveData saveData)
+    {
+        var container = GetComponentInChildren<StorageContainer>(true);
+
+        while(!container)
+        {
+            yield return new WaitForSeconds(3);
+            container = GetComponentInChildren<StorageContainer>(true);
+        }
+
+        foreach (var slotModule in saveData.scannerModules)
+        {
+            if (slotModule == TechType.None) continue;
+
+            var modulePrefabTask = CraftData.GetPrefabForTechTypeAsync(slotModule);
+            yield return modulePrefabTask;
+            var modulePrefab = modulePrefabTask.GetResult();
+
+            var module = Instantiate(modulePrefab);
+            container.container.AddItem(module.GetComponent<Pickupable>());
+        }
+    }
 
     private IEnumerator Start()
     {
