@@ -4,6 +4,7 @@ namespace SealSubMod.MonoBehaviours.Abstract;
 
 public abstract class ApplyForceTrigger : MonoBehaviour
 {
+    public static float maxDistanceBeforeSafetyCheck = 20;
     protected static List<Type> types = new List<Type>()
     {
         typeof(Creature),
@@ -17,10 +18,20 @@ public abstract class ApplyForceTrigger : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
+        var safetyChecked = new List<Rigidbody>();
         foreach (var pair in rigidBodyColliderCounts)
         {
+            //Safety check, unfortunately kinda needed because unity's OnTriggerExit can't be trusted to activate
+            if((pair.Key.transform.position - transform.position).sqrMagnitude >= (maxDistanceBeforeSafetyCheck * maxDistanceBeforeSafetyCheck))
+            {
+                safetyChecked.Add(pair.Key);
+                return;
+            }
+
             pair.Key.AddForce(GetPushDirection(pair.Key) * pushVelocity, ForceMode.VelocityChange);
         }
+
+        safetyChecked.ForEach(@checked => rigidBodyColliderCounts.Remove(@checked));
     }
 
     internal abstract Vector3 GetPushDirection(Rigidbody rigidbody);
