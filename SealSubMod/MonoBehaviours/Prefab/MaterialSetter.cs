@@ -1,5 +1,6 @@
 ﻿using UnityEngine.UI;
 using SealSubMod.Utility;
+using System;
 
 namespace SealSubMod.MonoBehaviours.Prefab;
 
@@ -24,6 +25,8 @@ internal class MaterialSetter : MonoBehaviour
     private static Material interiorWindowGlassMaterial;
     private static Material holographicUIMaterial;
 
+    private static bool fetchingMaterials = false;
+
     public enum MaterialType
     {
         WaterBarrier,
@@ -44,33 +47,40 @@ internal class MaterialSetter : MonoBehaviour
 
     public void AssignMaterials()
     {
-        switch (mode)
+        try
         {
-            case Mode.SingleRenderer:
-                if (!renderer) throw new System.Exception($"Renderer is null on material setter {name}");
-                var mats = renderer.materials; // just setting index doesn't work because you get a different array than the actual one. It's basically passed by value rather than reference
-                foreach (var index in materialIndexes)
-                    mats[index] = GetMaterial(materialType);
-                renderer.materials = mats;
-                break;
+            switch (mode)
+            {
+                case Mode.SingleRenderer:
+                    if (!renderer) throw new System.Exception($"Renderer is null on material setter {name}");
+                    var mats = renderer.materials; // just setting index doesn't work because you get a different array than the actual one. It's basically passed by value rather than reference
+                    foreach (var index in materialIndexes)
+                        mats[index] = GetMaterial(materialType);
+                    renderer.materials = mats;
+                    break;
 
-            case Mode.AllChildRenderers:
-                foreach (var childRenderer in gameObject.GetComponentsInChildren<Renderer>(true))
-                {
-                    var childRendererMats = childRenderer.materials; // just setting index doesn't work because you get a different array than the actual one. It's basically passed by value rather than reference
-                    for (int i = 0; i < childRendererMats.Length; i++)
-                        childRendererMats[i] = GetMaterial(materialType);
-                    childRenderer.materials = childRendererMats;
-                }
-                break;
+                case Mode.AllChildRenderers:
+                    foreach (var childRenderer in gameObject.GetComponentsInChildren<Renderer>(true))
+                    {
+                        var childRendererMats = childRenderer.materials; // just setting index doesn't work because you get a different array than the actual one. It's basically passed by value rather than reference
+                        for (int i = 0; i < childRendererMats.Length; i++)
+                            childRendererMats[i] = GetMaterial(materialType);
+                        childRenderer.materials = childRendererMats;
+                    }
+                    break;
 
-            case Mode.AllChildGraphics:
-                foreach (var graphic in gameObject.GetComponentsInChildren<Graphic>(true))
-                {
-                    graphic.material = GetMaterial(materialType);
-                }
-                break;
+                case Mode.AllChildGraphics:
+                    foreach (var graphic in gameObject.GetComponentsInChildren<Graphic>(true))
+                    {
+                        graphic.material = GetMaterial(materialType);
+                    }
+                    break;
 
+            }
+        }
+        catch (Exception e)
+        {
+            Plugin.Logger.LogError($"Error on material setter {gameObject.name}{Environment.NewLine}{e}");
         }
     }
 
@@ -99,8 +109,34 @@ internal class MaterialSetter : MonoBehaviour
         }
     }
 
-    public static IEnumerator LoadMaterialsAsync()
+    private static void ClearCachedMaterials()
     {
+        glassMaterial = null;
+        exteriorGlassMaterial = null;
+        shinyGlassMaterial = null;
+        interiorWindowGlassMaterial = null;
+        holographicUIMaterial = null;
+    }
+
+    public static IEnumerator LoadMaterialsAsync(bool clearCachedMaterials = true)
+    {
+        if (fetchingMaterials)
+        {
+            yield return new WaitUntil(() => !fetchingMaterials);
+            yield break;
+        }
+
+        if(!clearCachedMaterials && glassMaterial != null)
+        {
+            Plugin.Logger.LogWarning("Load materials called with clearCache false while materials are cached. This does nothing. So may not be an issue but it is weird");
+            yield break;
+        }
+
+        fetchingMaterials = true;
+
+
+        ClearCachedMaterials();
+
         var seamothTask = CraftData.GetPrefabForTechTypeAsync(TechType.Seamoth);
 
         yield return seamothTask;
@@ -137,6 +173,8 @@ internal class MaterialSetter : MonoBehaviour
             CyclopsReferenceManager.CyclopsReference.transform.Find("HelmHUD/HelmHUDVisuals/Canvas_LeftHUD/EngineOnUI/EngineOff_Button")
             .GetComponent<Image>().material
             );
+
+        fetchingMaterials = false;
     }
     
     public enum Mode

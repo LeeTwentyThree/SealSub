@@ -9,8 +9,9 @@ namespace SealSubMod.Patches.BasePatches;
 internal class BasePatches
 {
     [HarmonyPatch(nameof(Base.NormalizeCell))]
-    public static void Postfix(ref Int3 __result)
+    public static void Postfix(ref Int3 __result, Base __instance)
     {
-        if (Player.main.currentSub is SealSubRoot) __result = new Int3(0, 0, 0);//little bit hacky, but for some reason nothing else worked
+        if (__instance.GetComponentInParent<BasePieceLocationMarker>()) __result = new Int3(0, 0, 0);//little bit hacky, but for some reason nothing else worked
+
     }
 }

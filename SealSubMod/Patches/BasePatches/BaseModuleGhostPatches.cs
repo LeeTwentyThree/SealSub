@@ -62,11 +62,12 @@ internal class BaseModuleGhostPatches
     [HarmonyPatch(nameof(BaseAddModuleGhost.Finish))]//Let the base piece modules actually be placed
     public static bool Prefix(BaseAddModuleGhost __instance)
     {
-        if (Player.main.currentSub is not SealSubRoot seal) return true;
-
-
         var marker = __instance.GetComponentInParent<BasePieceLocationMarker>(true);
-        if (!marker) throw new InvalidOperationException("Shis fucked.");
+        if (!marker)
+        {
+            Plugin.Logger.LogDebug("module ghost finish patch, no location marker, object " +  __instance.gameObject.name);
+            return true;
+        }
 
 
         if (!faceToPiece.TryGetValue(__instance.faceType, out var piece))

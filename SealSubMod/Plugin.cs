@@ -59,7 +59,9 @@ public class Plugin : BaseUnityPlugin
 
         ConsoleCommandsHandler.RegisterConsoleCommands(typeof(ConsoleCommands));
 
-        UWE.CoroutineHost.StartCoroutine(MaterialSetter.LoadMaterialsAsync());
+        UWE.CoroutineHost.StartCoroutine(MaterialSetter.LoadMaterialsAsync(false));
+
+        SaveUtils.RegisterOnStartLoadingEvent( () => UWE.CoroutineHost.StartCoroutine(MaterialSetter.LoadMaterialsAsync(true)));
 
         LanguageHandler.RegisterLocalizationFolder();
 

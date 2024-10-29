@@ -14,14 +14,15 @@ internal class BaseGhostPatches
     [HarmonyPatch(nameof(BaseGhost.Finish))]//let the water park *actually* place
     public static bool Prefix(BaseGhost __instance)
     {
-        if (Player.main.currentSub is not SealSubRoot seal) return true;
-
         if(__instance is not BaseAddWaterPark waterPark) return true;
 
-
-
         var marker = __instance.GetComponentInParent<BasePieceLocationMarker>(true);
-        if (!marker) throw new InvalidOperationException("Shis fucked.");
+        if (!marker)
+        {
+            Plugin.Logger.LogDebug("base ghost finish patch, no location marker, object " + __instance.gameObject.name);
+            return true;
+        }
+
 
         var piece = Base.Piece.RoomWaterParkBottom;
 
@@ -152,7 +153,12 @@ internal class BaseGhostPatches
     [HarmonyPatch(nameof(BaseGhost.Place))]//set parent properly, so that the modules move with the sub
     public static void Postfix(BaseGhost __instance)
     {
-        if (Player.main.currentSub is not SealSubRoot) return;
+        var marker = __instance.GetComponentInParent<BasePieceLocationMarker>();
+        if (!marker)
+        {
+            Plugin.Logger.LogDebug("Base ghost place patch, no location marker, object " + __instance.gameObject.name);
+            return;
+        }
 
         var comp = __instance.GetComponentInParent<ConstructableBase>();//The root ghost object that needs to be parented
 
@@ -170,8 +176,6 @@ internal class BaseGhostPatches
             return;
         }
 
-        var marker = __instance.GetComponentInParent<BasePieceLocationMarker>();
-        if (!marker) throw new InvalidOperationException("Shis fucked.");
 
         comp.transform.parent = marker.transform;
 

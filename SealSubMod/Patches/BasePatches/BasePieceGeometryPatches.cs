@@ -12,12 +12,12 @@ internal class BasePieceGeometryPatches
     [HarmonyPatch(typeof(WaterParkGeometry), nameof(WaterParkGeometry.GetModule))]
     public static void Postfix(MonoBehaviour __instance, ref IBaseModule __result)
     {
-        if (Player.main.currentSub is SealSubRoot) __result = __instance.GetComponentInChildren<IBaseModule>(true);
+        if (__instance.GetComponentInParent<BasePieceLocationMarker>()) __result = __instance.GetComponentInChildren<IBaseModule>(true);
     }
     [HarmonyPatch(typeof(BaseNuclearReactor), nameof(BaseNuclearReactor.GetModel))]
     [HarmonyPatch(typeof(BaseBioReactor), nameof(BaseBioReactor.GetModel))]
     public static void Postfix(MonoBehaviour __instance, ref IBaseModuleGeometry __result)
     {
-        if (Player.main.currentSub is SealSubRoot) __result = __instance.GetComponentInParent<IBaseModuleGeometry>();
+        if (__instance.GetComponentInParent<BasePieceLocationMarker>()) __result = __instance.GetComponentInParent<IBaseModuleGeometry>();
     }
 }
