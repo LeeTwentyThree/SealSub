@@ -98,6 +98,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Seal Sub
       objectReference: {fileID: 0}
+    - target: {fileID: 1311318362409253555, guid: 956442cc01a089848a2968c36afaf280,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.69
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 956442cc01a089848a2968c36afaf280, type: 3}
 --- !u!4 &5044834768934714889 stripped
