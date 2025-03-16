@@ -9,6 +9,7 @@ using Nautilus.Crafting;
 using Nautilus.Handlers;
 using SealSubMod.Attributes;
 using SealSubMod.Commands;
+using SealSubMod.Extensions;
 using SealSubMod.MonoBehaviours;
 using SealSubMod.MonoBehaviours.Prefab;
 using SealSubMod.Patches.ModCompatPatches;
@@ -105,44 +106,28 @@ public class Plugin : BaseUnityPlugin
     private void RegisterPrefabs()
     {
         PrefabInfo DepthModuleMk2Info = PrefabInfo.WithTechType("SealHullModule2", null, null)
-        .WithIcon(SpriteManager.Get(TechType.CyclopsHullModule2));
+        .WithIcon(SpriteManager.Get(TechType.CyclopsHullModule2))
+        .RegisterUpgradeModulePrefab();
 
         PrefabInfo DepthModuleMk3Info = PrefabInfo.WithTechType("SealHullModule3", null, null)
-        .WithIcon(SpriteManager.Get(TechType.CyclopsHullModule3));
+        .WithIcon(SpriteManager.Get(TechType.CyclopsHullModule3))
+        .RegisterUpgradeModulePrefab();
 
         PrefabInfo SolarChargeModuleInfo = PrefabInfo.WithTechType("SealSolarChargeModule", null, null)
-        .WithIcon(SpriteManager.Get(TechType.SeamothSolarCharge));
+        .WithIcon(SpriteManager.Get(TechType.SeamothSolarCharge))
+        .RegisterUpgradeModulePrefab();
 
         PrefabInfo ThermalChargeModuleInfo = PrefabInfo.WithTechType("SealThermalChargeModule", null, null)
-        .WithIcon(SpriteManager.Get(TechType.CyclopsThermalReactorModule));
+        .WithIcon(SpriteManager.Get(TechType.CyclopsThermalReactorModule))
+        .RegisterUpgradeModulePrefab();
 
         PrefabInfo SpeedModuleInfo = PrefabInfo.WithTechType("SealSpeedModule", null, null)
-        .WithIcon(SpriteManager.Get(TechType.CyclopsThermalReactorModule));
-
-
-        RegisterUpgradeModulePrefab(DepthModuleMk1Info);
-        RegisterUpgradeModulePrefab(DepthModuleMk2Info);
-        RegisterUpgradeModulePrefab(DepthModuleMk3Info);
-        RegisterUpgradeModulePrefab(SolarChargeModuleInfo);
-        RegisterUpgradeModulePrefab(ThermalChargeModuleInfo);
-        RegisterUpgradeModulePrefab(SpeedModuleInfo);
-
+        .WithIcon(SpriteManager.Get(TechType.CyclopsThermalReactorModule))
+        .RegisterUpgradeModulePrefab();
 
         SealSubPrefab.Register();
     }
-    public static void RegisterUpgradeModulePrefab(PrefabInfo info, RecipeData recipe = null)
-    {
-        var prefab = new CustomPrefab(info);
-        prefab.SetGameObject(new CloneTemplate(info, TechType.CyclopsHullModule1));
-        prefab.SetPdaGroupCategory(SealGroup, SealModuleCategory);
-        prefab.SetUnlock(SealSubPrefab.SealType);
 
-        if (recipe == null) recipe = JsonUtils.GetRecipeFromJson(info.TechType);
-        prefab.SetRecipe(recipe).WithFabricatorType(SealFabricatorTree);
-
-        prefab.SetEquipment(SealModuleEquipmentType);
-        prefab.Register();
-    }
     public static void RegisterUpgradeModuleFunctionalities(Assembly assembly)
     {
         foreach (var type in assembly.GetTypes())
