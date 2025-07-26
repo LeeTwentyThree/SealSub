@@ -107,4 +107,10 @@ internal class ConsoleCommands
 
         return "You've been unstuck! Please mention this to the devs, so we can learn the most prevalent location issues with the sub";
     }
+    
+    [ConsoleCommand("KillElvis")]
+    public static void KillElvis(string Presley = null)
+    {
+        ErrorMessage.AddMessage(Presley == "Presley" ? "The Presley era is over" : "Elvis down");
+    }
 }
