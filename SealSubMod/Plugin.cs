@@ -51,6 +51,9 @@ public class Plugin : BaseUnityPlugin
 
     private void Awake()
     {
+        // support version checking via FindMyUpdates
+        Nautilus.Utility.ModMessages.ModMessageSystem.SendGlobal("FindMyUpdates", "https://raw.githubusercontent.com/LeeTwentyThree/SealSub/refs/heads/main/Version.json");
+    
         // set project-scoped logger instance
         Logger = base.Logger;
 
