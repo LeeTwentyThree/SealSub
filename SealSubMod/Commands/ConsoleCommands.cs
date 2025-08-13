@@ -68,12 +68,17 @@ internal class ConsoleCommands
     [ConsoleCommand("SealUpgrades")]
     public static void SealUpgradesCommand()
     {
-        CraftData.GetEquipmentType(Plugin.DepthModuleMk1Info.TechType);//just a dummy call to kick nautilus into gear and make it patch the dictionary as it should
-        foreach (var pair in CraftData.equipmentTypes)
+        TechData.GetEquipmentType(Plugin.DepthModuleMk1Info.TechType);//just a dummy call to kick nautilus into gear and make it patch the dictionary as it should
+        foreach (var entry in TechData.entries)
         {
-            if (pair.Value == Plugin.SealModuleEquipmentType)
+            if (!entry.Value.GetInt(TechData.propertyEquipmentType, out var equipmentTypeId))
             {
-                CraftData.AddToInventory(pair.Key);
+                continue;
+            }
+            
+            if ((EquipmentType)equipmentTypeId == Plugin.SealModuleEquipmentType)
+            {
+                CraftData.AddToInventory(entry.Key);
             }
         }
     }

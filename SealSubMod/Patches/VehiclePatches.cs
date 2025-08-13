@@ -21,7 +21,15 @@ internal class VehiclePatches
 
         //it's set inactive when docking, but we want it active at all times for the seal dock
         __instance.disableDockedColliders.ForEach(col => col.enabled = true);
-        __instance.collisionModel.SetActive(true);
+        var collisionModel = __instance.collisionModel;
+        if (collisionModel != null)
+        {
+            foreach (var model in collisionModel)
+            {
+                if (model)
+                    model.SetActive(true);
+            }
+        }
     }
 
     [HarmonyPatch(nameof(Vehicle.ShouldSetKinematic))]

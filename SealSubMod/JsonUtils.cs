@@ -2,11 +2,7 @@
 using Nautilus.Crafting;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SealSubMod;
 
@@ -35,7 +31,7 @@ public static class JsonUtils
         if(!recipes.TryGetValue(recipeToGet, out var recicicicicipe))
         {
             Plugin.Logger.LogError($"Couldn't find techtype {recipeToGet} in file {filePath}. If this techtype is from another mod, please specify a custom file path, as your recipe won't be included in the seal's default .json file");
-            return new RecipeData(new CraftData.Ingredient(TechType.Titanium, 2));
+            return new RecipeData(new Ingredient(TechType.Titanium, 2));
         }
 
         return recicicicicipe;

@@ -6,7 +6,6 @@ using Nautilus.Assets;
 using Nautilus.Assets.Gadgets;
 using Nautilus.Assets.PrefabTemplates;
 using Nautilus.Crafting;
-using Nautilus.Handlers;
 using SealSubMod.Attributes;
 using SealSubMod.Commands;
 using SealSubMod.MonoBehaviours;
@@ -19,7 +18,7 @@ using System.Reflection;
 namespace SealSubMod;
 
 [BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
-[BepInDependency("com.snmodding.nautilus")]
+[BepInDependency("com.snmodding.nautilus", "1.0.0.42")]
 public class Plugin : BaseUnityPlugin
 {
     public new static ManualLogSource Logger { get; private set; }
@@ -66,7 +65,7 @@ public class Plugin : BaseUnityPlugin
         LanguageHandler.RegisterLocalizationFolder();
 
         SealPingType = EnumHandler.AddEntry<PingType>("SealSub")
-            .WithIcon(new Atlas.Sprite(assets.LoadAsset<Sprite>("SealSubPing")));
+            .WithIcon(assets.LoadAsset<Sprite>("SealSubPing"));
 
 
         try
