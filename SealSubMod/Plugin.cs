@@ -60,10 +60,8 @@ public class Plugin : BaseUnityPlugin
         var hamony = Harmony.CreateAndPatchAll(Assembly, $"{PluginInfo.PLUGIN_GUID}");
 
         ConsoleCommandsHandler.RegisterConsoleCommands(typeof(ConsoleCommands));
-
-        UWE.CoroutineHost.StartCoroutine(MaterialSetter.LoadMaterialsAsync(false));
-
-        SaveUtils.RegisterOnStartLoadingEvent( () => UWE.CoroutineHost.StartCoroutine(MaterialSetter.LoadMaterialsAsync(true)));
+        
+        WaitScreenHandler.RegisterLateAsyncLoadTask(PluginInfo.PLUGIN_NAME, MaterialSetter.LoadMaterialsAsyncLoadTask);
 
         LanguageHandler.RegisterLocalizationFolder();
 

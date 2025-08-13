@@ -24,9 +24,7 @@ internal class MaterialSetter : MonoBehaviour
     private static Material shinyGlassMaterial;
     private static Material interiorWindowGlassMaterial;
     private static Material holographicUIMaterial;
-
-    private static bool fetchingMaterials = false;
-
+    
     public enum MaterialType
     {
         WaterBarrier,
@@ -118,22 +116,18 @@ internal class MaterialSetter : MonoBehaviour
         holographicUIMaterial = null;
     }
 
+    public static IEnumerator LoadMaterialsAsyncLoadTask(WaitScreenHandler.WaitScreenTask task)
+    {
+        yield return LoadMaterialsAsync();
+    }
+
     public static IEnumerator LoadMaterialsAsync(bool clearCachedMaterials = true)
     {
-        if (fetchingMaterials)
-        {
-            yield return new WaitUntil(() => !fetchingMaterials);
-            yield break;
-        }
-
         if(!clearCachedMaterials && glassMaterial != null)
         {
             Plugin.Logger.LogWarning("Load materials called with clearCache false while materials are cached. This does nothing. So may not be an issue but it is weird");
             yield break;
         }
-
-        fetchingMaterials = true;
-
 
         ClearCachedMaterials();
 
@@ -173,8 +167,6 @@ internal class MaterialSetter : MonoBehaviour
             CyclopsReferenceManager.CyclopsReference.transform.Find("HelmHUD/HelmHUDVisuals/Canvas_LeftHUD/EngineOnUI/EngineOff_Button")
             .GetComponent<Image>().material
             );
-
-        fetchingMaterials = false;
     }
     
     public enum Mode
